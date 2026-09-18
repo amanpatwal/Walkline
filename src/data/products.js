@@ -1,0 +1,118 @@
+/**
+ * Walkline Footwear - Verified Product & Series Data
+ * 
+ * NOTE: Modeled directly on verified series and categories from Walkline's
+ * source content. Prices and unverified specifics remain clean placeholders
+ * awaiting client confirmation.
+ */
+
+export const FEATURED_PRODUCTS = [
+  {
+    id: "noir-05",
+    series: "Noir-05",
+    category: "Women's Sneakers",
+    categoryKey: "womens-sneakers",
+    tagline: "Signature coral cushion sole & bold silhouette",
+    tag: "#NoirFever",
+    badgeColor: "bg-[#FF4F7B] text-white",
+    sizes: "UK 4×7 – 5×8",
+    features: [
+      "Trendy chunky & fashion sneaker design",
+      "Signature coral cushion sole for superior shock absorption",
+      "All-day comfort certified",
+    ],
+    colors: ["#FFFFFF", "#FF4F7B", "#111111"],
+    image: "/images/products/product-02.svg",
+    slug: "noir-05",
+  },
+  {
+    id: "vertex",
+    series: "Vertex",
+    category: "Men's Sandals & Chappals",
+    categoryKey: "mens-sandals",
+    tagline: "Lightweight construction — lighter than air",
+    tag: "LIGHTER THAN AIR",
+    badgeColor: "bg-[#F4F000] text-black",
+    sizes: "UK 6×9 – 7×10",
+    features: [
+      "Engineered for all-day comfort without compromising looks",
+      "Lighter than air lightweight construction",
+      "Made in India with pride",
+    ],
+    colors: ["#111111", "#F4F000", "#FFFFFF"],
+    image: "/images/products/product-01.svg",
+    slug: "vertex",
+  },
+  {
+    id: "barbie-04",
+    series: "Barbie-04",
+    category: "Women's Sneakers",
+    categoryKey: "womens-sneakers",
+    tagline: "Earthy tones with everyday wearability",
+    tag: "EARTHY LINE",
+    badgeColor: "bg-[#FF7A45] text-white",
+    sizes: "UK 4×7 – 5×8",
+    features: [
+      "Bold style with everyday comfort",
+      "Cushion sole for shock absorption",
+      "Sizes UK 4×7 – 5×8 available",
+    ],
+    colors: ["#FAF7F0", "#FF7A45", "#2B2825"],
+    image: "/images/products/product-05.svg",
+    slug: "barbie-04",
+  },
+  {
+    id: "vrx",
+    series: "VRX",
+    category: "Fashion Sandals",
+    categoryKey: "fashion-sandals",
+    tagline: "Thin smart straps with metallic buckles",
+    tag: "WATERPROOF",
+    badgeColor: "bg-[#3155FF] text-white",
+    sizes: "UK 6×9 – 7×10",
+    features: [
+      "Waterproof comfy-soft construction",
+      "Thin strap with metallic buckle — smart and classy look",
+      "Flexible & lightweight build for any occasion",
+    ],
+    colors: ["#3155FF", "#111111", "#FFFFFF"],
+    image: "/images/products/product-03.svg",
+    slug: "vrx",
+  },
+  {
+    id: "frooti",
+    series: "Frooti",
+    category: "Kids' Footwear",
+    categoryKey: "kids-footwear",
+    tagline: "Memory foam insole & easy slip-on wear",
+    tag: "MEMORY FOAM",
+    badgeColor: "bg-[#A8E63D] text-black",
+    sizes: "8×10 / 11×1 / 2×5",
+    features: [
+      "Memory foam insole for superior extra cushioning",
+      "Easy slip-on design — no laces needed",
+      "Lightweight, breathable knit upper for toddlers to juniors",
+    ],
+    colors: ["#A8E63D", "#FFFFFF", "#111111"],
+    image: "/images/products/product-04.svg",
+    slug: "frooti",
+  },
+  {
+    id: "concept",
+    series: "Concept",
+    category: "Men's Sandals & Chappals",
+    categoryKey: "mens-sandals",
+    tagline: "Premium comfort range with versatile fit",
+    tag: "PREMIUM RANGE",
+    badgeColor: "bg-[#111111] text-[#F4F000]",
+    sizes: "UK 6×9 – 7×10",
+    features: [
+      "Combines confidence and style in every step",
+      "Engineered for all-day comfort",
+      "Made in India with pride",
+    ],
+    colors: ["#2B2825", "#F4F000", "#FFFFFF"],
+    image: "/images/products/product-06.svg",
+    slug: "concept",
+  },
+];
