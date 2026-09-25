@@ -4,19 +4,18 @@ import Marquee from "@/components/animations/Marquee";
 
 export default function MarqueeSection() {
   return (
-    <section className="relative w-full overflow-hidden">
-      {/* Primary Electric Yellow Marquee */}
+    <section className="relative w-full overflow-hidden" aria-hidden="true">
       <Marquee
         items={[
           "WALKLINE",
-          "NEW DROP",
-          "100% STREET READY",
-          "MADE TO MOVE",
-          "FEATHERLIGHT CUSHION",
-          "BRED IN INDIA",
-          "AEON V2 LIVE NOW",
+          "MADE IN INDIA",
+          "ALL-DAY COMFORT",
+          "SINCE 2009",
+          "CRAFTED IN BAHADURGARH",
+          "ENGINEERED MOVEMENT",
+          "STEP INTO CONFIDENCE",
         ]}
-        variant="yellow"
+        variant="brown"
         className="py-3 sm:py-4"
       />
     </section>

@@ -1,198 +1,211 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { Search, User, ShoppingBag, Menu, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Search, User, ShoppingBag, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Container from "@/ui/Container";
-import AnnouncementBar from "./AnnouncementBar";
 import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
 import SearchModal from "./SearchModal";
 import CartDrawer from "./CartDrawer";
 import { PRIMARY_NAV } from "@/data/navigation";
-import { COMPANY_INFO } from "@/data/company";
+import { assets } from "@/data/assets";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const { itemCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenuId, setActiveMenuId] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const closeTimerRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (e, href) => {
-    setActiveMenuId(null);
-    if (href.startsWith("#")) {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        if (window.__lenis) {
-          window.__lenis.scrollTo(targetEl, { offset: -80 });
-        } else {
-          targetEl.scrollIntoView({ behavior: "smooth" });
-        }
-      }
+  // Close mega menu on ESC
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") setActiveMenuId(null);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
+
+  // Hover logic: use a cancel-on-enter / delayed-close approach
+  // so the mouse can move from nav item into the megamenu without closing
+  const handleNavEnter = useCallback((id) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
     }
-  };
+    setActiveMenuId(id);
+  }, []);
+
+  const handleNavLeave = useCallback(() => {
+    closeTimerRef.current = setTimeout(() => {
+      setActiveMenuId(null);
+    }, 80); // tiny delay so mouse can travel from nav item → megamenu
+  }, []);
+
+  const handleMenuEnter = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const handleMenuLeave = useCallback(() => {
+    closeTimerRef.current = setTimeout(() => {
+      setActiveMenuId(null);
+    }, 80);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
 
   const activeNavItem = PRIMARY_NAV.find((item) => item.id === activeMenuId);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-[#FFFFFF]">
-        {/* Fashion Announcement Bar */}
-        <AnnouncementBar />
-
-        {/* Comet-Inspired Navigation Surface */}
+      <header className="fixed top-0 left-0 right-0 z-40">
         <nav
           className={cn(
             "relative w-full transition-all duration-300 ease-out border-b",
             isScrolled
-              ? "py-3 bg-white/95 backdrop-blur-md border-black/10 shadow-sm"
-              : "py-4 bg-[#FFFFFF] border-black/5"
+              ? "bg-[#FAF7F1]/95 backdrop-blur-md border-[#24140D]/10 shadow-[0_2px_16px_rgba(36,20,13,0.06)]"
+              : "bg-[#FAF7F1] border-[#24140D]/08"
           )}
           aria-label="Main Store Navigation"
         >
-          <Container className="flex items-center justify-between">
-            {/* LEFT: Walkline Brandmark */}
-            <div className="flex items-center gap-3">
+          <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between h-[72px] sm:h-[80px]">
+
+            {/* LEFT: Walkline Brand Logo (real uploaded JPEG) */}
+            <div className="flex items-center shrink-0">
               <Link
                 href="/"
-                className="group flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-lg"
-                aria-label="Walkline Footwear Homepage"
+                className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D] rounded"
+                aria-label="Walkline Footwear — Home"
                 onClick={() => setActiveMenuId(null)}
               >
-                <span className="text-2xl sm:text-3xl font-black tracking-[-0.05em] uppercase text-[#111111]">
-                  WALKLINE
-                </span>
-                <span className="hidden sm:inline-block text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#F4F000] text-black border border-black shadow-[1.5px_1.5px_0px_0px_#000]">
-                  EST. {COMPANY_INFO.establishedYear}
-                </span>
+                <div className="relative flex items-center">
+                  <Image
+                    src={assets.logo.primary}
+                    alt="Walkline Footwear — Above & Beyond"
+                    width={130}
+                    height={67}
+                    className="h-[30px] sm:h-[34px] w-auto object-contain"
+                    priority
+                    unoptimized
+                  />
+                </div>
               </Link>
             </div>
 
-            {/* CENTER: Men, Women, The Vault, About Us */}
-            <div
-              className="hidden lg:flex items-center gap-8"
-              onMouseLeave={() => setActiveMenuId(null)}
-            >
-              {PRIMARY_NAV.map((item) => (
-                <div
-                  key={item.id}
-                  className="relative py-2"
-                  onMouseEnter={() => setActiveMenuId(item.id)}
-                >
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={cn(
-                      "flex items-center gap-1 text-xs uppercase tracking-wider font-extrabold transition-colors duration-200 py-1 cursor-pointer focus:outline-none",
-                      activeMenuId === item.id
-                        ? "text-[#3155FF]"
-                        : "text-[#111111] hover:text-[#3155FF]"
-                    )}
+            {/* CENTER: Men, Women, Kids, Sandals, About Us */}
+            <div className="hidden lg:flex items-center gap-8 xl:gap-10">
+              {PRIMARY_NAV.map((item) => {
+                const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                const isMenuOpen = activeMenuId === item.id;
+
+                return (
+                  // ── KEY FIX: The entire wrapper (button + dropdown) is ONE hover region ──
+                  <div
+                    key={item.id}
+                    className="relative"
+                    onMouseEnter={() => handleNavEnter(item.id)}
+                    onMouseLeave={handleNavLeave}
                   >
-                    <span>{item.label}</span>
-                    <ChevronDown
+                    <Link
+                      href={item.href}
+                      onClick={() => setActiveMenuId(null)}
                       className={cn(
-                        "w-3.5 h-3.5 transition-transform duration-200",
-                        activeMenuId === item.id ? "rotate-180" : ""
+                        "flex items-center gap-1 text-[12.5px] tracking-[0.1em] uppercase font-bold transition-colors duration-200 py-2 cursor-pointer focus:outline-none",
+                        isMenuOpen || isActive
+                          ? "text-[#24140D]"
+                          : "text-[#24140D]/75 hover:text-[#24140D]"
+                      )}
+                    >
+                      <span>{item.label}</span>
+                    </Link>
+
+                    {/* Active page underline */}
+                    <span
+                      className={cn(
+                        "absolute bottom-0 left-0 h-[2px] bg-[#9A6238] transition-all duration-250",
+                        isMenuOpen || isActive ? "w-full" : "w-0"
                       )}
                     />
-                  </a>
-                  <span
-                    className={cn(
-                      "absolute bottom-0 left-0 h-[2px] bg-[#F4F000] transition-all duration-300",
-                      activeMenuId === item.id ? "w-full" : "w-0"
-                    )}
-                  />
-                </div>
-              ))}
+
+                    {/* Inline dropdown/megamenu — shares the same hover region */}
+                    <MegaMenu
+                      navItem={activeNavItem && activeNavItem.id === item.id ? activeNavItem : null}
+                      isOpen={isMenuOpen}
+                      onClose={() => setActiveMenuId(null)}
+                      onMouseEnter={handleMenuEnter}
+                      onMouseLeave={handleMenuLeave}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
-            {/* RIGHT: Search, Account, Cart, Mobile Menu */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Search Trigger */}
+            {/* RIGHT: Search, Account, Bag, Mobile Trigger */}
+            <div className="flex items-center gap-1 sm:gap-2">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2.5 rounded-full hover:bg-[#F7F7F4] text-[#111111] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
-                aria-label="Open search modal"
+                className="p-2.5 rounded-full hover:bg-[#F3E8D8]/70 text-[#24140D] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D]"
+                aria-label="Open search"
               >
-                <Search className="w-5 h-5 text-black" />
+                <Search className="w-[18px] h-[18px]" strokeWidth={1.75} />
               </button>
 
-              {/* Account Trigger */}
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, "#contact")}
-                className="hidden sm:inline-flex p-2.5 rounded-full hover:bg-[#F7F7F4] text-[#111111] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
-                aria-label="View account & contact details"
+              <Link
+                href="/contact"
+                className="hidden sm:inline-flex p-2.5 rounded-full hover:bg-[#F3E8D8]/70 text-[#24140D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D]"
+                aria-label="Contact & account"
               >
-                <User className="w-5 h-5 text-black" />
-              </a>
+                <User className="w-[18px] h-[18px]" strokeWidth={1.75} />
+              </Link>
 
-              {/* Cart / Bag Trigger with Counter */}
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2.5 rounded-full hover:bg-[#F7F7F4] text-[#111111] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black group"
-                aria-label="View shopping bag"
+                className="relative p-2.5 rounded-full hover:bg-[#F3E8D8]/70 text-[#24140D] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D] group"
+                aria-label={`Shopping bag (${itemCount} items)`}
               >
-                <ShoppingBag className="w-5 h-5 text-black" />
-                <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#F4F000] border border-black text-[10px] font-black text-black flex items-center justify-center shadow-[1px_1px_0px_0px_#000] group-hover:scale-110 transition-transform">
-                  1
-                </span>
+                <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.75} />
+                {itemCount > 0 && (
+                  <span className="absolute top-1 right-1 min-w-[16px] h-[16px] px-1 rounded-full bg-[#321D12] text-[#FAF7F1] text-[9px] font-bold flex items-center justify-center group-hover:scale-110 transition-transform">
+                    {itemCount}
+                  </span>
+                )}
               </button>
 
-              {/* Mobile Hamburger Drawer Trigger */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2.5 rounded-full bg-white border-2 border-black text-black shadow-[2px_2px_0px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
-                aria-label="Open mobile menu"
+                className="lg:hidden p-2.5 rounded-full bg-white border border-[#24140D]/15 text-[#24140D] hover:bg-[#F3E8D8]/60 transition-all cursor-pointer shadow-sm"
+                aria-label="Open mobile navigation"
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-[18px] h-[18px]" strokeWidth={1.75} />
               </button>
             </div>
-          </Container>
-
-          {/* Desktop Mega-Menu & Dropdowns */}
-          <div
-            onMouseEnter={() => {}}
-            onMouseLeave={() => setActiveMenuId(null)}
-          >
-            <MegaMenu
-              navItem={activeNavItem}
-              isOpen={Boolean(activeNavItem)}
-              onClose={() => setActiveMenuId(null)}
-            />
           </div>
         </nav>
       </header>
 
-      {/* Interactive Search Modal */}
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-      />
-
-      {/* Slide-Over Cart Drawer */}
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-      />
-
-      {/* Dedicated Mobile Menu */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}

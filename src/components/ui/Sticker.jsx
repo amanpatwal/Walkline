@@ -26,8 +26,8 @@ export function CircularStamp({
         </text>
       </svg>
       {/* Center Icon Badge */}
-      <div className="absolute w-10 h-10 rounded-full bg-[#F4F000] border-2 border-black flex items-center justify-center font-black text-xs shadow-[2px_2px_0px_0px_#000]">
-        <Zap className="w-5 h-5 text-black fill-black" />
+      <div className="absolute w-10 h-10 rounded-full bg-[#C69A6B] border border-[#24140D] flex items-center justify-center font-bold text-xs shadow-sm">
+        <Zap className="w-5 h-5 text-[#24140D] fill-[#24140D]" />
       </div>
     </div>
   );
@@ -35,24 +35,25 @@ export function CircularStamp({
 
 export function DropBadge({
   text = "NEW DROP",
-  variant = "yellow",
-  rotate = "-rotate-3",
+  variant = "brown",
+  rotate = "-rotate-1",
   className,
 }) {
   const variantStyles = {
-    yellow: "bg-[#F4F000] text-black border-2 border-black shadow-[3px_3px_0px_0px_#000]",
-    pink: "bg-[#FF4F7B] text-white border-2 border-black shadow-[3px_3px_0px_0px_#000]",
-    blue: "bg-[#3155FF] text-white border-2 border-black shadow-[3px_3px_0px_0px_#000]",
-    green: "bg-[#A8E63D] text-black border-2 border-black shadow-[3px_3px_0px_0px_#000]",
-    orange: "bg-[#FF7A45] text-white border-2 border-black shadow-[3px_3px_0px_0px_#000]",
-    black: "bg-black text-[#F4F000] border-2 border-black shadow-[3px_3px_0px_0px_#F4F000]",
+    yellow: "bg-[#C69A6B] text-[#24140D] border border-[#24140D]/20 shadow-sm",
+    pink: "bg-[#9A6238] text-[#FAF7F1] border border-[#24140D]/20 shadow-sm",
+    blue: "bg-[#5A351F] text-[#FAF7F1] border border-[#24140D]/20 shadow-sm",
+    green: "bg-[#4A5D4E] text-[#FAF7F1] border border-[#24140D]/20 shadow-sm",
+    orange: "bg-[#9A6238] text-[#FAF7F1] border border-[#24140D]/20 shadow-sm",
+    black: "bg-[#24140D] text-[#FAF7F1] border border-[#321D12] shadow-sm",
+    brown: "bg-[#321D12] text-[#FAF7F1] border border-[#24140D] shadow-sm",
   };
 
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider transition-transform hover:scale-105 select-none",
-        variantStyles[variant] || variantStyles.yellow,
+        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-transform hover:scale-105 select-none",
+        variantStyles[variant] || variantStyles.brown,
         rotate,
         className
       )}
@@ -67,11 +68,11 @@ export function StarPill({ text = "LIMITED", className }) {
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-black/20 text-[11px] font-mono font-bold text-black uppercase tracking-widest",
+        "inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#24140D]/20 text-[11px] font-mono font-bold text-[#24140D] uppercase tracking-widest",
         className
       )}
     >
-      <Star className="w-3 h-3 text-[#F4F000] fill-[#F4F000]" />
+      <Star className="w-3 h-3 text-[#C69A6B] fill-[#C69A6B]" />
       <span>{text}</span>
     </div>
   );

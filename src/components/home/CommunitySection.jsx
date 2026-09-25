@@ -1,76 +1,78 @@
 "use client";
 
-import Image from "next/image";
-import { COMMUNITY_DROPS } from "@/data/community";
+import { ShieldCheck, Sparkles, Award, HeartHandshake } from "lucide-react";
 import Container from "@/ui/Container";
-import SectionHeading from "@/ui/SectionHeading";
-import Reveal from "@/components/animations/Reveal";
-import { ArrowUpRight, Camera } from "lucide-react";
+import { COMPANY_INFO } from "@/data/company";
 
 export default function CommunitySection() {
-  return (
-    <section className="relative w-full py-20 sm:py-28 bg-[#FFFFFF] text-[#111111] border-t-2 border-black/10">
-      <Container>
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-          <SectionHeading
-            overline="Community Lookbook // 2026"
-            title="SEEN ON THE STREETS"
-            subtitle="Tag @walklinefootwear or use #WalklineStreets to be featured in the community drop."
-            tagVariant="pink"
-          />
-        
+  const brandPillars = [
+    {
+      title: "1,00,000+ Monthly Capacity",
+      subtitle: "Large-Scale Manufacturing",
+      desc: "Bahadurgarh precision facility capable of delivering consistent high-volume quality.",
+      icon: <Award className="w-5 h-5 text-[#9A6238]" />,
+    },
+    {
+      title: "Comfort-First Engineering",
+      subtitle: "Signature Soling Tech",
+      desc: "From memory foam to coral cushion soles, every step is built for impact absorption.",
+      icon: <Sparkles className="w-5 h-5 text-[#9A6238]" />,
+    },
+    {
+      title: "Genuine Indian Footwear",
+      subtitle: "100% Homegrown Craft",
+      desc: "Designed and manufactured in India with pride, upholding high craftsmanship standards.",
+      icon: <ShieldCheck className="w-5 h-5 text-[#9A6238]" />,
+    },
+    {
+      title: "Everyday Versatility",
+      subtitle: "Street & Comfort Focus",
+      desc: "Shoes and sandals designed to transition seamlessly from morning commute to weekend downtime.",
+      icon: <HeartHandshake className="w-5 h-5 text-[#9A6238]" />,
+    },
+  ];
 
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider px-5 py-2.5 rounded-full bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:bg-[#F4F000] transition-all self-start md:self-auto"
-          >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-            </svg>
-            <span>Follow @walklinefootwear</span>
-          </a>
+  return (
+    <section
+      className="relative w-full py-16 sm:py-24 bg-white text-[#24140D] border-t border-[#24140D]/10 overflow-hidden"
+      aria-label="Walkline Footwear — Step Into Your Everyday"
+    >
+      <Container>
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 space-y-3">
+          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#8A6E58]">
+            Walkline • Step Into Your Everyday
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-[-0.03em] text-[#24140D]">
+            Crafted For Real Life
+          </h2>
+          <p className="text-sm text-[#5A351F]/80 max-w-lg mx-auto font-normal">
+            Rooted in Bahadurgarh since {COMPANY_INFO.establishedYear}. Engineered for enduring performance, modern street aesthetics, and all-day comfort.
+          </p>
         </div>
 
-        {/* 3-Card Lookbook Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {COMMUNITY_DROPS.map((item, idx) => (
-            <Reveal key={item.id} animation="slideUp" delay={idx * 0.08}>
-              <div className="group bg-[#F7F7F4] rounded-3xl p-5 border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[6px_6px_0px_0px_#3155FF] transition-all duration-300 flex flex-col justify-between h-full">
-                {/* Visual Area */}
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-black mb-4">
-                  <Image
-                    src={item.image}
-                    alt={item.caption}
-                    fill
-                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span
-                      className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-black ${item.badgeColor}`}
-                    >
-                      {item.tag}
-                    </span>
-                  </div>
+        {/* 4 Brand Pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {brandPillars.map((item, idx) => (
+            <div
+              key={idx}
+              className="p-6 rounded-2xl bg-[#FAF7F1] border border-[#24140D]/08 hover:border-[#9A6238]/40 hover:shadow-editorial-sm transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="p-2.5 rounded-xl bg-white w-fit border border-[#24140D]/08 mb-4">
+                  {item.icon}
                 </div>
-
-                {/* Caption & User Meta */}
-                <div className="space-y-1.5">
-                  <p className="text-sm font-bold text-[#111111]">
-                    &ldquo;{item.caption}&rdquo;
-                  </p>
-                  <div className="flex items-center justify-between text-xs font-mono font-bold text-[#888888] pt-2 border-t border-black/10">
-                    <span>{item.user}</span>
-                    <span className="text-[#555555]">{item.location}</span>
-                  </div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#8A6E58]">
+                  {item.subtitle}
                 </div>
+                <h3 className="text-base font-bold uppercase tracking-tight text-[#24140D] mt-1 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-[#5A351F]/80 leading-relaxed font-normal">
+                  {item.desc}
+                </p>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
       </Container>

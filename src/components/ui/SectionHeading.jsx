@@ -6,7 +6,7 @@ export default function SectionHeading({
   subtitle,
   description,
   alignment = "left",
-  tagVariant = "yellow",
+  tagVariant = "espresso",
   className,
   titleClassName,
 }) {
@@ -17,11 +17,16 @@ export default function SectionHeading({
   };
 
   const tagStyles = {
-    yellow: "bg-[#F4F000] text-black border border-black",
-    pink: "bg-[#FF4F7B] text-white border border-black",
-    blue: "bg-[#3155FF] text-white border border-black",
-    green: "bg-[#A8E63D] text-black border border-black",
-    dark: "bg-black text-white border border-black",
+    espresso: "bg-[#321D12] text-[#FAF7F1] border border-[#24140D]/20",
+    caramel: "bg-[#9A6238] text-[#FAF7F1] border border-[#9A6238]/30",
+    tan: "bg-[#C69A6B] text-[#24140D] border border-[#C69A6B]/30",
+    cream: "bg-[#F3E8D8] text-[#321D12] border border-[#321D12]/15",
+    sand: "bg-[#E6D4BC] text-[#24140D] border border-[#24140D]/10",
+    yellow: "bg-[#F3E8D8] text-[#321D12] border border-[#321D12]/15",
+    pink: "bg-[#9A6238] text-[#FAF7F1]",
+    blue: "bg-[#321D12] text-[#FAF7F1]",
+    green: "bg-[#C69A6B] text-[#24140D]",
+    dark: "bg-[#24140D] text-[#FAF7F1]",
   };
 
   return (
@@ -36,8 +41,8 @@ export default function SectionHeading({
         <div className="flex items-center gap-2 mb-3 md:mb-4">
           <span
             className={cn(
-              "text-[11px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full shadow-[2px_2px_0px_0px_#000]",
-              tagStyles[tagVariant] || tagStyles.yellow
+              "text-[11px] font-bold uppercase tracking-[0.2em] px-3.5 py-1 rounded-full shadow-sm",
+              tagStyles[tagVariant] || tagStyles.espresso
             )}
           >
             {overline}
@@ -48,7 +53,7 @@ export default function SectionHeading({
       {title && (
         <h2
           className={cn(
-            "text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[0.98] uppercase text-[#111111] text-balance",
+            "text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[0.98] uppercase text-[#24140D] text-balance",
             titleClassName
           )}
         >
@@ -57,13 +62,13 @@ export default function SectionHeading({
       )}
 
       {subtitle && (
-        <p className="mt-3 text-base sm:text-lg md:text-xl font-bold tracking-tight text-[#555555]">
+        <p className="mt-3 text-base sm:text-lg md:text-xl font-bold tracking-tight text-[#5A351F]">
           {subtitle}
         </p>
       )}
 
       {description && (
-        <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#666666] max-w-2xl font-normal">
+        <p className="mt-2 text-sm sm:text-base text-[#8A6E58] leading-relaxed">
           {description}
         </p>
       )}

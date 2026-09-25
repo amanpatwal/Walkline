@@ -13,7 +13,7 @@ export const COMMUNITY_DROPS = [
     image: assets.lifestyle.community01,
     caption: "Noir-05 chunky silhouette with signature coral cushion sole.",
     user: "Walkline Community",
-    badgeColor: "bg-[#FF4F7B] text-white",
+    badgeColor: "bg-[#9A6238] text-[#FAF7F1]",
   },
   {
     id: "drop-02",
@@ -22,7 +22,7 @@ export const COMMUNITY_DROPS = [
     image: assets.lifestyle.community02,
     caption: "Vertex lightweight construction — daily all-day comfort.",
     user: "Walkline Community",
-    badgeColor: "bg-[#F4F000] text-black",
+    badgeColor: "bg-[#321D12] text-[#FAF7F1]",
   },
   {
     id: "drop-03",
@@ -31,6 +31,6 @@ export const COMMUNITY_DROPS = [
     image: assets.lifestyle.community03,
     caption: "VRX thin smart straps with metallic buckles.",
     user: "Walkline Community",
-    badgeColor: "bg-[#3155FF] text-white",
+    badgeColor: "bg-[#5A351F] text-[#FAF7F1]",
   },
 ];

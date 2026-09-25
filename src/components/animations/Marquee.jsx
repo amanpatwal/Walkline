@@ -15,17 +15,21 @@ export default function Marquee({
   ],
   speed = 25,
   direction = "left",
-  variant = "yellow", // yellow, black, white, pink, blue
+  variant = "brown", // brown, cream, espresso, white
   className,
 }) {
   const marqueeRef = useRef(null);
 
   const variantClasses = {
-    yellow: "bg-[#F4F000] text-[#111111] border-y-2 border-[#111111]",
-    black: "bg-[#111111] text-[#F4F000] border-y-2 border-[#F4F000]",
-    white: "bg-[#FFFFFF] text-[#111111] border-y border-black/15",
-    pink: "bg-[#FF4F7B] text-white border-y-2 border-[#111111]",
-    blue: "bg-[#3155FF] text-white border-y-2 border-[#111111]",
+    yellow: "bg-[#24140D] text-[#C69A6B] border-y border-[#321D12]",
+    black: "bg-[#24140D] text-[#FAF7F1] border-y border-[#321D12]",
+    white: "bg-[#FFFFFF] text-[#24140D] border-y border-[#24140D]/10",
+    pink: "bg-[#9A6238] text-white border-y border-[#24140D]/10",
+    blue: "bg-[#5A351F] text-white border-y border-[#24140D]/10",
+    // Walkline editorial palette
+    brown: "bg-[#24140D] text-[#C69A6B] border-y border-[#321D12]",
+    cream: "bg-[#F3E8D8] text-[#24140D] border-y border-[#24140D]/15",
+    espresso: "bg-[#321D12] text-[#FAF7F1] border-y border-[#24140D]",
   };
 
   // Duplicate items 4 times to ensure seamless infinite loop

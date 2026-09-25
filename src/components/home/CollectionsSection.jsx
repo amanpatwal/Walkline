@@ -1,66 +1,71 @@
-"use client";
-
+import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Check, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { COLLECTIONS } from "@/data/collections";
 import Container from "@/ui/Container";
-import SectionHeading from "@/ui/SectionHeading";
-import Reveal from "@/components/animations/Reveal";
-import { cn } from "@/lib/utils";
+
+const CATEGORY_ROUTES = {
+  "mens-sandals": "/men",
+  "womens-sneakers": "/women",
+  "kids-footwear": "/kids",
+  "fashion-sandals": "/sandals",
+};
 
 export default function CollectionsSection() {
   return (
     <section
       id="collections"
-      className="relative w-full py-20 sm:py-28 bg-[#FFFFFF] text-[#111111] border-y-2 border-black/10"
+      className="relative w-full py-20 sm:py-28 bg-white text-[#24140D] border-y border-[#24140D]/10"
+      aria-label="Four Core Categories — Indian Footwear Craftsmanship"
     >
       <Container>
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-          <SectionHeading
-            overline="Four Core Categories // Indian Streetwear"
-            title="PRODUCT CATEGORIES"
-            subtitle="Explore our diverse range crafted with premium materials and meticulous attention to detail."
-            tagVariant="pink"
-          />
-          <div className="hidden md:flex items-center gap-2 text-xs font-mono font-bold uppercase text-[#888888]">
-            <Sparkles className="w-4 h-4 text-[#F4F000]" />
-            <span>[ VERIFIED WALKLINE RANGES ]</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#8A6E58] block mb-2">
+              Collections • Curated by Series
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-[-0.03em] text-[#24140D]">
+              Explore Categories
+            </h2>
           </div>
+          <p className="text-xs sm:text-sm text-[#5A351F]/80 max-w-sm font-normal">
+            Four verified Walkline pillars: Men&apos;s Sandals, Women&apos;s Sneakers, Kids&apos; Footwear, and Fashion Sandals.
+          </p>
         </div>
 
-        {/* Editorial Asymmetric Grid for 4 Categories */}
+        {/* Asymmetric Editorial Grid (7/5 + 5/7) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
-          {/* Tile 1: Men's Sandals & Chappals - Large Editorial Tile (7 cols) */}
+          {/* Tile 1: Men's Sandals & Chappals - Large 7 cols */}
           <div className="lg:col-span-7">
-            <EditorialCategoryCard
+            <CategoryCard
               collection={COLLECTIONS[0]}
-              aspect="aspect-[16/10]"
+              href={CATEGORY_ROUTES[COLLECTIONS[0].id]}
               isLarge
             />
           </div>
 
-          {/* Tile 2: Women's Sneakers - Compact Editorial Tile (5 cols) */}
+          {/* Tile 2: Women's Sneakers - 5 cols */}
           <div className="lg:col-span-5">
-            <EditorialCategoryCard
+            <CategoryCard
               collection={COLLECTIONS[1]}
-              aspect="aspect-[16/10]"
+              href={CATEGORY_ROUTES[COLLECTIONS[1].id]}
             />
           </div>
 
-          {/* Tile 3: Fashion Sandals - Compact Editorial Tile (5 cols) */}
+          {/* Tile 3: Kids' Footwear - 5 cols */}
           <div className="lg:col-span-5">
-            <EditorialCategoryCard
+            <CategoryCard
               collection={COLLECTIONS[2]}
-              aspect="aspect-[16/10]"
+              href={CATEGORY_ROUTES[COLLECTIONS[2].id]}
             />
           </div>
 
-          {/* Tile 4: Kids' Footwear - Large Editorial Tile (7 cols) */}
+          {/* Tile 4: Fashion Sandals - Large 7 cols */}
           <div className="lg:col-span-7">
-            <EditorialCategoryCard
+            <CategoryCard
               collection={COLLECTIONS[3]}
-              aspect="aspect-[16/10]"
+              href={CATEGORY_ROUTES[COLLECTIONS[3].id]}
               isLarge
             />
           </div>
@@ -70,89 +75,57 @@ export default function CollectionsSection() {
   );
 }
 
-function EditorialCategoryCard({ collection, aspect = "aspect-[16/10]", isLarge = false }) {
-  const handleCategoryClick = () => {
-    const el = document.getElementById("products");
-    if (el) {
-      if (window.__lenis) {
-        window.__lenis.scrollTo(el, { offset: -70 });
-      } else {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
+function CategoryCard({ collection, href, isLarge = false }) {
   return (
-    <Reveal animation="slideUp" delay={0.06}>
-      <div
-        onClick={handleCategoryClick}
-        className={cn(
-          "group relative w-full rounded-3xl overflow-hidden bg-[#F7F7F4] border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[7px_7px_0px_0px_#000] flex flex-col justify-between p-6 sm:p-8 transition-all duration-300 cursor-pointer select-none",
-          isLarge ? "min-h-[480px]" : "min-h-[440px]"
-        )}
-      >
-        {/* Top Header Badge */}
-        <div className="flex items-center justify-between pointer-events-none mb-4 z-10">
-          <span
-            className={cn(
-              "text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full border border-black shadow-[1.5px_1.5px_0px_0px_#000]",
-              collection.badgeBg || "bg-[#F4F000] text-black"
-            )}
-          >
-            {collection.badge}
+    <Link
+      href={href || "/collections"}
+      className={`group relative w-full rounded-2xl overflow-hidden bg-[#FAF7F1] border border-[#24140D]/10 hover:border-[#9A6238] shadow-editorial-sm hover:shadow-editorial-md transition-all duration-500 cursor-pointer flex flex-col justify-between p-6 sm:p-8 block ${
+        isLarge ? "min-h-[460px] sm:min-h-[520px]" : "min-h-[420px] sm:min-h-[480px]"
+      }`}
+    >
+      {/* Background Image Container */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Image
+          src={collection.image}
+          alt={collection.title}
+          fill
+          sizes="(max-width: 1024px) 100vw, 60vw"
+          className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+        />
+        {/* Soft Editorial Gradient Overlay for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#24140D]/90 via-[#24140D]/40 to-transparent group-hover:from-[#24140D]/95 transition-all duration-300" />
+      </div>
+
+      {/* Top Header Badge */}
+      <div className="relative z-10 flex items-center justify-between">
+        <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#FAF7F1]/95 text-[#24140D] backdrop-blur-sm shadow-sm">
+          {collection.badge}
+        </span>
+        <span className="text-[11px] font-mono text-[#FAF7F1]/80 hidden sm:inline-block">
+          {collection.sizes}
+        </span>
+      </div>
+
+      {/* Bottom Content Area */}
+      <div className="relative z-10 pt-20">
+        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#FAF7F1] group-hover:text-[#F3E8D8] transition-colors">
+          {collection.title}
+        </h3>
+
+        <p className="text-xs sm:text-sm text-[#FAF7F1]/85 line-clamp-2 mt-2 max-w-lg font-normal">
+          {collection.description}
+        </p>
+
+        {/* CTA Bar */}
+        <div className="mt-5 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#FAF7F1]">
+          <span className="group-hover:text-[#C69A6B] transition-colors">
+            Explore Series
           </span>
-
-          <div className="w-10 h-10 rounded-full bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] group-hover:bg-[#F4F000] flex items-center justify-center transition-colors">
-            <ArrowUpRight className="w-5 h-5 text-black" />
-          </div>
-        </div>
-
-        {/* Footwear Visual Asset */}
-        <div className={cn("relative w-full my-auto flex items-center justify-center py-4", aspect)}>
-          <div className="relative w-full h-full transform-gpu transition-transform duration-500 ease-out group-hover:scale-108 group-hover:-translate-y-2">
-            <Image
-              src={collection.image}
-              alt={collection.title}
-              fill
-              className="object-contain filter drop-shadow-[0_20px_20px_rgba(0,0,0,0.12)]"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
-
-        {/* Content Box */}
-        <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl border-2 border-black shadow-[2px_2px_0px_0px_#000] space-y-3 z-10 mt-4">
-          <div className="flex items-baseline justify-between gap-2">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-black group-hover:text-[#3155FF] transition-colors">
-              {collection.title}
-            </h3>
-            <span className="text-xs font-mono font-bold text-[#888888] shrink-0">
-              {collection.sizes}
-            </span>
-          </div>
-
-          <p className="text-xs sm:text-sm font-bold text-[#555555] leading-relaxed line-clamp-2">
-            {collection.description}
-          </p>
-
-          {/* Key Features & CTA */}
-          <div className="pt-2 border-t border-black/10 flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-3 text-xs font-bold text-[#333333]">
-              {collection.features.slice(0, isLarge ? 2 : 1).map((feat, idx) => (
-                <div key={idx} className="flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-black shrink-0" />
-                  <span className="truncate max-w-[200px] text-[11px]">{feat}</span>
-                </div>
-              ))}
-            </div>
-
-            <span className="text-xs font-black uppercase tracking-wider text-black group-hover:text-[#3155FF] flex items-center gap-1">
-              <span>Explore Category</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </span>
+          <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#FAF7F1] group-hover:text-[#24140D] flex items-center justify-center transition-all duration-300">
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </div>
         </div>
       </div>
-    </Reveal>
+    </Link>
   );
 }

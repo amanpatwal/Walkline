@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 44" fill="none">
-  <text x="0" y="32" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" letter-spacing="-1.5" fill="#111111">WALKLINE</text>
-  <circle cx="218" cy="14" r="5" fill="#F4F000" stroke="#111111" stroke-width="1.5" />
+  <text x="0" y="32" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" letter-spacing="-1.5" fill="#24140D">WALKLINE</text>
+  <circle cx="218" cy="14" r="5" fill="#C69A6B" stroke="#24140D" stroke-width="1.5" />
 </svg>

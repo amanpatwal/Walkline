@@ -8,9 +8,9 @@ export default function Button({
   children,
   href,
   onClick,
-  variant = "yellow",
+  variant = "primary",
   size = "md",
-  icon = "arrow-up-right",
+  icon = "arrow-right",
   showIcon = true,
   className,
   target,
@@ -19,36 +19,36 @@ export default function Button({
   ...props
 }) {
   const baseClasses =
-    "group inline-flex items-center justify-center font-extrabold tracking-tight transition-all duration-300 ease-out select-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
+    "group inline-flex items-center justify-center font-bold tracking-wider uppercase transition-all duration-300 ease-out select-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
 
   const sizeClasses = {
-    sm: "text-xs px-4 py-2 gap-1.5 rounded-full",
-    md: "text-xs sm:text-sm px-6 py-3.5 gap-2 rounded-full",
-    lg: "text-sm sm:text-base px-8 py-4 gap-2.5 rounded-full",
+    sm: "text-xs px-4 py-2 gap-1.5 rounded-lg",
+    md: "text-xs px-6 py-3.5 gap-2 rounded-xl",
+    lg: "text-xs sm:text-sm px-8 py-4 gap-2.5 rounded-xl",
     iconOnly: "p-3 rounded-full",
   };
 
   const variantClasses = {
-    yellow:
-      "bg-[#F4F000] text-[#111111] hover:bg-[#111111] hover:text-[#F4F000] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none",
-    dark:
-      "bg-[#111111] text-[#FFFFFF] hover:bg-[#F4F000] hover:text-[#111111] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#F4F000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none",
-    outline:
-      "bg-transparent text-[#111111] border-2 border-[#111111] hover:bg-[#111111] hover:text-[#FFFFFF] shadow-[3px_3px_0px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none",
-    pink:
-      "bg-[#FF4F7B] text-white hover:bg-[#111111] hover:text-[#FF4F7B] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]",
-    blue:
-      "bg-[#3155FF] text-white hover:bg-[#111111] hover:text-[#3155FF] border-2 border-[#111111] shadow-[3px_3px_0px_0px_#111111]",
+    primary:
+      "bg-[#321D12] text-[#FAF7F1] hover:bg-[#5A351F] shadow-editorial-sm",
+    secondary:
+      "bg-transparent text-[#24140D] border border-[#24140D]/25 hover:bg-[#F3E8D8]/70 hover:border-[#24140D]",
+    caramel:
+      "bg-[#9A6238] text-[#FAF7F1] hover:bg-[#5A351F] shadow-editorial-sm",
     white:
-      "bg-[#FFFFFF] text-[#111111] border-2 border-[#111111] hover:bg-[#F4F000] shadow-[3px_3px_0px_0px_#111111]",
+      "bg-white text-[#24140D] border border-[#24140D]/12 hover:bg-[#FAF7F1] shadow-editorial-sm",
+    dark:
+      "bg-[#24140D] text-[#FAF7F1] hover:bg-[#321D12] shadow-editorial-md",
+    outline:
+      "bg-transparent text-[#FAF7F1] border border-white/20 hover:bg-white/10 hover:border-white",
     ghost:
-      "bg-transparent text-[#111111] hover:text-[#3155FF] p-0 underline-offset-4 hover:underline",
+      "bg-transparent text-[#24140D] hover:text-[#9A6238] p-0 underline-offset-4 hover:underline",
   };
 
   const combinedClasses = cn(
     baseClasses,
     sizeClasses[size],
-    variantClasses[variant] || variantClasses.yellow,
+    variantClasses[variant] || variantClasses.primary,
     className
   );
 
@@ -71,28 +71,24 @@ export default function Button({
   };
 
   if (href) {
-    const isExternal = href.startsWith("http");
+    if (href.startsWith("#") || href.startsWith("/")) {
+      return (
+        <Link href={href} className={combinedClasses} target={target} rel={rel} {...props}>
+          <span>{children}</span>
+          {renderIcon()}
+        </Link>
+      );
+    }
     return (
-      <Link
-        href={href}
-        className={combinedClasses}
-        target={target || (isExternal ? "_blank" : undefined)}
-        rel={rel || (isExternal ? "noopener noreferrer" : undefined)}
-        {...props}
-      >
+      <a href={href} className={combinedClasses} target={target} rel={rel} {...props}>
         <span>{children}</span>
         {renderIcon()}
-      </Link>
+      </a>
     );
   }
 
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={combinedClasses}
-      {...props}
-    >
+    <button type={type} onClick={onClick} className={combinedClasses} {...props}>
       <span>{children}</span>
       {renderIcon()}
     </button>

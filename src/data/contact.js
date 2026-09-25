@@ -12,5 +12,4 @@ export const CONTACT_CONTENT = {
   address: COMPANY_INFO.contact.address,
   phone: COMPANY_INFO.contact.phone,
   email: COMPANY_INFO.contact.email,
-  supportHours: "Monday to Saturday (Standard Business Hours)",
 };

@@ -2,27 +2,37 @@
 
 @layer base {
   :root {
-    --bg-surface: #F7F7F4;
+    /* Walkline Footwear — Brown / Cream / Espresso Editorial Palette */
+    --espresso: #24140D;
+    --dark-brown: #321D12;
+    --brown: #5A351F;
+    --caramel: #9A6238;
+    --tan: #C69A6B;
+    --cream: #F3E8D8;
+    --warm-white: #FAF7F1;
+    --sand: #E6D4BC;
+    --charcoal: #171412;
+    --white: #FFFFFF;
+
+    --bg-surface: #FAF7F1;
     --bg-surface-white: #FFFFFF;
-    --text-primary: #111111;
-    --text-secondary: #555555;
-    --text-muted: #888888;
+    --text-primary: #24140D;
+    --text-secondary: #5A351F;
+    --text-muted: #8A6E58;
     --surface-card: #FFFFFF;
-    --surface-card-subtle: #EFEFEA;
-    --surface-dark: #111111;
-    --border-subtle: rgba(17, 17, 17, 0.08);
-    --border-medium: rgba(17, 17, 17, 0.15);
+    --surface-card-subtle: #F3E8D8;
+    --surface-dark: #24140D;
+    --border-subtle: rgba(36, 20, 13, 0.08);
+    --border-medium: rgba(36, 20, 13, 0.16);
     
-    /* Gen-Z High-Energy Accent Palette */
-    --color-electric-yellow: #F4F000;
-    --color-hot-pink: #FF4F7B;
-    --color-electric-blue: #3155FF;
-    --color-fresh-green: #A8E63D;
-    --color-warm-orange: #FF7A45;
+    /* Warm Accents */
+    --color-tan: #C69A6B;
+    --color-caramel: #9A6238;
+    --color-coral: #E06D53;
   }
 
   html {
-    background-color: var(--bg-surface);
+    background-color: var(--warm-white);
     color: var(--text-primary);
     scroll-behavior: auto;
     text-rendering: optimizeLegibility;
@@ -31,7 +41,7 @@
   }
 
   body {
-    background-color: var(--bg-surface);
+    background-color: var(--warm-white);
     color: var(--text-primary);
     overflow-x: hidden;
     min-height: 100vh;
@@ -39,27 +49,27 @@
   }
 
   ::selection {
-    background-color: #F4F000;
-    color: #111111;
+    background-color: #321D12;
+    color: #FAF7F1;
   }
 
-  /* Custom subtle scrollbar */
+  /* Refined Editorial Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #F7F7F4;
+    background: #FAF7F1;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D4D4CE;
+    background: #D9CBB8;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #111111;
+    background: #321D12;
   }
 }
 
-/* Lenis Smooth Scroll Essential Rules */
+/* Lenis Smooth Scroll Rules */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -80,61 +90,86 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Streetwear Typography & Utility Classes */
+/* Editorial Typography & Utilities */
 .tracking-ultra-wide {
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
 }
 
 .tracking-editorial {
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
 }
 
 .text-balance {
   text-wrap: balance;
 }
 
-/* Sticker rotation keyframes */
+/* Image zoom hover effect */
+.img-editorial-zoom {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .img-editorial-zoom {
+  transform: scale(1.035);
+}
+
+/* Subtle editorial borders & shadows */
+.shadow-editorial-sm {
+  box-shadow: 0 2px 8px -2px rgba(36, 20, 13, 0.06), 0 1px 4px -1px rgba(36, 20, 13, 0.04);
+}
+
+.shadow-editorial-md {
+  box-shadow: 0 12px 24px -6px rgba(36, 20, 13, 0.08), 0 4px 12px -2px rgba(36, 20, 13, 0.03);
+}
+
+.shadow-editorial-lg {
+  box-shadow: 0 20px 40px -10px rgba(36, 20, 13, 0.12), 0 8px 16px -4px rgba(36, 20, 13, 0.04);
+}
+
+/* =========================================
+   Keyframe Animations
+   ========================================= */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 18s linear infinite;
-}
-
-/* Marquee continuous scroll */
-@keyframes marquee-scroll {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 24s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
 }
 
-/* Reduced Motion Safety */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+@keyframes menuFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }

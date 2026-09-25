@@ -125,7 +125,7 @@ function EditorialTextImage() {
           {/* Left: Editorial Copy */}
           <div className="lg:col-span-6 space-y-6 order-2 lg:order-1">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF4F7B]">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#9A6238]">
                 [ EDITORIAL 02 // CRAFT STANDARD ]
               </span>
             </div>
@@ -210,24 +210,24 @@ function EditorialTextImage() {
 // 3. FULL-WIDTH HIGH-ENERGY MANIFESTO
 function FullWidthCampaign() {
   return (
-    <section className="relative w-full py-24 sm:py-32 bg-[#F4F000] text-[#111111] border-b-2 border-black overflow-hidden">
+    <section className="relative w-full py-24 sm:py-32 bg-[#24140D] text-[#FAF7F1] border-b border-[#321D12] overflow-hidden">
       {/* Background Halftone / Dot Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(#111111_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#C69A6B_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
 
       <Container className="relative z-10 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="inline-block">
-            <DropBadge text="WALKLINE MANIFESTO // SINCE 2009" variant="black" rotate="-rotate-1" />
+            <DropBadge text="WALKLINE MANIFESTO // SINCE 2009" variant="brown" rotate="-rotate-1" />
           </div>
 
           <TextReveal
             as="h2"
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-[-0.05em] leading-[0.90] text-[#111111]"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-[-0.05em] leading-[0.90] text-[#FAF7F1]"
             text="WE MAKE FOOTWEAR FOR PEOPLE WHO NEVER STAND STILL."
           />
 
           <Reveal animation="slideUp" delay={0.2}>
-            <p className="text-base sm:text-xl font-bold text-[#111111] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl font-medium text-[#FAF7F1]/80 max-w-2xl mx-auto leading-relaxed">
               From morning college sprints to midnight street runs — Walkline
               combines lightweight construction, all-day comfort, and modern
               Indian streetwear culture.

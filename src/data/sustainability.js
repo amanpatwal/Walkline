@@ -1,23 +1,38 @@
 /**
- * Walkline Footwear - Sustainability & Materials Data
- * 
- * NOTE: Additional verified sustainability claims will be integrated
- * as client source content is supplied.
+ * Walkline Footwear - Durability & Everyday Design
+ * Focuses strictly on verified product durability and design attributes.
+ * Contains no unsupported environmental or percentage claims.
  */
 
-export const SUSTAINABILITY_CONTENT = {
-  heading: "Better By Design",
-  subheading: "Responsible Footwear Construction",
-  description: "Crafting durable footwear designed for long-lasting wear, material efficiency, and everyday comfort.",
-  statusNote: "[DETAILED SUSTAINABILITY METRICS PENDING CLIENT CONFIRMATION]",
-  initiatives: [
+export const DURABILITY_CONTENT = {
+  heading: "Durability & Everyday Design",
+  subheading: "Built For Daily Movement",
+  description:
+    "We believe dependable footwear starts with practical durability — resilient soling compounds, breathable uppers, and cushioned footbeds built to handle daily Indian roads.",
+  pillars: [
     {
-      title: "Durable Construction",
-      description: "Waterproof and resilient soling compounds engineered to extend footwear life cycle.",
+      title: "Resilient Soling Compounds",
+      description:
+        "Engineered outsoles designed to withstand abrasion from daily commutes on concrete, tarmac, and rough surfaces.",
+      badge: "WEAR RESISTANCE",
     },
     {
-      title: "Breathable Knit & Materials",
-      description: "Lightweight, breathable knit uppers and cushion insoles for lasting daily use.",
+      title: "Lightweight Ergonomics",
+      description:
+        "Lighter-than-air construction in our Vertex series reduces walking fatigue across long hours on your feet.",
+      badge: "LIGHT BUILD",
+    },
+    {
+      title: "All-Weather Usability",
+      description:
+        "Waterproof comfy-soft soles with metallic hardware in the VRX range, ready for monsoon and street puddles.",
+      badge: "WATERPROOF",
+    },
+    {
+      title: "Breathable Knit & Foam",
+      description:
+        "Breathable knit uppers and responsive memory foam insoles in the Frooti series designed for active playtime.",
+      badge: "BREATHABLE",
     },
   ],
 };

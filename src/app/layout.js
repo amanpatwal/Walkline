@@ -1,5 +1,6 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import SmoothScroll from "@/components/animations/SmoothScroll";
+import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
 
 const jakartaSans = Plus_Jakarta_Sans({
@@ -44,7 +45,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0E0D0C",
+  themeColor: "#24140D",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -53,8 +54,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${jakartaSans.variable} font-sans`}>
-      <body className="bg-[#F5F3EF] text-[#111111] antialiased selection:bg-[#111111] selection:text-[#F5F3EF]">
-        <SmoothScroll>{children}</SmoothScroll>
+      <body className="bg-[#FAF7F1] text-[#24140D] antialiased selection:bg-[#321D12] selection:text-[#FAF7F1]">
+        <CartProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </CartProvider>
       </body>
     </html>
   );

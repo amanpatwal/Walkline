@@ -1,66 +1,50 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Container from "@/ui/Container";
-import Button from "@/ui/Button";
-import Reveal from "@/components/animations/Reveal";
-import TextReveal from "@/components/animations/TextReveal";
-import { DropBadge, CircularStamp } from "@/ui/Sticker";
-import { Sparkles, Zap, ArrowUpRight } from "lucide-react";
 
 export default function FinalCTA() {
-  return (
-    <section className="relative w-full py-20 sm:py-28 bg-[#F7F7F4] text-[#111111] overflow-hidden">
-      <Container>
-        <div className="relative rounded-3xl bg-[#F4F000] border-2 border-black shadow-[8px_8px_0px_0px_#000] p-8 sm:p-14 lg:p-20 text-center overflow-hidden flex flex-col items-center">
-          {/* Halftone / Dot Grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(#111111_1.5px,transparent_1.5px)] [background-size:20px_20px] opacity-10 pointer-events-none" />
 
-          {/* Floating Sticker Corner */}
-          <div className="absolute top-6 right-6 hidden sm:block">
-            <CircularStamp text="WALKLINE FOOTWEAR • COP THE DROP • " />
-          </div>
+  return (
+    <section
+      className="relative w-full py-16 sm:py-24 bg-[#FAF7F1] text-[#24140D] overflow-hidden"
+      aria-label="Walkline Footwear Final Campaign Call to Action"
+    >
+      <Container>
+        <div className="relative rounded-3xl bg-[#24140D] text-[#FAF7F1] p-10 sm:p-16 lg:p-20 text-center overflow-hidden shadow-2xl border border-[#321D12]">
+          {/* Subtle Ambient Radial Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#9A6238]/15 blur-[120px] pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            <div className="inline-block">
-              <DropBadge text="SPRING DROP // LIMITED ALLOCATION" variant="black" rotate="-rotate-2" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#C69A6B] block">
+              Walkline Footwear • Bahadurgarh
+            </span>
+
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[1.08] text-[#FAF7F1]">
+              Step Into Confidence.
+            </h2>
+
+            <p className="text-sm sm:text-lg text-[#F3E8D8]/80 max-w-xl mx-auto leading-relaxed font-normal">
+              Designed for impact. Engineered for all-day comfort. Explore our verified footwear collections crafted with Indian pride.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4">
+              <Link
+                href="/men"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-white text-[#24140D] text-xs font-bold uppercase tracking-[0.16em] hover:bg-[#F3E8D8] transition-all duration-300 shadow-lg cursor-pointer group"
+              >
+                <span>Shop Men</span>
+                <ArrowRight className="w-4 h-4 text-[#9A6238] group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <Link
+                href="/collections"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-transparent border border-white/20 text-[#FAF7F1] text-xs font-bold uppercase tracking-[0.16em] hover:bg-white/10 hover:border-white transition-all duration-300 cursor-pointer"
+              >
+                <span>View All Collections</span>
+              </Link>
             </div>
-
-            <TextReveal
-              as="h2"
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-[-0.05em] leading-[0.90] text-[#111111]"
-              text="DON'T JUST WALK. MOVE LOUD."
-            />
-
-            <Reveal animation="slideUp" delay={0.15}>
-              <p className="text-base sm:text-xl font-bold text-[#111111] max-w-xl mx-auto leading-relaxed">
-                Step into high-rebound cloud-foam cushioning, engineered lasts, and
-                undisputed Indian street authority.
-              </p>
-            </Reveal>
-
-            <Reveal animation="slideUp" delay={0.25}>
-              <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-                <Button
-                  href="#products"
-                  variant="dark"
-                  size="lg"
-                  icon="arrow-up-right"
-                  className="font-black text-sm px-8 py-4 shadow-[4px_4px_0px_0px_#FFFFFF]"
-                >
-                  Shop The Drop
-                </Button>
-
-                <Button
-                  href="#contact"
-                  variant="white"
-                  size="lg"
-                  showIcon={false}
-                  className="font-black text-sm px-8 py-4"
-                >
-                  Trade & Bulk Inquiries
-                </Button>
-              </div>
-            </Reveal>
           </div>
         </div>
       </Container>

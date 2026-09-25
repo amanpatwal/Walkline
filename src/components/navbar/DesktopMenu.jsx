@@ -81,14 +81,14 @@ export default function DesktopMenu({ isOpen, onClose }) {
             <span className="text-2xl font-black tracking-tight uppercase text-black">
               WALKLINE
             </span>
-            <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-[#F4F000] text-black border border-black shadow-[1.5px_1.5px_0px_0px_#000]">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#FAF7F1] text-[#24140D] border border-[#24140D]/15">
               EXPLORE
             </span>
           </div>
 
           <button
             onClick={onClose}
-            className="group flex items-center gap-2 text-xs uppercase tracking-wider font-extrabold text-black px-5 py-2 rounded-full bg-[#F4F000] border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:bg-black hover:text-white transition-all cursor-pointer"
+            className="group flex items-center gap-2 text-xs uppercase tracking-wider font-bold text-[#FAF7F1] px-5 py-2 rounded-full bg-[#24140D] hover:bg-[#5A351F] transition-all cursor-pointer"
             aria-label="Close menu"
           >
             <span>Close</span>
@@ -119,7 +119,7 @@ export default function DesktopMenu({ isOpen, onClose }) {
                     <span className="text-xs font-mono font-bold text-[#888888] group-hover:text-black">
                       0{idx + 1}
                     </span>
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase group-hover:text-[#3155FF] group-hover:translate-x-2 transition-all duration-300">
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase group-hover:text-[#9A6238] group-hover:translate-x-2 transition-all duration-300">
                       {cat.label}
                     </span>
                   </div>
@@ -144,7 +144,7 @@ export default function DesktopMenu({ isOpen, onClose }) {
                         e.preventDefault();
                         handleLinkClick(link.href);
                       }}
-                      className="text-sm font-bold text-[#333333] hover:text-[#3155FF] transition-colors flex items-center gap-1.5 cursor-pointer"
+                      className="text-sm font-bold text-[#333333] hover:text-[#9A6238] transition-colors flex items-center gap-1.5 cursor-pointer"
                     >
                       <ArrowUpRight className="w-4 h-4 opacity-50" />
                       <span>{link.label}</span>

@@ -2,11 +2,14 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { X, ShoppingBag, ArrowRight, ShieldCheck } from "lucide-react";
-import { assets } from "@/data/assets";
+import Link from "next/link";
+import { X, ShoppingBag, ArrowRight, ShieldCheck, Trash2 } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 import { COMPANY_INFO } from "@/data/company";
 
 export default function CartDrawer({ isOpen, onClose }) {
+  const { cart, updateQty, removeItem, itemCount } = useCart();
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -29,100 +32,175 @@ export default function CartDrawer({ isOpen, onClose }) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md bg-[#FFFFFF] h-full shadow-2xl flex flex-col justify-between border-l-2 border-black animate-in slide-in-from-right duration-300"
+        className="w-full max-w-md bg-[#FAF7F1] h-full shadow-editorial-lg flex flex-col justify-between border-l border-[#24140D]/10 animate-in slide-in-from-right duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Cart Header */}
-        <div className="p-6 border-b-2 border-black/10">
+        <div className="p-5 sm:p-6 border-b border-[#24140D]/10 bg-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <ShoppingBag className="w-5 h-5 text-black" />
-              <h3 className="text-xl font-black uppercase tracking-tight text-black">
+              <ShoppingBag className="w-5 h-5 text-[#24140D]" />
+              <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-[#24140D]">
                 Your Bag
               </h3>
-              <span className="text-xs font-black px-2 py-0.5 rounded-full bg-[#F4F000] border border-black text-black">
-                1 ITEM
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#321D12] text-[#FAF7F1]">
+                {itemCount} {itemCount === 1 ? "ITEM" : "ITEMS"}
               </span>
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-full hover:bg-[#F7F7F4] border border-black/20 transition-colors cursor-pointer"
+              className="p-2 rounded-full hover:bg-[#F3E8D8] text-[#24140D] transition-colors cursor-pointer"
               aria-label="Close cart"
             >
-              <X className="w-5 h-5 text-black" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Free Shipping Strip */}
-          <div className="mt-4 p-3 rounded-xl bg-[#F7F7F4] border border-black/10">
-            <div className="flex items-center justify-between text-xs font-bold text-black mb-1.5">
-              <span>{typeof COMPANY_INFO.announcement === 'object' ? COMPANY_INFO.announcement.text : COMPANY_INFO.announcement}</span>
+          {/* Announcement Strip */}
+          <div className="mt-3.5 p-2.5 rounded-xl bg-[#FAF7F1] border border-[#24140D]/08">
+            <div className="flex items-center justify-between text-[11px] font-semibold text-[#24140D] mb-1">
+              <span>
+                {typeof COMPANY_INFO.announcement === "object"
+                  ? COMPANY_INFO.announcement.text
+                  : COMPANY_INFO.announcement}
+              </span>
             </div>
-            <div className="w-full h-2 rounded-full bg-black/10 overflow-hidden">
-              <div className="h-full bg-[#A8E63D] w-full" />
+            <div className="w-full h-1 rounded-full bg-[#E6D4BC] overflow-hidden">
+              <div className="h-full bg-[#9A6238] w-full" />
             </div>
           </div>
         </div>
 
         {/* Cart Items List */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          <div className="p-4 rounded-2xl bg-[#F7F7F4] border-2 border-black flex gap-4 items-center">
-            <div className="relative w-20 h-20 bg-white rounded-xl border border-black p-2 shrink-0 flex items-center justify-center">
-              <Image
-                src={assets.products.noir}
-                alt="Walkline Noir-05"
-                fill
-                className="object-contain p-1"
-              />
+        <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-3.5">
+          {cart.length === 0 ? (
+            <div className="h-full flex flex-col items-center justify-center text-center py-12 space-y-4">
+              <div className="w-16 h-16 rounded-full bg-white border border-[#24140D]/10 flex items-center justify-center text-[#9A6238] shadow-xs">
+                <ShoppingBag className="w-8 h-8" />
+              </div>
+              <div>
+                <h4 className="text-base font-bold uppercase tracking-tight text-[#24140D]">
+                  Your bag is empty
+                </h4>
+                <p className="text-xs text-[#5A351F]/70 mt-1 max-w-[220px]">
+                  Explore our engineered styles and add your favorite pairs.
+                </p>
+              </div>
+              <Link
+                href="/collections"
+                onClick={onClose}
+                className="mt-2 px-5 py-2.5 rounded-xl bg-[#24140D] text-[#FAF7F1] text-xs font-bold uppercase tracking-wider hover:bg-[#5A351F] transition-all"
+              >
+                Browse Collections
+              </Link>
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[10px] font-mono font-bold text-[#888888] uppercase">
-                Women&apos;s Sneakers
-              </div>
-              <h4 className="text-base font-black uppercase text-black truncate">
-                Noir-05 Signature
-              </h4>
-              <div className="text-xs font-bold text-[#555555] mt-0.5">
-                Size: UK 5 • Coral Cushion Sole
-              </div>
-              <div className="text-xs font-mono font-bold text-black mt-1">
-                Qty: 1
-              </div>
-            </div>
-          </div>
+          ) : (
+            <>
+              {cart.map((item) => (
+                <div
+                  key={`${item.productId}-${item.size}`}
+                  className="p-3.5 rounded-2xl bg-white border border-[#24140D]/10 flex gap-3.5 items-center"
+                >
+                  <Link
+                    href={`/products/${item.slug}`}
+                    onClick={onClose}
+                    className="relative w-16 h-16 bg-[#FAF7F1] rounded-xl border border-[#24140D]/08 p-1 shrink-0 flex items-center justify-center overflow-hidden"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-contain p-1.5"
+                    />
+                  </Link>
 
-          <div className="p-4 rounded-2xl border-2 border-dashed border-black/20 text-center space-y-2">
-            <ShieldCheck className="w-6 h-6 text-[#3155FF] mx-auto" />
-            <div className="text-xs font-black uppercase text-black">
-              100% Genuine Walkline Footwear
-            </div>
-            <div className="text-[11px] text-[#666666]">
-              Direct from Bahadurgarh craft facility. Easy 30-day exchanges.
-            </div>
-          </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8A6E58] block truncate">
+                      {item.category}
+                    </span>
+                    <Link
+                      href={`/products/${item.slug}`}
+                      onClick={onClose}
+                      className="text-xs sm:text-sm font-bold uppercase tracking-wide text-[#24140D] hover:text-[#9A6238] transition-colors truncate block"
+                    >
+                      {item.name}
+                    </Link>
+                    <div className="text-[11px] text-[#5A351F] font-semibold mt-0.5">
+                      Size: {item.size}
+                    </div>
+
+                    {/* Quantity controls */}
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="flex items-center border border-[#24140D]/15 rounded-lg bg-[#FAF7F1]">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            updateQty(item.productId, item.size, item.quantity - 1)
+                          }
+                          className="w-6 h-6 flex items-center justify-center text-xs font-bold text-[#24140D] hover:bg-white rounded-l-lg transition-colors cursor-pointer"
+                        >
+                          -
+                        </button>
+                        <span className="w-6 text-center text-[11px] font-bold text-[#24140D]">
+                          {item.quantity}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            updateQty(item.productId, item.size, item.quantity + 1)
+                          }
+                          className="w-6 h-6 flex items-center justify-center text-xs font-bold text-[#24140D] hover:bg-white rounded-r-lg transition-colors cursor-pointer"
+                        >
+                          +
+                        </button>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => removeItem(item.productId, item.size)}
+                        className="p-1 text-[#8A6E58] hover:text-[#9A6238] transition-colors cursor-pointer ml-auto"
+                        aria-label="Remove item"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <div className="p-3.5 rounded-2xl border border-dashed border-[#24140D]/20 text-center space-y-1 bg-[#F3E8D8]/30">
+                <ShieldCheck className="w-4 h-4 text-[#9A6238] mx-auto" />
+                <div className="text-[11px] font-bold uppercase tracking-wider text-[#24140D]">
+                  100% Genuine Walkline Footwear
+                </div>
+                <div className="text-[10px] text-[#5A351F]/80">
+                  Bahadurgarh Craft Facility • Pan-India Dispatch
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Cart Footer */}
-        <div className="p-6 border-t-2 border-black/10 bg-[#F7F7F4] space-y-3">
-          <div className="flex items-center justify-between text-xs font-bold text-[#555555]">
-            <span>Shipping</span>
-            <span className="text-[#111111] font-black uppercase">Calculated at Checkout</span>
+        <div className="p-5 sm:p-6 border-t border-[#24140D]/10 bg-white space-y-3">
+          <div className="flex items-center justify-between text-xs text-[#5A351F] font-medium">
+            <span>Availability / Price</span>
+            <span className="text-[#24140D] font-bold uppercase text-[11px]">
+              Direct Inquiry / Retail
+            </span>
           </div>
 
-          <button
-            onClick={() => {
-              onClose();
-              const el = document.getElementById("contact");
-              if (el) el.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="w-full py-4 rounded-2xl bg-[#F4F000] text-black font-black uppercase tracking-wider text-xs border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:bg-black hover:text-[#F4F000] transition-all flex items-center justify-center gap-2 cursor-pointer"
+          <Link
+            href="/cart"
+            onClick={onClose}
+            className="w-full py-3.5 rounded-xl bg-[#321D12] text-[#FAF7F1] font-bold uppercase tracking-wider text-xs hover:bg-[#5A351F] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-editorial-sm"
           >
-            <span>Proceed to Checkout</span>
+            <span>View Bag & Submit Inquiry</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </Link>
 
-          <div className="text-center text-[10px] font-mono font-bold text-[#888888] uppercase">
-            Questions? Contact {COMPANY_INFO.contact.phone}
+          <div className="text-center text-[10px] text-[#8A6E58] font-medium">
+            Desk Helpline: {COMPANY_INFO.contact.phone}
           </div>
         </div>
       </div>
