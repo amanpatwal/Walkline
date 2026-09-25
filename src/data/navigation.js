@@ -1,14 +1,144 @@
 /**
  * Walkline Footwear - Navigation Data Configuration
- * Preserves the 5 existing website pages while enhancing UX and fast drop access.
+ * Inspired by modern fashion/sneaker ecommerce visual hierarchy.
+ * Preserves all verified Walkline categories, products, and contact information.
  */
+
+import { assets } from "@/data/assets";
+
+export const PRIMARY_NAV = [
+  {
+    id: "men",
+    label: "Men",
+    href: "#collections",
+    type: "mega-menu",
+    featuredSeries: [
+      {
+        name: "Vertex",
+        tag: "LIGHTER THAN AIR",
+        description: "Lightweight construction engineered for all-day comfort.",
+        sizes: "UK 6×9 – 7×10",
+        href: "#products",
+      },
+      {
+        name: "Concept",
+        tag: "PREMIUM RANGE",
+        description: "Combines confidence and style in every step.",
+        sizes: "UK 6×9 – 7×10",
+        href: "#products",
+      },
+    ],
+    categories: [
+      { label: "Men's Sandals & Chappals", href: "#collections" },
+      { label: "Lightweight Slides", href: "#products" },
+      { label: "Daily Comfort Chappals", href: "#products" },
+      { label: "All Men's Footwear", href: "#products" },
+    ],
+    featuredCard: {
+      title: "VERTEX SERIES",
+      subtitle: "Lighter Than Air Construction",
+      image: assets.products.vertex,
+      badge: "FEATURED",
+      href: "#products",
+    },
+  },
+  {
+    id: "women",
+    label: "Women",
+    href: "#collections",
+    type: "mega-menu",
+    featuredSeries: [
+      {
+        name: "Noir-05",
+        tag: "#NOIRFEVER",
+        description: "Chunky fashion silhouette with signature coral cushion sole.",
+        sizes: "UK 4×7 – 5×8",
+        href: "#products",
+      },
+      {
+        name: "Barbie-04",
+        tag: "EARTHY LINE",
+        description: "Bold style with everyday shock absorption cushioning.",
+        sizes: "UK 4×7 – 5×8",
+        href: "#products",
+      },
+    ],
+    categories: [
+      { label: "Women's Sneakers", href: "#collections" },
+      { label: "Chunky Sole Sneakers", href: "#products" },
+      { label: "Earthy Trainer Line", href: "#products" },
+      { label: "All Women's Footwear", href: "#products" },
+    ],
+    featuredCard: {
+      title: "NOIR-05 SNEAKER",
+      subtitle: "Signature Coral Cushion Sole",
+      image: assets.products.noir,
+      badge: "HOT DROP",
+      href: "#products",
+    },
+  },
+  {
+    id: "the-vault",
+    label: "The Vault",
+    href: "#products",
+    type: "dropdown",
+    items: [
+      {
+        name: "VRX Waterproof Series",
+        desc: "Thin smart straps with metallic buckles",
+        href: "#products",
+        badge: "WATERPROOF",
+      },
+      {
+        name: "Frooti Memory Foam",
+        desc: "Kids' slip-on with cushioned memory insole",
+        href: "#products",
+        badge: "KIDS",
+      },
+      {
+        name: "Archive & Drops",
+        desc: "Verified Walkline releases since 2009",
+        href: "#collections",
+        badge: "ARCHIVE",
+      },
+    ],
+  },
+  {
+    id: "about-us",
+    label: "About Us",
+    href: "#about",
+    type: "dropdown",
+    items: [
+      {
+        name: "Our Story",
+        desc: "Crafting comfort and style since 2009",
+        href: "#about",
+      },
+      {
+        name: "Made in India Craft",
+        desc: "Meticulous attention to detail in every step",
+        href: "#manufacturing",
+      },
+      {
+        name: "Material Durability",
+        desc: "Commitment to long-lasting footwear",
+        href: "/sustainability",
+      },
+      {
+        name: "Contact & Inquiries",
+        desc: "Plot No 362, MIE Part A, Bahadurgarh",
+        href: "#contact",
+      },
+    ],
+  },
+];
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Products", href: "#products", isAnchor: true },
-  { label: "Collections", href: "#collections", isAnchor: true },
-  { label: "About", href: "#about", isAnchor: true },
-  { label: "Contact", href: "#contact", isAnchor: true },
+  { label: "Men", href: "#collections" },
+  { label: "Women", href: "#collections" },
+  { label: "The Vault", href: "#products" },
+  { label: "About Us", href: "#about" },
 ];
 
 export const CATEGORY_LINKS = [
@@ -45,8 +175,9 @@ export const CATEGORY_LINKS = [
 export const COMPANY_LINKS = [
   { label: "About Walkline", href: "#about" },
   { label: "Our Products", href: "#products" },
-  { label: "Collections", href: "#collections" },
-  { label: "Sustainability", href: "#sustainability" },
+  { label: "Categories", href: "#collections" },
+  { label: "Craft & Manufacturing", href: "#manufacturing" },
+  { label: "Sustainability", href: "/sustainability" },
   { label: "Contact & Inquiries", href: "#contact" },
 ];
 
@@ -56,7 +187,6 @@ export const LEGAL_LINKS = [
   { label: "Shipping & 30-Day Returns", href: "#" },
 ];
 
-// Note: Social handles are kept configurable until official client URLs are verified.
 export const SOCIAL_LINKS = [
   { label: "Instagram", href: "#", configured: false },
   { label: "YouTube", href: "#", configured: false },

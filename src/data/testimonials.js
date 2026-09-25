@@ -1,39 +1,25 @@
 /**
- * Walkline Footwear - Community Testimonials & Sneakerhead Reviews
+ * Walkline Footwear - Testimonials Data Architecture
+ * 
+ * STRICT SOURCE-OF-TRUTH RULE:
+ * Only display testimonials if verified Walkline testimonial content exists.
+ * Customer testimonials from the existing website are currently awaiting official client input.
+ * Fabricated reviews are strictly omitted per brand guidelines.
  */
 
+export const VERIFIED_TESTIMONIALS_AVAILABLE = false;
+
 export const TESTIMONIALS = [
+  /*
   {
-    id: "review-01",
-    quote: "The AEON V2s are insanely lightweight. I wore them to a 3-day music festival in Mumbai and had zero foot fatigue. Definitely my go-to everyday pair now.",
-    author: "Rohan V.",
-    handle: "@rohan_sneakers",
-    city: "Mumbai",
+    id: "verified-sample",
+    quote: "Verified customer quote will populate here upon client submission.",
+    author: "Verified Customer",
+    handle: "@walkline_verified",
+    city: "India",
     rating: 5,
-    model: "AEON V2 Chalk White",
+    model: "Walkline Series",
     tag: "VERIFIED BUYER",
-    accentBg: "bg-[#F4F000]",
-  },
-  {
-    id: "review-02",
-    quote: "Finally an Indian sneaker brand delivering world-class street style with actual arch support. The Sonic Surge colorway turns heads every single time.",
-    author: "Ananya S.",
-    handle: "@ananyastyles",
-    city: "Bengaluru",
-    rating: 5,
-    model: "Sonic Surge 01 Hot Pink",
-    tag: "COMMUNITY DROP",
-    accentBg: "bg-[#FF4F7B]",
-  },
-  {
-    id: "review-03",
-    quote: "Quality on the direct injection sole is top notch. No glue marks, pure grip on the board, and looks clean with baggy denim or cargos.",
-    author: "Kabir M.",
-    handle: "@kabir.skate",
-    city: "Delhi NCR",
-    rating: 5,
-    model: "Retro Court 90",
-    tag: "STREET TESTED",
-    accentBg: "bg-[#3155FF]",
-  },
+  }
+  */
 ];

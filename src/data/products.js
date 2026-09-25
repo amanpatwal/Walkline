@@ -6,6 +6,8 @@
  * awaiting client confirmation.
  */
 
+import { assets } from "@/data/assets";
+
 export const FEATURED_PRODUCTS = [
   {
     id: "noir-05",
@@ -16,13 +18,14 @@ export const FEATURED_PRODUCTS = [
     tag: "#NoirFever",
     badgeColor: "bg-[#FF4F7B] text-white",
     sizes: "UK 4×7 – 5×8",
+    availableSizes: ["UK 4", "UK 5", "UK 6", "UK 7", "UK 8"],
     features: [
       "Trendy chunky & fashion sneaker design",
       "Signature coral cushion sole for superior shock absorption",
       "All-day comfort certified",
     ],
     colors: ["#FFFFFF", "#FF4F7B", "#111111"],
-    image: "/images/products/product-02.svg",
+    image: assets.products.noir,
     slug: "noir-05",
   },
   {
@@ -34,13 +37,14 @@ export const FEATURED_PRODUCTS = [
     tag: "LIGHTER THAN AIR",
     badgeColor: "bg-[#F4F000] text-black",
     sizes: "UK 6×9 – 7×10",
+    availableSizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10"],
     features: [
       "Engineered for all-day comfort without compromising looks",
       "Lighter than air lightweight construction",
       "Made in India with pride",
     ],
     colors: ["#111111", "#F4F000", "#FFFFFF"],
-    image: "/images/products/product-01.svg",
+    image: assets.products.vertex,
     slug: "vertex",
   },
   {
@@ -52,13 +56,14 @@ export const FEATURED_PRODUCTS = [
     tag: "EARTHY LINE",
     badgeColor: "bg-[#FF7A45] text-white",
     sizes: "UK 4×7 – 5×8",
+    availableSizes: ["UK 4", "UK 5", "UK 6", "UK 7", "UK 8"],
     features: [
       "Bold style with everyday comfort",
       "Cushion sole for shock absorption",
       "Sizes UK 4×7 – 5×8 available",
     ],
     colors: ["#FAF7F0", "#FF7A45", "#2B2825"],
-    image: "/images/products/product-05.svg",
+    image: assets.products.barbie,
     slug: "barbie-04",
   },
   {
@@ -70,13 +75,14 @@ export const FEATURED_PRODUCTS = [
     tag: "WATERPROOF",
     badgeColor: "bg-[#3155FF] text-white",
     sizes: "UK 6×9 – 7×10",
+    availableSizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10"],
     features: [
       "Waterproof comfy-soft construction",
       "Thin strap with metallic buckle — smart and classy look",
       "Flexible & lightweight build for any occasion",
     ],
     colors: ["#3155FF", "#111111", "#FFFFFF"],
-    image: "/images/products/product-03.svg",
+    image: assets.products.vrx,
     slug: "vrx",
   },
   {
@@ -88,13 +94,14 @@ export const FEATURED_PRODUCTS = [
     tag: "MEMORY FOAM",
     badgeColor: "bg-[#A8E63D] text-black",
     sizes: "8×10 / 11×1 / 2×5",
+    availableSizes: ["Size 8-10", "Size 11-1", "Size 2-5"],
     features: [
       "Memory foam insole for superior extra cushioning",
       "Easy slip-on design — no laces needed",
       "Lightweight, breathable knit upper for toddlers to juniors",
     ],
     colors: ["#A8E63D", "#FFFFFF", "#111111"],
-    image: "/images/products/product-04.svg",
+    image: assets.products.frooti,
     slug: "frooti",
   },
   {
@@ -106,13 +113,14 @@ export const FEATURED_PRODUCTS = [
     tag: "PREMIUM RANGE",
     badgeColor: "bg-[#111111] text-[#F4F000]",
     sizes: "UK 6×9 – 7×10",
+    availableSizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10"],
     features: [
       "Combines confidence and style in every step",
       "Engineered for all-day comfort",
       "Made in India with pride",
     ],
     colors: ["#2B2825", "#F4F000", "#FFFFFF"],
-    image: "/images/products/product-06.svg",
+    image: assets.products.concept,
     slug: "concept",
   },
 ];

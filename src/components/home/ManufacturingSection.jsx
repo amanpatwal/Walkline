@@ -7,6 +7,8 @@ import Reveal from "@/components/animations/Reveal";
 import { ShieldCheck, Sparkles, CheckCircle2, Feather, HeartHandshake, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/data/company";
 
+import { assets } from "@/data/assets";
+
 export default function ManufacturingSection() {
   const verifiedPillars = [
     {
@@ -102,7 +104,7 @@ export default function ManufacturingSection() {
             {/* Left Diagram */}
             <div className="lg:col-span-5 relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-black p-4">
               <Image
-                src="/images/manufacturing/factory-scale.svg"
+                src={assets.manufacturing.factoryScale}
                 alt="Walkline Footwear Engineering & Quality Blueprint"
                 fill
                 className="object-contain p-2"

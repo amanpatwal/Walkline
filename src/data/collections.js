@@ -3,6 +3,8 @@
  * Directly maps the 4 core categories and series from the Walkline source-of-truth.
  */
 
+import { assets } from "@/data/assets";
+
 export const COLLECTIONS = [
   {
     id: "mens-sandals",
@@ -18,7 +20,7 @@ export const COLLECTIONS = [
       "Made in India — premium quality assured",
     ],
     sizes: "UK 6×9 – 7×10",
-    image: "/images/collections/collection-men.svg",
+    image: assets.collections.mensSandals,
     badge: "VERTEX & CONCEPT",
     badgeBg: "bg-[#F4F000] text-black",
     accentColor: "#F4F000",
@@ -37,7 +39,7 @@ export const COLLECTIONS = [
       "Premium quality — all-day comfort certified",
     ],
     sizes: "UK 4×7 – 5×8",
-    image: "/images/collections/collection-women.svg",
+    image: assets.collections.womensSneakers,
     badge: "#NOIRFEVER",
     badgeBg: "bg-[#FF4F7B] text-white",
     accentColor: "#FF4F7B",
@@ -56,7 +58,7 @@ export const COLLECTIONS = [
       "Lightweight & flexible — all-day wear",
     ],
     sizes: "UK 6×9 – 7×10",
-    image: "/images/collections/collection-sports.svg",
+    image: assets.collections.fashionSandals,
     badge: "VRX SERIES",
     badgeBg: "bg-[#3155FF] text-white",
     accentColor: "#3155FF",
@@ -64,18 +66,18 @@ export const COLLECTIONS = [
   {
     id: "kids-footwear",
     title: "KIDS' FOOTWEAR",
-    shortTitle: "KIDS' SPECIALTY",
+    shortTitle: "KIDS' RANGE",
     category: "Kids' Footwear",
     series: ["Frooti"],
-    description: "The Kids' collection is one of our specialties — built for active, playful feet. The Frooti series features a memory foam insole for extra cushioning and a slip-on design for easy wear. Lightweight, durable and breathable — perfect for toddlers to juniors in every size range.",
+    description: "Because every little step matters! The Frooti series is designed with soft memory foam insoles, easy slip-on wear, and a lightweight build that keeps young feet supported throughout playtime and school runs.",
     features: [
-      "Memory foam insole for superior cushioning",
-      "Easy slip-on design — no laces needed",
-      "Sizes 8×10 / 11×1 / 2×5 available",
-      "Lightweight, breathable knit upper",
+      "Soft memory foam insole for extra comfort",
+      "Easy slip-on wear — no laces needed",
+      "Sizes 8×10, 11×1, and 2×5 available",
+      "Lightweight & durable construction",
     ],
     sizes: "8×10 / 11×1 / 2×5",
-    image: "/images/collections/collection-kids.svg",
+    image: assets.collections.kidsFootwear,
     badge: "FROOTI SERIES",
     badgeBg: "bg-[#A8E63D] text-black",
     accentColor: "#A8E63D",

@@ -1,8 +1,8 @@
 "use client";
 
-import { ArrowUp, ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowUp, MapPin, Phone, Mail, Sparkles } from "lucide-react";
 import Container from "@/ui/Container";
-import { CATEGORY_LINKS, COMPANY_LINKS, LEGAL_LINKS, SOCIAL_LINKS } from "@/data/navigation";
+import { CATEGORY_LINKS } from "@/data/navigation";
 import { COMPANY_INFO } from "@/data/company";
 
 export default function Footer() {
@@ -28,6 +28,14 @@ export default function Footer() {
       }
     }
   };
+
+  const coreNavLinks = [
+    { label: "Home", href: "/" },
+    { label: "Products", href: "#products" },
+    { label: "About", href: "#about" },
+    { label: "Sustainability", href: "/sustainability" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   return (
     <footer
@@ -61,39 +69,45 @@ export default function Footer() {
 
         {/* Multi-Column Sitemap & Verified Contact Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 py-16 border-b-2 border-white/10">
-          {/* Col 1: Verified Contact Info (5 cols) */}
+          {/* Col 1: Verified Brand Statement & Contact Info (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#F4F000]">
-              Contact & Inquiries
+              Walkline Footwear
             </h3>
             <p className="text-sm font-bold text-[#A8A8A2] leading-relaxed max-w-sm">
               {COMPANY_INFO.brandStatement}
             </p>
 
-            <div className="space-y-2.5 pt-2 text-sm text-[#D0D0C8]">
+            <div className="space-y-3 pt-3 text-sm text-[#D0D0C8]">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#F4F000] shrink-0 mt-0.5" />
-                <span>{COMPANY_INFO.contact.address.full}</span>
+                <span className="leading-snug">{COMPANY_INFO.contact.address.full}</span>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#F4F000] shrink-0" />
-                <a href={`tel:${COMPANY_INFO.contact.phone.replace(/\s+/g, '')}`} className="hover:text-white font-bold">
+                <a
+                  href={`tel:${COMPANY_INFO.contact.phone.replace(/\s+/g, "")}`}
+                  className="hover:text-white font-bold"
+                >
                   {COMPANY_INFO.contact.phone}
                 </a>
               </div>
 
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#F4F000] shrink-0" />
-                <a href={`mailto:${COMPANY_INFO.contact.email}`} className="hover:text-white font-bold">
+                <a
+                  href={`mailto:${COMPANY_INFO.contact.email}`}
+                  className="hover:text-white font-bold"
+                >
                   {COMPANY_INFO.contact.email}
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Col 2: Categories (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
+          {/* Col 2: Four Core Categories (4 cols) */}
+          <div className="lg:col-span-4 space-y-4">
             <h3 className="text-xs font-black uppercase tracking-[0.2em] text-white">
               Product Categories
             </h3>
@@ -112,13 +126,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Company & Pages (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
+          {/* Col 3: Verified Navigation (3 cols) */}
+          <div className="lg:col-span-3 space-y-4">
             <h3 className="text-xs font-black uppercase tracking-[0.2em] text-white">
-              Pages
+              Navigation
             </h3>
             <ul className="space-y-2.5">
-              {COMPANY_LINKS.map((link, idx) => (
+              {coreNavLinks.map((link, idx) => (
                 <li key={idx}>
                   <a
                     href={link.href}
@@ -131,43 +145,16 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Col 4: Social / Community (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-white">
-              Connect
-            </h3>
-            <ul className="space-y-2.5">
-              {SOCIAL_LINKS.map((soc, idx) => (
-                <li key={idx}>
-                  <a
-                    href={soc.href}
-                    className="text-sm font-bold text-[#D0D0C8] hover:text-white transition-colors flex items-center justify-between group"
-                  >
-                    <span>{soc.label}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-bold text-[#888888] gap-4">
           <div>
-            © Copyright {COMPANY_INFO.brandName} 2026. All Rights Reserved.
+            © {new Date().getFullYear()} {COMPANY_INFO.brandName}. All Rights Reserved.
           </div>
           <div className="flex items-center gap-6">
-            {LEGAL_LINKS.map((item, idx) => (
-              <a
-                key={idx}
-                href={item.href}
-                className="hover:text-white transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            <span>Made in India with Pride</span>
+            <span>Plot No 362, MIE Part A, Bahadurgarh</span>
           </div>
         </div>
       </Container>

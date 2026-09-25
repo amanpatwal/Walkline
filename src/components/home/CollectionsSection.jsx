@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Sparkles } from "lucide-react";
 import { COLLECTIONS } from "@/data/collections";
 import Container from "@/ui/Container";
 import SectionHeading from "@/ui/SectionHeading";
@@ -18,47 +18,50 @@ export default function CollectionsSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <SectionHeading
-            overline="Four Core Categories"
+            overline="Four Core Categories // Indian Streetwear"
             title="PRODUCT CATEGORIES"
             subtitle="Explore our diverse range crafted with premium materials and meticulous attention to detail."
             tagVariant="pink"
           />
-          <div className="text-xs font-mono font-bold uppercase text-[#888888] tracking-widest hidden md:block">
-            [ VERIFIED RANGES ]
+          <div className="hidden md:flex items-center gap-2 text-xs font-mono font-bold uppercase text-[#888888]">
+            <Sparkles className="w-4 h-4 text-[#F4F000]" />
+            <span>[ VERIFIED WALKLINE RANGES ]</span>
           </div>
         </div>
 
-        {/* Editorial Asymmetrical Grid for the 4 Categories */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* 1. Men's Sandals & Chappals - 7 cols */}
+        {/* Editorial Asymmetric Grid for 4 Categories */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+          {/* Tile 1: Men's Sandals & Chappals - Large Editorial Tile (7 cols) */}
           <div className="lg:col-span-7">
-            <CategoryCard
+            <EditorialCategoryCard
               collection={COLLECTIONS[0]}
-              heightClass="min-h-[460px]"
+              aspect="aspect-[16/10]"
+              isLarge
             />
           </div>
 
-          {/* 2. Women's Sneakers - 5 cols */}
+          {/* Tile 2: Women's Sneakers - Compact Editorial Tile (5 cols) */}
           <div className="lg:col-span-5">
-            <CategoryCard
+            <EditorialCategoryCard
               collection={COLLECTIONS[1]}
-              heightClass="min-h-[460px]"
+              aspect="aspect-[16/10]"
             />
           </div>
 
-          {/* 3. Fashion Sandals - 5 cols */}
+          {/* Tile 3: Fashion Sandals - Compact Editorial Tile (5 cols) */}
           <div className="lg:col-span-5">
-            <CategoryCard
+            <EditorialCategoryCard
               collection={COLLECTIONS[2]}
-              heightClass="min-h-[460px]"
+              aspect="aspect-[16/10]"
             />
           </div>
 
-          {/* 4. Kids' Footwear - 7 cols */}
+          {/* Tile 4: Kids' Footwear - Large Editorial Tile (7 cols) */}
           <div className="lg:col-span-7">
-            <CategoryCard
+            <EditorialCategoryCard
               collection={COLLECTIONS[3]}
-              heightClass="min-h-[460px]"
+              aspect="aspect-[16/10]"
+              isLarge
             />
           </div>
         </div>
@@ -67,33 +70,32 @@ export default function CollectionsSection() {
   );
 }
 
-function CategoryCard({ collection, heightClass = "min-h-[460px]" }) {
+function EditorialCategoryCard({ collection, aspect = "aspect-[16/10]", isLarge = false }) {
+  const handleCategoryClick = () => {
+    const el = document.getElementById("products");
+    if (el) {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el, { offset: -70 });
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
-    <Reveal animation="slideUp" delay={0.08}>
+    <Reveal animation="slideUp" delay={0.06}>
       <div
+        onClick={handleCategoryClick}
         className={cn(
-          "group relative w-full rounded-3xl overflow-hidden bg-[#F7F7F4] border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[6px_6px_0px_0px_#000] flex flex-col justify-between p-7 sm:p-9 transition-all duration-300 cursor-pointer select-none",
-          heightClass
+          "group relative w-full rounded-3xl overflow-hidden bg-[#F7F7F4] border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[7px_7px_0px_0px_#000] flex flex-col justify-between p-6 sm:p-8 transition-all duration-300 cursor-pointer select-none",
+          isLarge ? "min-h-[480px]" : "min-h-[440px]"
         )}
       >
-        {/* Background Visual Asset */}
-        <div className="relative w-full aspect-[16/9] flex items-center justify-center mb-4">
-          <div className="relative w-full h-full transform-gpu transition-transform duration-500 ease-out group-hover:scale-108 group-hover:-translate-y-2">
-            <Image
-              src={collection.image}
-              alt={collection.title}
-              fill
-              className="object-contain filter drop-shadow-[0_20px_20px_rgba(0,0,0,0.12)]"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
-
         {/* Top Header Badge */}
-        <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
+        <div className="flex items-center justify-between pointer-events-none mb-4 z-10">
           <span
             className={cn(
-              "text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full border border-black shadow-[1.5px_1.5px_0px_0px_#000]",
+              "text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full border border-black shadow-[1.5px_1.5px_0px_0px_#000]",
               collection.badgeBg || "bg-[#F4F000] text-black"
             )}
           >
@@ -105,8 +107,21 @@ function CategoryCard({ collection, heightClass = "min-h-[460px]" }) {
           </div>
         </div>
 
+        {/* Footwear Visual Asset */}
+        <div className={cn("relative w-full my-auto flex items-center justify-center py-4", aspect)}>
+          <div className="relative w-full h-full transform-gpu transition-transform duration-500 ease-out group-hover:scale-108 group-hover:-translate-y-2">
+            <Image
+              src={collection.image}
+              alt={collection.title}
+              fill
+              className="object-contain filter drop-shadow-[0_20px_20px_rgba(0,0,0,0.12)]"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+
         {/* Content Box */}
-        <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl border-2 border-black shadow-[2px_2px_0px_0px_#000] space-y-3">
+        <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl border-2 border-black shadow-[2px_2px_0px_0px_#000] space-y-3 z-10 mt-4">
           <div className="flex items-baseline justify-between gap-2">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-black group-hover:text-[#3155FF] transition-colors">
               {collection.title}
@@ -116,18 +131,25 @@ function CategoryCard({ collection, heightClass = "min-h-[460px]" }) {
             </span>
           </div>
 
-          <p className="text-xs sm:text-sm font-bold text-[#555555] leading-relaxed">
+          <p className="text-xs sm:text-sm font-bold text-[#555555] leading-relaxed line-clamp-2">
             {collection.description}
           </p>
 
-          {/* Key Feature Bullets */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-2 border-t border-black/10 text-xs font-bold text-[#333333]">
-            {collection.features.slice(0, 2).map((feat, idx) => (
-              <div key={idx} className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-black shrink-0" />
-                <span className="truncate">{feat}</span>
-              </div>
-            ))}
+          {/* Key Features & CTA */}
+          <div className="pt-2 border-t border-black/10 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-3 text-xs font-bold text-[#333333]">
+              {collection.features.slice(0, isLarge ? 2 : 1).map((feat, idx) => (
+                <div key={idx} className="flex items-center gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-black shrink-0" />
+                  <span className="truncate max-w-[200px] text-[11px]">{feat}</span>
+                </div>
+              ))}
+            </div>
+
+            <span className="text-xs font-black uppercase tracking-wider text-black group-hover:text-[#3155FF] flex items-center gap-1">
+              <span>Explore Category</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
           </div>
         </div>
       </div>
