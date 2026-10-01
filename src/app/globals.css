@@ -90,6 +90,15 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
+/* Hide scrollbar utility */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* Editorial Typography & Utilities */
 .tracking-ultra-wide {
   letter-spacing: 0.22em;
@@ -172,4 +181,9 @@ html.lenis, html.lenis body {
 
 .animate-slide-in-right {
   animation: slideInRight 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes carouselProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
 }

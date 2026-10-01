@@ -1,54 +1,46 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { assets } from "@/data/assets";
 
-export default function CampaignFreshRotation() {
-  const handleScrollTo = (targetId = "products") => {
-    const el = document.getElementById(targetId);
-    if (el) {
-      if (window.__lenis) {
-        window.__lenis.scrollTo(el, { offset: -76 });
-      } else {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
+// ─── Fresh In Rotation — Full-Bleed Campaign Banner ──────────────────────────
+// Sits directly above the product section with zero vertical gap.
+// No max-width, no padding, no rounded wrapper. Image touches edges.
 
+export default function CampaignFreshRotation() {
   return (
     <section
-      className="relative w-full py-6 sm:py-10 bg-white overflow-hidden"
-      aria-label="Fresh In Rotation — Walkline Footwear Editorial Drop"
+      className="relative w-full overflow-hidden bg-[#FAF7F1]"
+      aria-label="Fresh In Rotation — New In Walkline Footwear"
+      style={{ display: "block" }}
     >
-      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-8">
-        <div
-          className="relative w-full aspect-[21/9] sm:aspect-[21/8] lg:aspect-[21/7] max-h-[620px] min-h-[340px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-editorial-md border border-[#24140D]/10 bg-[#FAF7F1] group cursor-pointer"
-          onClick={() => handleScrollTo("products")}
-        >
-          <Image
-            src={assets.campaigns.freshRotation}
-            alt="Fresh in Rotation — New In Walkline Footwear"
-            fill
-            sizes="(max-width: 1920px) 100vw, 1920px"
-            className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-          />
+      {/* Full-bleed image link — touches product section directly below */}
+      <Link
+        href="/collections"
+        className="group relative block w-full overflow-hidden"
+        style={{ aspectRatio: "21 / 8" }}
+        aria-label="Shop New In — Fresh In Rotation"
+      >
+        <Image
+          src={assets.campaigns.freshRotation}
+          alt="Fresh in Rotation — New In — Walkline Footwear"
+          fill
+          sizes="100vw"
+          loading="lazy"
+          quality={90}
+          className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.015]"
+        />
 
-          {/* Bottom Right CTA */}
-          <div className="absolute inset-0 flex flex-col justify-end items-end p-6 sm:p-10 lg:p-14 z-10 pointer-events-none">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleScrollTo("products");
-              }}
-              className="pointer-events-auto inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#321D12] text-[#FAF7F1] text-xs font-bold uppercase tracking-[0.16em] hover:bg-[#5A351F] transition-all duration-300 shadow-editorial-md cursor-pointer group/btn"
-            >
-              <span>Shop Now</span>
-              <ArrowRight className="w-4 h-4 text-[#C69A6B] group-hover/btn:translate-x-1 transition-transform" />
-            </button>
-          </div>
+        {/* Bottom-right CTA — does not cover artwork text */}
+        <div className="absolute bottom-5 sm:bottom-8 lg:bottom-10 right-5 sm:right-8 lg:right-12 z-10">
+          <span className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#321D12]/95 backdrop-blur-sm text-[#FAF7F1] text-[11px] font-bold uppercase tracking-[0.18em] rounded-full shadow-editorial-md group-hover:bg-[#5A351F] transition-all duration-300">
+            <span>Shop Now</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#C69A6B] group-hover:translate-x-[5px] transition-transform duration-300" />
+          </span>
         </div>
-      </div>
+      </Link>
     </section>
   );
 }

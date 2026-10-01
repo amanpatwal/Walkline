@@ -41,7 +41,10 @@ export default function Hero() {
       aria-label="Walkline Footwear Campaign Hero — Step Into Confidence"
     >
       {/* ─── Campaign Artwork — Full Bleed, No text overlay ─── */}
-      <div ref={imageRef} className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[25/9] max-h-[700px] min-h-[260px] overflow-hidden select-none">
+      <div
+        ref={imageRef}
+        className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[25/9] max-h-[720px] min-h-[260px] overflow-hidden select-none"
+      >
         <Image
           src={assets.hero.confidence}
           alt="Walkline Footwear — Step Into Confidence. Crafted for comfort, designed for impact."

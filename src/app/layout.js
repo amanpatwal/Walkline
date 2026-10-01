@@ -1,12 +1,12 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Rubik } from "next/font/google";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
 
-const jakartaSans = Plus_Jakarta_Sans({
+const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -53,7 +53,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${jakartaSans.variable} font-sans`}>
+    <html lang="en" className={`${rubik.variable} font-sans`}>
       <body className="bg-[#FAF7F1] text-[#24140D] antialiased selection:bg-[#321D12] selection:text-[#FAF7F1]">
         <CartProvider>
           <SmoothScroll>{children}</SmoothScroll>
