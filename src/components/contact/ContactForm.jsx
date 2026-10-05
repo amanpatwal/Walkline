@@ -24,32 +24,32 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white border border-[#24140D]/10 rounded-2xl p-7 sm:p-10 shadow-editorial-sm">
+    <div className="bg-white border border-black/10 rounded-2xl p-7 sm:p-10 shadow-editorial-sm">
       <div className="flex items-center justify-between gap-4 mb-2">
-        <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#24140D]">
+        <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#000000]">
           Send Trade Inquiry
         </h3>
-        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#FAF7F1] border border-[#24140D]/10 text-[#8A6E58]">
+        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-neutral-100 border border-black/10 text-[#27409A]">
           Trade Desk
         </span>
       </div>
-      <p className="text-xs sm:text-sm text-[#5A351F]/80 mb-8 leading-relaxed">
+      <p className="text-xs sm:text-sm text-black/60 mb-8 leading-relaxed">
         Whether you are a retailer, distributor, or partner seeking bulk supply, share your requirements and our team will get back to you within 24 business hours.
       </p>
 
       {submitted ? (
-        <div className="p-8 sm:p-10 rounded-xl bg-[#24140D] text-[#FAF7F1] text-center space-y-4">
-          <div className="w-12 h-12 rounded-full bg-[#321D12] border border-[#C69A6B]/30 flex items-center justify-center mx-auto text-[#C69A6B]">
+        <div className="p-8 sm:p-10 rounded-xl bg-[#000000] text-white text-center space-y-4">
+          <div className="w-12 h-12 rounded-full bg-[#27409A]/20 border border-[#27409A]/30 flex items-center justify-center mx-auto text-[#27409A]">
             <CheckCircle2 className="w-6 h-6" />
           </div>
-          <div className="text-[11px] font-mono text-[#C69A6B] uppercase tracking-widest">
+          <div className="text-[11px] font-bold text-[#27409A] uppercase tracking-widest">
             INQUIRY REGISTERED
           </div>
-          <h4 className="text-xl font-black uppercase tracking-tight text-[#FAF7F1]">
+          <h4 className="text-xl font-black uppercase tracking-tight text-white">
             Thank You, {formData.name || "Partner"}
           </h4>
-          <p className="text-xs text-[#FAF7F1]/75 max-w-md mx-auto leading-relaxed">
-            Your inquiry for <strong className="text-[#FAF7F1]">{formData.inquiryType}</strong> has been received by our commercial team at the Bahadurgarh headquarters.
+          <p className="text-xs text-white/75 max-w-md mx-auto leading-relaxed">
+            Your inquiry for <strong className="text-white">{formData.inquiryType}</strong> has been received by our commercial team at the Bahadurgarh headquarters.
           </p>
           <div className="pt-4 flex justify-center">
             <button
@@ -64,7 +64,7 @@ export default function ContactForm() {
                   message: "",
                 });
               }}
-              className="text-xs font-bold uppercase tracking-wider text-[#C69A6B] hover:text-[#FAF7F1] underline transition-colors cursor-pointer"
+              className="text-xs font-bold uppercase tracking-wider text-[#27409A] hover:text-white underline transition-colors cursor-pointer"
             >
               Submit Another Inquiry
             </button>
@@ -74,7 +74,7 @@ export default function ContactForm() {
         <form className="space-y-5" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A351F] mb-1.5">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Full Name *
               </label>
               <input
@@ -84,11 +84,11 @@ export default function ContactForm() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="e.g. Rajesh Sharma"
-                className="w-full px-4 py-3 rounded-xl bg-[#FAF7F1] border border-[#24140D]/15 text-sm text-[#24140D] placeholder:text-[#8A6E58]/50 focus:outline-none focus:border-[#24140D] focus:ring-1 focus:ring-[#24140D] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A351F] mb-1.5">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Email Address *
               </label>
               <input
@@ -98,14 +98,14 @@ export default function ContactForm() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="name@business.com"
-                className="w-full px-4 py-3 rounded-xl bg-[#FAF7F1] border border-[#24140D]/15 text-sm text-[#24140D] placeholder:text-[#8A6E58]/50 focus:outline-none focus:border-[#24140D] focus:ring-1 focus:ring-[#24140D] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A351F] mb-1.5">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Contact Phone Number *
               </label>
               <input
@@ -115,11 +115,11 @@ export default function ContactForm() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+91 9310223854"
-                className="w-full px-4 py-3 rounded-xl bg-[#FAF7F1] border border-[#24140D]/15 text-sm text-[#24140D] placeholder:text-[#8A6E58]/50 focus:outline-none focus:border-[#24140D] focus:ring-1 focus:ring-[#24140D] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A351F] mb-1.5">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Business / Store Name
               </label>
               <input
@@ -128,20 +128,20 @@ export default function ContactForm() {
                 value={formData.company}
                 onChange={handleChange}
                 placeholder="e.g. Footwear Traders"
-                className="w-full px-4 py-3 rounded-xl bg-[#FAF7F1] border border-[#24140D]/15 text-sm text-[#24140D] placeholder:text-[#8A6E58]/50 focus:outline-none focus:border-[#24140D] focus:ring-1 focus:ring-[#24140D] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A351F] mb-1.5">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
               Inquiry Classification *
             </label>
             <select
               name="inquiryType"
               value={formData.inquiryType}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-xl bg-[#FAF7F1] border border-[#24140D]/15 text-sm text-[#24140D] focus:outline-none focus:border-[#24140D] focus:ring-1 focus:ring-[#24140D] transition-colors cursor-pointer"
+              className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors cursor-pointer"
             >
               <option value="Wholesale & Distribution">Wholesale & Regional Distribution</option>
               <option value="Retail Dealership">Authorized Retail Dealership</option>
@@ -152,7 +152,7 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5A351F] mb-1.5">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
               Detailed Requirements *
             </label>
             <textarea
@@ -162,13 +162,13 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleChange}
               placeholder="Please specify categories of interest (Vertex, Noir-05, VRX, Frooti), estimated order volumes, and your target location..."
-              className="w-full px-4 py-3 rounded-xl bg-[#FAF7F1] border border-[#24140D]/15 text-sm text-[#24140D] placeholder:text-[#8A6E58]/50 focus:outline-none focus:border-[#24140D] focus:ring-1 focus:ring-[#24140D] transition-colors resize-none"
+              className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors resize-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#24140D] text-[#FAF7F1] text-xs font-bold uppercase tracking-wider hover:bg-[#5A351F] transition-all cursor-pointer shadow-sm hover:shadow"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#000000] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#27409A] transition-all cursor-pointer shadow-sm hover:shadow"
           >
             <span>Submit Trade Inquiry</span>
             <ArrowRight className="w-4 h-4" />
@@ -177,13 +177,13 @@ export default function ContactForm() {
       )}
 
       {/* Assurance footer */}
-      <div className="mt-8 pt-6 border-t border-[#24140D]/08 flex flex-wrap items-center justify-between gap-4 text-[11px] text-[#8A6E58]">
+      <div className="mt-8 pt-6 border-t border-black/08 flex flex-wrap items-center justify-between gap-4 text-[11px] text-[#27409A]">
         <div className="flex items-center gap-1.5">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#9A6238]" />
+          <ShieldCheck className="w-3.5 h-3.5 text-[#27409A]" />
           <span>Walkline Footwear • Bahadurgarh Facility</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="font-mono text-[#5A351F]">support@walklinefootwear.com</span>
+          <span className="text-[#000000]">support@walklinefootwear.com</span>
         </div>
       </div>
     </div>

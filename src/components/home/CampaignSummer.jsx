@@ -3,38 +3,40 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { assets } from "@/data/assets";
 
+// ─── Summer Campaign — Full Viewport Width ───────────────────────────────────
+// "Custom / Crafted For Everyday — Summer" campaign section.
+// No max-width, no rounded wrapper, no outer padding. Touches viewport edges.
+
 export default function CampaignSummer() {
   return (
     <section
-      className="relative w-full py-6 sm:py-10 bg-[#FAF7F1] overflow-hidden"
-      aria-label="Crafted For Everyday Summer — Walkline Footwear"
+      className="relative w-full overflow-hidden bg-white"
+      aria-label="Crafted For Everyday — Summer Walkline Campaign"
     >
-      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-8">
-        <Link
-          href="/sandals"
-          className="relative w-full aspect-[21/9] sm:aspect-[21/8] lg:aspect-[21/7] max-h-[620px] min-h-[340px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-editorial-md border border-[#24140D]/10 bg-[#FAF7F1] group cursor-pointer block"
-        >
-          <Image
-            src={assets.campaigns.summer}
-            alt="Crafted For Everyday Summer — Walkline Sandals"
-            fill
-            sizes="(max-width: 1920px) 100vw, 1920px"
-            className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-          />
+      <Link
+        href="/sandals"
+        className="group relative block w-full overflow-hidden"
+        style={{ aspectRatio: "21 / 9" }}
+        aria-label="Shop Summer Sandals — Crafted For Everyday"
+      >
+        <Image
+          src={assets.campaigns.summer}
+          alt="Custom / Crafted For Everyday — Summer — Walkline Footwear"
+          fill
+          sizes="100vw"
+          loading="lazy"
+          quality={90}
+          className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.015]"
+        />
 
-          {/* Negative Space CTA on the left under artwork text */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14 z-10 pointer-events-none">
-            <div className="max-w-md">
-              <span
-                className="pointer-events-auto inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#321D12] text-[#FAF7F1] text-xs font-bold uppercase tracking-[0.16em] hover:bg-[#5A351F] transition-all duration-300 shadow-editorial-md group/btn"
-              >
-                <span>Shop Sandals</span>
-                <ArrowRight className="w-4 h-4 text-[#C69A6B] group-hover/btn:translate-x-1 transition-transform" />
-              </span>
-            </div>
-          </div>
-        </Link>
-      </div>
+        {/* Bottom-left CTA — Brand blue #27409A button */}
+        <div className="absolute bottom-5 sm:bottom-8 lg:bottom-10 left-5 sm:left-8 lg:left-12 z-10">
+          <span className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#27409A] hover:bg-[#1E327A] text-white text-[11px] font-bold uppercase tracking-[0.18em] rounded-full shadow-md transition-all duration-300">
+            <span>Shop Sandals</span>
+            <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-[5px] transition-transform duration-300" />
+          </span>
+        </div>
+      </Link>
     </section>
   );
 }

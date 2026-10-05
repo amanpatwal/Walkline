@@ -17,16 +17,16 @@ export default function SectionHeading({
   };
 
   const tagStyles = {
-    espresso: "bg-[#321D12] text-[#FAF7F1] border border-[#24140D]/20",
-    caramel: "bg-[#9A6238] text-[#FAF7F1] border border-[#9A6238]/30",
-    tan: "bg-[#C69A6B] text-[#24140D] border border-[#C69A6B]/30",
-    cream: "bg-[#F3E8D8] text-[#321D12] border border-[#321D12]/15",
-    sand: "bg-[#E6D4BC] text-[#24140D] border border-[#24140D]/10",
-    yellow: "bg-[#F3E8D8] text-[#321D12] border border-[#321D12]/15",
-    pink: "bg-[#9A6238] text-[#FAF7F1]",
-    blue: "bg-[#321D12] text-[#FAF7F1]",
-    green: "bg-[#C69A6B] text-[#24140D]",
-    dark: "bg-[#24140D] text-[#FAF7F1]",
+    espresso: "bg-[#27409A] text-white border border-[#27409A]",
+    caramel: "bg-[#27409A] text-white border border-[#27409A]",
+    tan: "bg-[#27409A]/10 text-[#27409A] border border-[#27409A]/20",
+    cream: "bg-neutral-50 text-[#000000] border border-neutral-200",
+    sand: "bg-neutral-100 text-[#000000] border border-neutral-200",
+    yellow: "bg-[#27409A]/10 text-[#27409A] border border-[#27409A]/20",
+    pink: "bg-[#27409A] text-white",
+    blue: "bg-[#27409A] text-white",
+    green: "bg-[#27409A] text-white",
+    dark: "bg-[#000000] text-white",
   };
 
   return (
@@ -53,7 +53,7 @@ export default function SectionHeading({
       {title && (
         <h2
           className={cn(
-            "text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[0.98] uppercase text-[#24140D] text-balance",
+            "text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[0.98] uppercase text-[#000000] text-balance",
             titleClassName
           )}
         >
@@ -62,13 +62,13 @@ export default function SectionHeading({
       )}
 
       {subtitle && (
-        <p className="mt-3 text-base sm:text-lg md:text-xl font-bold tracking-tight text-[#5A351F]">
+        <p className="mt-3 text-base sm:text-lg md:text-xl font-bold tracking-tight text-[#27409A]">
           {subtitle}
         </p>
       )}
 
       {description && (
-        <p className="mt-2 text-sm sm:text-base text-[#8A6E58] leading-relaxed">
+        <p className="mt-2 text-sm sm:text-base text-neutral-600 leading-relaxed">
           {description}
         </p>
       )}

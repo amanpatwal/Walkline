@@ -13,7 +13,7 @@ export default function CampaignBounceSole() {
       <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-8">
         <Link
           href="/sandals"
-          className="relative w-full aspect-[21/9] sm:aspect-[21/8] lg:aspect-[21/7] max-h-[620px] min-h-[340px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-editorial-md border border-[#24140D]/10 bg-[#FAF7F1] group cursor-pointer block"
+          className="relative w-full aspect-[21/9] sm:aspect-[21/8] lg:aspect-[21/7] max-h-[620px] min-h-[340px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-editorial-md border border-black/10 bg-white group cursor-pointer block"
         >
           <Image
             src={assets.campaigns.bounceSole}
@@ -27,10 +27,10 @@ export default function CampaignBounceSole() {
           <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14 z-10 pointer-events-none">
             <div className="max-w-md">
               <span
-                className="pointer-events-auto inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#321D12] text-[#FAF7F1] text-xs font-bold uppercase tracking-[0.16em] hover:bg-[#5A351F] transition-all duration-300 shadow-editorial-md group/btn"
+                className="pointer-events-auto inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#000000] text-white text-xs font-bold uppercase tracking-[0.16em] hover:bg-[#27409A] transition-all duration-300 shadow-editorial-md cursor-pointer group/btn"
               >
                 <span>Explore Comfort</span>
-                <ArrowRight className="w-4 h-4 text-[#C69A6B] group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-white/70 group-hover/btn:translate-x-1 transition-transform" />
               </span>
             </div>
           </div>

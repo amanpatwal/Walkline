@@ -21,15 +21,15 @@ export default function Marquee({
   const marqueeRef = useRef(null);
 
   const variantClasses = {
-    yellow: "bg-[#24140D] text-[#C69A6B] border-y border-[#321D12]",
-    black: "bg-[#24140D] text-[#FAF7F1] border-y border-[#321D12]",
-    white: "bg-[#FFFFFF] text-[#24140D] border-y border-[#24140D]/10",
-    pink: "bg-[#9A6238] text-white border-y border-[#24140D]/10",
-    blue: "bg-[#5A351F] text-white border-y border-[#24140D]/10",
-    // Walkline editorial palette
-    brown: "bg-[#24140D] text-[#C69A6B] border-y border-[#321D12]",
-    cream: "bg-[#F3E8D8] text-[#24140D] border-y border-[#24140D]/15",
-    espresso: "bg-[#321D12] text-[#FAF7F1] border-y border-[#24140D]",
+    yellow: "bg-[#000000] text-[#27409A] border-y border-neutral-900",
+    black: "bg-[#000000] text-white border-y border-neutral-900",
+    white: "bg-[#FFFFFF] text-[#000000] border-y border-neutral-200",
+    pink: "bg-[#27409A] text-white border-y border-[#27409A]",
+    blue: "bg-[#27409A] text-white border-y border-[#1E327A]",
+    // Brand palette: black background with blue accent text
+    brown: "bg-[#000000] text-[#27409A] border-y border-neutral-900",
+    cream: "bg-white text-[#000000] border-y border-neutral-200",
+    espresso: "bg-[#000000] text-white border-y border-neutral-900",
   };
 
   // Duplicate items 4 times to ensure seamless infinite loop

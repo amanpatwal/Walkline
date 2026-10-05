@@ -11,7 +11,7 @@ export default function CampaignWeekend() {
   return (
     <section
       aria-label="Weekend Mode — Walkline Campaign"
-      className="relative w-full overflow-hidden bg-[#24140D]"
+      className="relative w-full overflow-hidden bg-[#000000]"
       style={{ display: "block" }}
     >
       <Link
@@ -33,9 +33,9 @@ export default function CampaignWeekend() {
 
         {/* Subtle bottom-right CTA — does not cover embedded artwork text */}
         <div className="absolute bottom-5 sm:bottom-8 lg:bottom-10 right-5 sm:right-8 lg:right-12 z-10">
-          <span className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#321D12]/95 backdrop-blur-sm text-[#FAF7F1] text-[11px] font-bold uppercase tracking-[0.18em] rounded-full shadow-editorial-md group-hover:bg-[#5A351F] transition-all duration-300">
+          <span className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#000000]/95 backdrop-blur-sm text-white text-[11px] font-bold uppercase tracking-[0.18em] rounded-full shadow-editorial-md group-hover:bg-[#27409A] transition-all duration-300">
             <span>Explore Sandals</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#C69A6B] group-hover:translate-x-[5px] transition-transform duration-300" />
+            <ArrowRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-[5px] transition-transform duration-300" />
           </span>
         </div>
       </Link>

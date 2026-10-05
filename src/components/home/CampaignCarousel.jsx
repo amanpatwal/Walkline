@@ -202,20 +202,20 @@ export default function CampaignCarousel() {
   return (
     <section
       aria-label="Walkline Stories — Campaign Spotlight Carousel"
-      className="relative w-full py-12 sm:py-16 lg:py-20 bg-[#FAF7F1] text-[#24140D] border-t border-[#24140D]/10 overflow-hidden"
+      className="relative w-full py-12 sm:py-16 lg:py-20 bg-white text-[#000000] border-t border-black/10 overflow-hidden"
     >
       {/* ─── Section Editorial Label ─── */}
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 mb-6 sm:mb-8 flex items-end justify-between">
         <div>
-          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9A6238] block mb-1">
+          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#27409A] block mb-1">
             Campaign Spotlight • In Rotation
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#24140D]">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#000000]">
             Walkline Stories
           </h2>
         </div>
 
-        <p className="hidden md:block text-xs text-[#5A351F]/80 max-w-xs text-right font-medium">
+        <p className="hidden md:block text-xs text-black/60 max-w-xs text-right font-medium">
           Cinematic movement and engineered comfort across lifestyle, court, and casual drops.
         </p>
       </div>
@@ -223,7 +223,7 @@ export default function CampaignCarousel() {
       {/* ─── Carousel Stage (Wide Editorial Box) ─── */}
       <div className="max-w-[1440px] mx-auto px-0 sm:px-8 lg:px-14">
         <div
-          className="relative w-full h-[440px] sm:h-[520px] lg:h-[620px] max-h-[700px] sm:rounded-3xl overflow-hidden bg-[#24140D] shadow-editorial-md select-none border-y sm:border border-[#24140D]/15"
+          className="relative w-full h-[440px] sm:h-[520px] lg:h-[620px] max-h-[700px] sm:rounded-3xl overflow-hidden bg-[#000000] shadow-editorial-md select-none border-y sm:border border-black/15"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={handleTouchStart}
@@ -276,8 +276,8 @@ export default function CampaignCarousel() {
                     href={slide.href}
                     className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md transition-all shadow-editorial-sm group ${
                       isLight
-                        ? "bg-[#24140D]/90 text-[#FAF7F1] hover:bg-[#321D12]"
-                        : "bg-[#FAF7F1]/90 text-[#24140D] hover:bg-[#FAF7F1] hover:shadow-editorial-md"
+                        ? "bg-[#000000]/90 text-white hover:bg-[#27409A]"
+                        : "bg-white/90 text-[#000000] hover:bg-white hover:shadow-editorial-md"
                     }`}
                   >
                     <span>{slide.ctaLabel}</span>
@@ -317,9 +317,9 @@ export default function CampaignCarousel() {
           <div className="absolute bottom-6 sm:bottom-8 left-5 sm:left-8 z-30 flex items-center gap-3.5">
             {/* Number Counter */}
             <div
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-mono font-bold backdrop-blur-md transition-colors ${
+              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold backdrop-blur-md transition-colors ${
                 isLight
-                  ? "bg-[#24140D]/75 text-[#FAF7F1]"
+                  ? "bg-[#000000]/75 text-white"
                   : "bg-black/50 text-white/95 border border-white/10"
               }`}
             >
@@ -331,13 +331,13 @@ export default function CampaignCarousel() {
             {/* Dynamic Smooth Animated Progress Bar */}
             <div
               className={`relative w-24 sm:w-32 h-1.5 rounded-full overflow-hidden backdrop-blur-xs ${
-                isLight ? "bg-[#24140D]/25" : "bg-white/25"
+                isLight ? "bg-black/25" : "bg-white/25"
               }`}
             >
               <div
                 key={progressKey}
                 className={`h-full rounded-full ${
-                  isLight ? "bg-[#24140D]" : "bg-white"
+                  isLight ? "bg-[#000000]" : "bg-white"
                 } ${
                   isPaused
                     ? "w-full opacity-60"
@@ -362,10 +362,10 @@ export default function CampaignCarousel() {
                   className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
                     idx === currentIndex
                       ? isLight
-                        ? "bg-[#24140D] scale-125"
+                        ? "bg-[#000000] scale-125"
                         : "bg-white scale-125"
                       : isLight
-                      ? "bg-[#24140D]/30 hover:bg-[#24140D]/60"
+                      ? "bg-black/30 hover:bg-black/60"
                       : "bg-white/30 hover:bg-white/60"
                   }`}
                   aria-label={`Jump to slide 0${idx + 1}`}

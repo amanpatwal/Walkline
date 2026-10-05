@@ -1,38 +1,37 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-blue: #27409A;
+  --color-brand-blue-hover: #1E327A;
+  --color-brand-black: #000000;
+  --color-brand-white: #FFFFFF;
+}
+
 @layer base {
   :root {
-    /* Walkline Footwear — Brown / Cream / Espresso Editorial Palette */
-    --espresso: #24140D;
-    --dark-brown: #321D12;
-    --brown: #5A351F;
-    --caramel: #9A6238;
-    --tan: #C69A6B;
-    --cream: #F3E8D8;
-    --warm-white: #FAF7F1;
-    --sand: #E6D4BC;
-    --charcoal: #171412;
-    --white: #FFFFFF;
+    /* Walkline Footwear — Official Brand System: #27409A Blue, #000000 Black, #FFFFFF White */
+    --brand-blue: #27409A;
+    --brand-blue-hover: #1E327A;
+    --brand-black: #000000;
+    --brand-white: #FFFFFF;
 
-    --bg-surface: #FAF7F1;
+    --bg-surface: #FFFFFF;
     --bg-surface-white: #FFFFFF;
-    --text-primary: #24140D;
-    --text-secondary: #5A351F;
-    --text-muted: #8A6E58;
+    --text-primary: #000000;
+    --text-secondary: #27409A;
+    --text-muted: #6B7280;
     --surface-card: #FFFFFF;
-    --surface-card-subtle: #F3E8D8;
-    --surface-dark: #24140D;
-    --border-subtle: rgba(36, 20, 13, 0.08);
-    --border-medium: rgba(36, 20, 13, 0.16);
-    
-    /* Warm Accents */
-    --color-tan: #C69A6B;
-    --color-caramel: #9A6238;
-    --color-coral: #E06D53;
+    --surface-card-subtle: #F4F5F8;
+    --surface-dark: #000000;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-medium: rgba(0, 0, 0, 0.16);
+
+    /* Brand Accents */
+    --color-accent: #27409A;
   }
 
   html {
-    background-color: var(--warm-white);
+    background-color: var(--bg-surface);
     color: var(--text-primary);
     scroll-behavior: auto;
     text-rendering: optimizeLegibility;
@@ -41,31 +40,30 @@
   }
 
   body {
-    background-color: var(--warm-white);
+    background-color: var(--bg-surface);
     color: var(--text-primary);
     overflow-x: hidden;
     min-height: 100vh;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   ::selection {
-    background-color: #321D12;
-    color: #FAF7F1;
+    background-color: #27409A;
+    color: #FFFFFF;
   }
 
-  /* Refined Editorial Scrollbar */
+  /* Refined Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #FAF7F1;
+    background: #FFFFFF;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D9CBB8;
+    background: #CBD5E1;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #321D12;
+    background: #27409A;
   }
 }
 

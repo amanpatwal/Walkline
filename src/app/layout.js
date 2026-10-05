@@ -45,7 +45,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#24140D",
+  themeColor: "#27409A",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -53,8 +53,11 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${rubik.variable} font-sans`}>
-      <body className="bg-[#FAF7F1] text-[#24140D] antialiased selection:bg-[#321D12] selection:text-[#FAF7F1]">
+    <html lang="en" className={`${rubik.variable} font-sans`} suppressHydrationWarning>
+      <body
+        className="bg-white text-[#000000] antialiased selection:bg-[#27409A] selection:text-white font-sans"
+        suppressHydrationWarning
+      >
         <CartProvider>
           <SmoothScroll>{children}</SmoothScroll>
         </CartProvider>

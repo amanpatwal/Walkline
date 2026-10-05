@@ -7,13 +7,15 @@
 
 export const assets = {
   logo: {
-    // Actual uploaded Walkline brand logo (red + black, 576×299 JPEG)
-    primary: "/assets/logo/walkline-brand-logo.jpeg",
-    // SVG symbol fallback (W mark) for mobile favicon-size usage
-    symbol: "/assets/logo/walkline-symbol.svg",
-    // Intrinsic dimensions for next/image
-    width: 576,
-    height: 299,
+    // Official Walkline brand logo (WALKLINE ABOVE & BEYOND ®, 1600×442 JPEG)
+    primary: "/assets/logo/CompanyLogo.jpeg",
+    symbol: "/assets/logo/CompanyLogo.jpeg",
+    width: 1600,
+    height: 442,
+    aspectRatio: "1600 / 442",
+    // Retail partner logos (clean trimmed transparent PNGs)
+    dmart: "/assets/logo/dmart-clean.png",
+    zudio: "/assets/logo/zudio-clean.png",
   },
 
   hero: {

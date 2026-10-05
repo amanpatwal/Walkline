@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function CollectionsPage() {
   return (
-    <main className="relative w-full bg-[#FAF7F1] min-h-screen text-[#24140D]">
+    <main className="relative w-full bg-white min-h-screen text-[#000000]">
       <Navbar />
 
       {/* Editorial Page Hero */}

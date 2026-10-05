@@ -50,7 +50,7 @@ const KIDS_SIZES = [
 
 export default function KidsPage() {
   return (
-    <main className="relative w-full bg-[#FAF7F1] min-h-screen text-[#24140D]">
+    <main className="relative w-full bg-white min-h-screen text-[#000000]">
       <Navbar />
 
       {/* Hero */}
@@ -71,18 +71,18 @@ export default function KidsPage() {
       />
 
       {/* Feature Pills */}
-      <section className="w-full bg-[#321D12] px-5 sm:px-10 lg:px-16 py-10">
+      <section className="w-full bg-[#000000] px-5 sm:px-10 lg:px-16 py-10">
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4">
           {KIDS_FEATURES.map((feat, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center text-center p-5 rounded-xl bg-[#FAF7F1]/08 border border-[#FAF7F1]/10"
+              className="flex flex-col items-center text-center p-5 rounded-xl bg-white/08 border border-white/10"
             >
               <span className="text-2xl mb-2">{feat.icon}</span>
-              <h3 className="text-[11px] font-black uppercase tracking-wider text-[#C69A6B] mb-1">
+              <h3 className="text-[11px] font-black uppercase tracking-wider text-[#27409A] mb-1">
                 {feat.label}
               </h3>
-              <p className="text-[10px] text-[#F3E8D8]/70">{feat.desc}</p>
+              <p className="text-[10px] text-white/70">{feat.desc}</p>
             </div>
           ))}
         </div>
@@ -94,7 +94,7 @@ export default function KidsPage() {
       {/* Frooti Spotlight */}
       <section className="w-full bg-white px-5 sm:px-10 lg:px-16 py-14 sm:py-20">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="relative aspect-square max-w-sm mx-auto lg:mx-0 rounded-2xl overflow-hidden bg-[#F7F4EE]">
+          <div className="relative aspect-square max-w-sm mx-auto lg:mx-0 rounded-2xl overflow-hidden bg-neutral-100">
             <Image
               src={assets.products.frooti}
               alt="Frooti Series — Walkline Kids' Footwear"
@@ -104,29 +104,29 @@ export default function KidsPage() {
             />
           </div>
           <div className="max-w-md">
-            <span className="text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#321D12] text-[#FAF7F1]">
+            <span className="text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#000000] text-white">
               Memory Foam
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#24140D] leading-[0.95] mt-3 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#000000] leading-[0.95] mt-3 mb-4">
               Frooti Series
             </h2>
-            <p className="text-sm text-[#5A351F]/80 leading-relaxed mb-5">
+            <p className="text-sm text-black/60 leading-relaxed mb-5">
               The Frooti Series is Walkline&apos;s dedicated kids&apos; footwear range — built for toddlers to youth with extra memory foam cushioning, breathable knit uppers and a hassle-free slip-on design.
             </p>
 
             {/* Size guide */}
             <div className="mb-6">
-              <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-[#8A6E58] mb-3">
+              <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-[#27409A] mb-3">
                 Size Ranges
               </p>
               <div className="flex gap-2">
                 {KIDS_SIZES.map((sz, idx) => (
                   <div
                     key={idx}
-                    className="flex-1 py-2.5 rounded-lg bg-[#F7F4EE] border border-[#24140D]/10 text-center"
+                    className="flex-1 py-2.5 rounded-lg bg-neutral-100 border border-black/10 text-center"
                   >
-                    <div className="text-sm font-black text-[#24140D]">{sz.range}</div>
-                    <div className="text-[9px] text-[#8A6E58] font-bold uppercase mt-0.5">{sz.label}</div>
+                    <div className="text-sm font-black text-[#000000]">{sz.range}</div>
+                    <div className="text-[9px] text-[#27409A] font-bold uppercase mt-0.5">{sz.label}</div>
                   </div>
                 ))}
               </div>
@@ -134,7 +134,7 @@ export default function KidsPage() {
 
             <Link
               href="/collections"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-[#321D12] text-[#FAF7F1] text-[11px] font-bold uppercase tracking-[0.12em] hover:bg-[#5A351F] transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-[#000000] text-white text-[11px] font-bold uppercase tracking-[0.12em] hover:bg-[#27409A] transition-colors"
             >
               View All Kids&apos; Styles
               <ArrowRight className="w-3.5 h-3.5" />
@@ -153,12 +153,12 @@ export default function KidsPage() {
             className="object-cover object-top"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-[#321D12]/60 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#000000]/60 flex items-center justify-center">
             <div className="text-center">
-              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#FAF7F1] leading-[0.95]">
+              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white leading-[0.95]">
                 Comfort From Day One
               </h2>
-              <p className="text-[#C69A6B] text-sm mt-2">
+              <p className="text-[#27409A] text-sm mt-2">
                 Walkline Frooti — engineered for growing feet.
               </p>
             </div>

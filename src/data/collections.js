@@ -22,8 +22,8 @@ export const COLLECTIONS = [
     sizes: "UK 6×9 – 7×10",
     image: assets.campaigns.weekend,
     badge: "VERTEX & CONCEPT",
-    badgeBg: "bg-[#321D12] text-[#FAF7F1]",
-    accentColor: "#321D12",
+    badgeBg: "bg-[#000000] text-white",
+    accentColor: "#000000",
   },
   {
     id: "womens-sneakers",
@@ -41,8 +41,8 @@ export const COLLECTIONS = [
     sizes: "UK 4×7 – 5×8",
     image: assets.campaigns.moveDifferent,
     badge: "#NOIRFEVER",
-    badgeBg: "bg-[#9A6238] text-[#FAF7F1]",
-    accentColor: "#9A6238",
+    badgeBg: "bg-[#27409A] text-white",
+    accentColor: "#27409A",
   },
   {
     id: "kids-footwear",
@@ -60,8 +60,8 @@ export const COLLECTIONS = [
     sizes: "8×10 / 11×1 / 2×5",
     image: assets.products.frooti,
     badge: "FROOTI SERIES",
-    badgeBg: "bg-[#8A6E58] text-[#FAF7F1]",
-    accentColor: "#8A6E58",
+    badgeBg: "bg-[#000000] text-white",
+    accentColor: "#000000",
   },
   {
     id: "fashion-sandals",
@@ -79,7 +79,7 @@ export const COLLECTIONS = [
     sizes: "UK 6×9 – 7×10",
     image: assets.campaigns.rainyDays,
     badge: "VRX SERIES",
-    badgeBg: "bg-[#5A351F] text-[#FAF7F1]",
-    accentColor: "#5A351F",
+    badgeBg: "bg-[#27409A] text-white",
+    accentColor: "#27409A",
   },
 ];

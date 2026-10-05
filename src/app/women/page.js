@@ -38,7 +38,7 @@ const WOMENS_FEATURES = [
 
 export default function WomenPage() {
   return (
-    <main className="relative w-full bg-[#FAF7F1] min-h-screen text-[#24140D]">
+    <main className="relative w-full bg-white min-h-screen text-[#000000]">
       <Navbar />
 
       {/* Hero */}
@@ -63,17 +63,17 @@ export default function WomenPage() {
       {/* Featured Series Cards */}
       <section className="w-full bg-white px-5 sm:px-10 lg:px-16 py-14 sm:py-18">
         <div className="max-w-[1440px] mx-auto">
-          <div className="flex items-end justify-between mb-8 border-b border-[#24140D]/10 pb-5">
-            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#24140D]">
+          <div className="flex items-end justify-between mb-8 border-b border-black/10 pb-5">
+            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#000000]">
               Featured Series
             </h2>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-[#8A6E58] font-bold">2 Styles</span>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-[#27409A] font-bold">2 Styles</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {WOMENS_FEATURES.map((item, idx) => (
               <div
                 key={idx}
-                className="group relative bg-[#F7F4EE] rounded-2xl overflow-hidden flex flex-col sm:flex-row items-center gap-0 border border-[#24140D]/08 hover:border-[#9A6238]/30 hover:shadow-[0_8px_32px_rgba(36,20,13,0.08)] transition-all duration-400"
+                className="group relative bg-neutral-50 rounded-2xl overflow-hidden flex flex-col sm:flex-row items-center gap-0 border border-black/08 hover:border-[#27409A]/30 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-400"
               >
                 <div className="relative w-full sm:w-52 aspect-square bg-[#F0ECE3] shrink-0">
                   <Image
@@ -85,14 +85,14 @@ export default function WomenPage() {
                   />
                 </div>
                 <div className="p-6 flex-1">
-                  <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#321D12] text-[#FAF7F1]">
+                  <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#000000] text-white">
                     {item.tag}
                   </span>
-                  <h3 className="text-xl font-black uppercase tracking-tight text-[#24140D] mt-2 mb-1">
+                  <h3 className="text-xl font-black uppercase tracking-tight text-[#000000] mt-2 mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-[#5A351F]/80 leading-relaxed mb-3">{item.desc}</p>
-                  <p className="text-[10px] font-mono text-[#8A6E58]">{item.sizes}</p>
+                  <p className="text-xs text-black/60 leading-relaxed mb-3">{item.desc}</p>
+                  <p className="text-[10px] text-[#27409A]">{item.sizes}</p>
                 </div>
               </div>
             ))}
@@ -113,21 +113,21 @@ export default function WomenPage() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F1]/90 via-[#FAF7F1]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/20 to-transparent" />
           <div className="absolute inset-0 flex items-center px-8 sm:px-16 lg:px-24">
             <div className="max-w-sm">
-              <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#9A6238] mb-2">
+              <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-2">
                 New Season
               </p>
-              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#24140D] leading-[0.95] mb-4">
+              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#000000] leading-[0.95] mb-4">
                 Sporty Looks Better
               </h2>
-              <p className="text-sm text-[#5A351F]/80 mb-6 leading-relaxed">
+              <p className="text-sm text-black/60 mb-6 leading-relaxed">
                 The Noir-05 was made for the streets. Signature coral sole, chunky silhouette — wear it your way.
               </p>
               <Link
                 href="/women"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#321D12] text-[#FAF7F1] text-[11px] font-bold uppercase tracking-wider hover:bg-[#5A351F] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#000000] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-[#27409A] transition-colors"
               >
                 Explore Noir-05
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -138,16 +138,16 @@ export default function WomenPage() {
       </section>
 
       {/* Fresh in Rotation */}
-      <section className="w-full bg-[#FAF7F1] px-5 sm:px-10 lg:px-16 py-14 sm:py-20">
+      <section className="w-full bg-white px-5 sm:px-10 lg:px-16 py-14 sm:py-20">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="max-w-md">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#9A6238] mb-3">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-3">
               Fresh In Rotation
             </p>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#24140D] leading-[0.95] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#000000] leading-[0.95] mb-4">
               New In
             </h2>
-            <p className="text-sm text-[#5A351F]/80 leading-relaxed mb-6">
+            <p className="text-sm text-black/60 leading-relaxed mb-6">
               The Barbie-04 earthy line brings bold style with everyday cushioning. Perfect for days when comfort and aesthetics matter equally.
             </p>
             <ul className="space-y-2 mb-7">
@@ -157,15 +157,15 @@ export default function WomenPage() {
                 "All-day comfort certified",
                 "Sizes UK 4×7 – 5×8",
               ].map((feat, idx) => (
-                <li key={idx} className="flex items-center gap-2.5 text-sm text-[#24140D]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#9A6238] shrink-0" />
+                <li key={idx} className="flex items-center gap-2.5 text-sm text-[#000000]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#27409A] shrink-0" />
                   {feat}
                 </li>
               ))}
             </ul>
             <Link
               href="/collections"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-[#321D12] text-[#FAF7F1] text-[11px] font-bold uppercase tracking-[0.12em] hover:bg-[#5A351F] transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-[#000000] text-white text-[11px] font-bold uppercase tracking-[0.12em] hover:bg-[#27409A] transition-colors"
             >
               Shop All Women&apos;s
               <ArrowRight className="w-3.5 h-3.5" />

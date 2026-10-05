@@ -1,48 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { X, Search, ChevronDown, ShoppingBag, User, Phone, MapPin } from "lucide-react";
-import { PRIMARY_NAV, CATEGORY_LINKS } from "@/data/navigation";
+import { X, ChevronDown, ShoppingBag, User, Search, MapPin, Phone } from "lucide-react";
+import { PRIMARY_NAV } from "@/data/navigation";
 import { COMPANY_INFO } from "@/data/company";
 import { assets } from "@/data/assets";
 import { useCart } from "@/context/CartContext";
 
+const CATEGORY_LINKS = [
+  { label: "Men's Footwear", href: "/men" },
+  { label: "Women's Footwear", href: "/women" },
+  { label: "Kids Collection", href: "/kids" },
+  { label: "Sandals & Chappals", href: "/sandals" },
+  { label: "All Collections", href: "/collections" },
+  { label: "Sustainability", href: "/sustainability" },
+  { label: "Manufacturing", href: "/manufacturing" },
+  { label: "About Walkline", href: "/about" },
+];
+
 export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }) {
-  const { itemCount } = useCart();
   const [openSection, setOpenSection] = useState(null);
+  const { itemCount } = useCart();
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      if (window.__lenis) window.__lenis.stop();
-    } else {
-      document.body.style.overflow = "";
-      if (window.__lenis) window.__lenis.start();
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
-
-  // Reset accordion state after menu closes (separate from scroll lock)
-  useEffect(() => {
-    if (!isOpen) {
-      const timer = setTimeout(() => setOpenSection(null), 0);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
-
-  // ESC key close
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === "Escape" && isOpen) onClose();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [isOpen, onClose]);
+  if (!isOpen) return null;
 
   const toggleSection = (id) => {
     setOpenSection((prev) => (prev === id ? null : id));
@@ -50,16 +32,13 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
 
   const handleLinkClick = () => {
     onClose();
-    setOpenSection(null);
   };
-
-  if (!isOpen) return null;
 
   return (
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[45] bg-[#24140D]/30 backdrop-blur-sm"
+        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -69,23 +48,23 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
         role="dialog"
         aria-modal="true"
         aria-label="Walkline Mobile Navigation"
-        className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[340px] bg-[#FAF7F1] flex flex-col overflow-hidden animate-slide-in-right"
+        className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[340px] bg-white flex flex-col overflow-hidden animate-slide-in-right"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[#24140D]/10 shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-200 shrink-0">
           <Link href="/" onClick={handleLinkClick} aria-label="Walkline — Home">
             <Image
               src={assets.logo.primary}
-              alt="Walkline Footwear"
-              width={110}
-              height={57}
-              className="h-[26px] w-auto object-contain"
+              alt="Walkline Footwear — Above & Beyond"
+              width={140}
+              height={39}
+              className="h-[28px] sm:h-[32px] w-auto object-contain"
               unoptimized
             />
           </Link>
           <button
             onClick={onClose}
-            className="p-2.5 rounded-full bg-white border border-[#24140D]/15 text-[#24140D] hover:bg-[#F3E8D8] transition-colors cursor-pointer"
+            className="p-2.5 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-neutral-200 hover:text-[#27409A] transition-colors cursor-pointer"
             aria-label="Close navigation"
           >
             <X className="w-5 h-5" />
@@ -96,9 +75,9 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
         <div className="px-4 pt-4 shrink-0">
           <button
             onClick={() => { onClose(); if (onOpenSearch) onOpenSearch(); }}
-            className="w-full flex items-center gap-3 p-3.5 rounded-xl bg-white border border-[#24140D]/12 text-left text-xs font-medium text-[#8A6E58] cursor-pointer hover:border-[#9A6238] transition-colors"
+            className="w-full flex items-center gap-3 p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-left text-xs font-medium text-neutral-600 cursor-pointer hover:border-[#27409A] hover:text-[#27409A] transition-colors"
           >
-            <Search className="w-4 h-4 text-[#24140D] shrink-0" />
+            <Search className="w-4 h-4 text-[#000000] shrink-0" />
             <span>Search sneakers, sandals, slippers...</span>
           </button>
         </div>
@@ -107,25 +86,25 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
           {/* Accordion nav sections */}
           {PRIMARY_NAV.map((item) => (
-            <div key={item.id} className="border-b border-[#24140D]/08">
-              {/* Section heading — also navigates to page on tap */}
+            <div key={item.id} className="border-b border-neutral-100">
+              {/* Section heading */}
               <div className="flex items-center justify-between">
                 <Link
                   href={item.href}
                   onClick={handleLinkClick}
-                  className="flex-1 py-3.5 text-[17px] font-bold uppercase tracking-tight text-[#24140D] hover:text-[#9A6238] transition-colors"
+                  className="flex-1 py-3.5 text-[16px] font-bold uppercase tracking-tight text-[#000000] hover:text-[#27409A] transition-colors"
                 >
                   {item.label}
                 </Link>
                 {(item.categories || item.items) && (
                   <button
                     onClick={() => toggleSection(item.id)}
-                    className="p-2 cursor-pointer text-[#8A6E58]"
+                    className="p-2 cursor-pointer text-neutral-500"
                     aria-label={`Expand ${item.label} menu`}
                   >
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
-                        openSection === item.id ? "rotate-180 text-[#24140D]" : ""
+                        openSection === item.id ? "rotate-180 text-[#27409A]" : ""
                       }`}
                     />
                   </button>
@@ -142,21 +121,21 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
                           key={sIdx}
                           href={series.href}
                           onClick={handleLinkClick}
-                          className="flex items-center justify-between py-1.5 text-sm font-bold uppercase tracking-wide text-[#24140D] hover:text-[#9A6238] transition-colors"
+                          className="flex items-center justify-between py-1.5 text-sm font-bold uppercase tracking-wide text-[#000000] hover:text-[#27409A] transition-colors"
                         >
                           <span>{series.name}</span>
-                          <span className="text-[9px] font-mono text-[#8A6E58] bg-[#F3E8D8] px-1.5 py-0.5 rounded-full">
+                          <span className="text-[9px] font-bold text-white bg-[#27409A] px-2 py-0.5 rounded-full">
                             {series.tag}
                           </span>
                         </Link>
                       ))}
-                      <div className="pt-1 border-t border-[#24140D]/08">
+                      <div className="pt-1 border-t border-neutral-100">
                         {item.categories?.map((cat, cIdx) => (
                           <Link
                             key={cIdx}
                             href={cat.href}
                             onClick={handleLinkClick}
-                            className="block py-1.5 text-sm text-[#5A351F] hover:text-[#24140D] transition-colors"
+                            className="block py-1.5 text-sm text-neutral-700 hover:text-[#27409A] transition-colors"
                           >
                             {cat.label}
                           </Link>
@@ -169,10 +148,10 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
                         key={subIdx}
                         href={sub.href}
                         onClick={handleLinkClick}
-                        className="block py-2 text-sm text-[#24140D] hover:text-[#9A6238] transition-colors"
+                        className="block py-2 text-sm text-[#000000] hover:text-[#27409A] transition-colors"
                       >
                         <div className="font-bold uppercase text-xs tracking-wide">{sub.name}</div>
-                        {sub.desc && <div className="text-[11px] text-[#8A6E58] mt-0.5">{sub.desc}</div>}
+                        {sub.desc && <div className="text-[11px] text-neutral-500 mt-0.5">{sub.desc}</div>}
                       </Link>
                     ))
                   )}
@@ -183,7 +162,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
 
           {/* Category pills */}
           <div className="pt-4">
-            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8A6E58] mb-2.5 px-1">
+            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#27409A] mb-2.5 px-1">
               Explore Collections
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -192,7 +171,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
                   key={idx}
                   href={cat.href}
                   onClick={handleLinkClick}
-                  className="p-2.5 rounded-xl bg-white border border-[#24140D]/10 text-[11px] font-bold uppercase tracking-wide text-[#24140D] hover:border-[#9A6238] hover:bg-[#F3E8D8]/50 transition-colors leading-tight"
+                  className="p-2.5 rounded-xl bg-neutral-50 border border-neutral-200 text-[11px] font-bold uppercase tracking-wide text-[#000000] hover:border-[#27409A] hover:text-[#27409A] transition-colors leading-tight"
                 >
                   {cat.label}
                 </Link>
@@ -204,7 +183,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
           <div className="grid grid-cols-2 gap-3 pt-4 pb-2">
             <button
               onClick={() => { onClose(); if (onOpenCart) onOpenCart(); }}
-              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-[#321D12] text-[#FAF7F1] font-bold uppercase tracking-wider text-[11px] hover:bg-[#5A351F] transition-colors cursor-pointer"
+              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-[#27409A] text-white font-bold uppercase tracking-wider text-[11px] hover:bg-[#1E327A] transition-colors cursor-pointer"
             >
               <ShoppingBag className="w-4 h-4" />
               <span>Bag {itemCount > 0 ? `(${itemCount})` : ""}</span>
@@ -212,7 +191,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
             <Link
               href="/contact"
               onClick={handleLinkClick}
-              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-white text-[#24140D] font-bold uppercase tracking-wider text-[11px] border border-[#24140D]/15 hover:bg-[#F3E8D8]/50 transition-colors"
+              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-white text-[#000000] font-bold uppercase tracking-wider text-[11px] border border-neutral-200 hover:border-[#27409A] hover:text-[#27409A] transition-colors"
             >
               <User className="w-4 h-4" />
               <span>Contact</span>
@@ -221,13 +200,13 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-3 bg-[#F3E8D8]/60 border-t border-[#24140D]/10 shrink-0 space-y-1.5 text-xs text-[#5A351F]">
-          <div className="flex items-center gap-2 font-bold text-[#24140D]">
-            <MapPin className="w-3.5 h-3.5 text-[#9A6238] shrink-0" />
+        <div className="px-4 py-3 bg-neutral-50 border-t border-neutral-200 shrink-0 space-y-1.5 text-xs text-neutral-600">
+          <div className="flex items-center gap-2 font-bold text-[#000000]">
+            <MapPin className="w-3.5 h-3.5 text-[#27409A] shrink-0" />
             <span>Bahadurgarh - 124507, Haryana</span>
           </div>
-          <div className="flex items-center gap-2 font-bold text-[#24140D]">
-            <Phone className="w-3.5 h-3.5 text-[#9A6238] shrink-0" />
+          <div className="flex items-center gap-2 font-bold text-[#000000]">
+            <Phone className="w-3.5 h-3.5 text-[#27409A] shrink-0" />
             <span>{COMPANY_INFO.contact.phone}</span>
           </div>
         </div>

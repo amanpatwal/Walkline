@@ -2,45 +2,44 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { assets } from "@/data/assets";
 
 // ─── Fresh In Rotation — Full-Bleed Campaign Banner ──────────────────────────
-// Sits directly above the product section with zero vertical gap.
-// No max-width, no padding, no rounded wrapper. Image touches edges.
+// Full-width editorial banner using fresh-in-rotation.jpg (1897×735px).
+// The image artwork contains "Fresh in Rotation", "New In", and the "SHOP NOW" button.
+// The interactive link is aligned directly over the image's "SHOP NOW" button position.
 
 export default function CampaignFreshRotation() {
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#FAF7F1]"
+      className="relative w-full overflow-hidden bg-black"
       aria-label="Fresh In Rotation — New In Walkline Footwear"
-      style={{ display: "block" }}
     >
-      {/* Full-bleed image link — touches product section directly below */}
-      <Link
-        href="/collections"
-        className="group relative block w-full overflow-hidden"
-        style={{ aspectRatio: "21 / 8" }}
-        aria-label="Shop New In — Fresh In Rotation"
-      >
+      <div className="relative w-full" style={{ aspectRatio: "1897 / 735" }}>
         <Image
           src={assets.campaigns.freshRotation}
           alt="Fresh in Rotation — New In — Walkline Footwear"
           fill
           sizes="100vw"
           loading="lazy"
-          quality={90}
-          className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.015]"
+          quality={92}
+          className="object-cover object-center"
         />
 
-        {/* Bottom-right CTA — does not cover artwork text */}
-        <div className="absolute bottom-5 sm:bottom-8 lg:bottom-10 right-5 sm:right-8 lg:right-12 z-10">
-          <span className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#321D12]/95 backdrop-blur-sm text-[#FAF7F1] text-[11px] font-bold uppercase tracking-[0.18em] rounded-full shadow-editorial-md group-hover:bg-[#5A351F] transition-all duration-300">
-            <span>Shop Now</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#C69A6B] group-hover:translate-x-[5px] transition-transform duration-300" />
-          </span>
-        </div>
-      </Link>
+        {/* ─── Interactive SHOP NOW button aligned directly over image button ─── */}
+        {/* SHOP NOW: x=1375..1628 (72.48%..85.82%), y=462..523 (62.86%..71.16%) */}
+        <Link
+          href="/collections"
+          aria-label="Shop Now — Fresh In Rotation"
+          className="absolute cursor-pointer transition-all duration-200 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-[#27409A] active:scale-[0.99] rounded-sm"
+          style={{
+            left: "72.48%",
+            top: "62.86%",
+            width: "13.34%",
+            height: "8.30%",
+          }}
+        />
+      </div>
     </section>
   );
 }

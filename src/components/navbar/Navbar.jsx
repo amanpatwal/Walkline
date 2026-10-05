@@ -84,18 +84,18 @@ export default function Navbar() {
           className={cn(
             "relative w-full transition-all duration-300 ease-out border-b",
             isScrolled
-              ? "bg-[#FAF7F1]/95 backdrop-blur-md border-[#24140D]/10 shadow-[0_2px_16px_rgba(36,20,13,0.06)]"
-              : "bg-[#FAF7F1] border-[#24140D]/08"
+              ? "bg-white/95 backdrop-blur-md border-neutral-200 shadow-sm"
+              : "bg-white border-neutral-200/80"
           )}
           aria-label="Main Store Navigation"
         >
           <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-14 flex items-center justify-between h-[72px] sm:h-[80px]">
 
-            {/* LEFT: Walkline Brand Logo (real uploaded JPEG) */}
+            {/* LEFT: Official Walkline Brand Logo */}
             <div className="flex items-center shrink-0">
               <Link
                 href="/"
-                className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D] rounded"
+                className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A] rounded"
                 aria-label="Walkline Footwear — Home"
                 onClick={() => setActiveMenuId(null)}
               >
@@ -103,9 +103,9 @@ export default function Navbar() {
                   <Image
                     src={assets.logo.primary}
                     alt="Walkline Footwear — Above & Beyond"
-                    width={130}
-                    height={67}
-                    className="h-[30px] sm:h-[34px] w-auto object-contain"
+                    width={160}
+                    height={44}
+                    className="h-[32px] sm:h-[38px] w-auto object-contain"
                     priority
                     unoptimized
                   />
@@ -133,8 +133,8 @@ export default function Navbar() {
                       className={cn(
                         "flex items-center gap-1 text-[12.5px] tracking-[0.1em] uppercase font-bold transition-colors duration-200 py-2 cursor-pointer focus:outline-none",
                         isMenuOpen || isActive
-                          ? "text-[#24140D]"
-                          : "text-[#24140D]/75 hover:text-[#24140D]"
+                          ? "text-[#27409A]"
+                          : "text-[#000000] hover:text-[#27409A]"
                       )}
                     >
                       <span>{item.label}</span>
@@ -143,7 +143,7 @@ export default function Navbar() {
                     {/* Active page underline */}
                     <span
                       className={cn(
-                        "absolute bottom-0 left-0 h-[2px] bg-[#9A6238] transition-all duration-250",
+                        "absolute bottom-0 left-0 h-[2px] bg-[#27409A] transition-all duration-250",
                         isMenuOpen || isActive ? "w-full" : "w-0"
                       )}
                     />
@@ -165,7 +165,7 @@ export default function Navbar() {
             <div className="flex items-center gap-1 sm:gap-2">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2.5 rounded-full hover:bg-[#F3E8D8]/70 text-[#24140D] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D]"
+                className="p-2.5 rounded-full hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
                 aria-label="Open search"
               >
                 <Search className="w-[18px] h-[18px]" strokeWidth={1.75} />
@@ -173,7 +173,7 @@ export default function Navbar() {
 
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex p-2.5 rounded-full hover:bg-[#F3E8D8]/70 text-[#24140D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D]"
+                className="hidden sm:inline-flex p-2.5 rounded-full hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
                 aria-label="Contact & account"
               >
                 <User className="w-[18px] h-[18px]" strokeWidth={1.75} />
@@ -181,12 +181,12 @@ export default function Navbar() {
 
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2.5 rounded-full hover:bg-[#F3E8D8]/70 text-[#24140D] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#24140D] group"
+                className="relative p-2.5 rounded-full hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A] group"
                 aria-label={`Shopping bag (${itemCount} items)`}
               >
                 <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.75} />
                 {itemCount > 0 && (
-                  <span className="absolute top-1 right-1 min-w-[16px] h-[16px] px-1 rounded-full bg-[#321D12] text-[#FAF7F1] text-[9px] font-bold flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <span className="absolute top-1 right-1 min-w-[16px] h-[16px] px-1 rounded-full bg-[#27409A] text-white text-[9px] font-bold flex items-center justify-center group-hover:scale-110 transition-transform">
                     {itemCount}
                   </span>
                 )}
@@ -194,7 +194,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2.5 rounded-full bg-white border border-[#24140D]/15 text-[#24140D] hover:bg-[#F3E8D8]/60 transition-all cursor-pointer shadow-sm"
+                className="lg:hidden p-2.5 rounded-full bg-white border border-neutral-200 text-[#000000] hover:bg-neutral-100 hover:text-[#27409A] transition-all cursor-pointer shadow-sm"
                 aria-label="Open mobile navigation"
               >
                 <Menu className="w-[18px] h-[18px]" strokeWidth={1.75} />

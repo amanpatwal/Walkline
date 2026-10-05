@@ -30,19 +30,19 @@ export default function Button({
 
   const variantClasses = {
     primary:
-      "bg-[#321D12] text-[#FAF7F1] hover:bg-[#5A351F] shadow-editorial-sm",
+      "bg-[#27409A] text-white hover:bg-[#1E327A] shadow-sm",
     secondary:
-      "bg-transparent text-[#24140D] border border-[#24140D]/25 hover:bg-[#F3E8D8]/70 hover:border-[#24140D]",
+      "bg-[#000000] text-white hover:bg-[#27409A] shadow-sm",
     caramel:
-      "bg-[#9A6238] text-[#FAF7F1] hover:bg-[#5A351F] shadow-editorial-sm",
+      "bg-[#27409A] text-white hover:bg-[#1E327A] shadow-sm",
     white:
-      "bg-white text-[#24140D] border border-[#24140D]/12 hover:bg-[#FAF7F1] shadow-editorial-sm",
+      "bg-white text-[#000000] border border-black/15 hover:bg-[#27409A] hover:text-white hover:border-[#27409A] shadow-sm",
     dark:
-      "bg-[#24140D] text-[#FAF7F1] hover:bg-[#321D12] shadow-editorial-md",
+      "bg-[#000000] text-white hover:bg-[#27409A] shadow-sm",
     outline:
-      "bg-transparent text-[#FAF7F1] border border-white/20 hover:bg-white/10 hover:border-white",
+      "bg-transparent text-[#27409A] border border-[#27409A] hover:bg-[#27409A] hover:text-white",
     ghost:
-      "bg-transparent text-[#24140D] hover:text-[#9A6238] p-0 underline-offset-4 hover:underline",
+      "bg-transparent text-[#000000] hover:text-[#27409A] p-0 underline-offset-4 hover:underline",
   };
 
   const combinedClasses = cn(

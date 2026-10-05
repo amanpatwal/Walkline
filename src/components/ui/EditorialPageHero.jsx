@@ -40,7 +40,7 @@ export default function EditorialPageHero({
   return (
     <section
       className={`relative w-full overflow-hidden pt-[72px] sm:pt-[80px] ${
-        isDark ? "bg-[#1A0F08]" : "bg-[#FAF7F1]"
+        isDark ? "bg-[#000000]" : "bg-neutral-50"
       }`}
       aria-label={`${title} — Walkline Footwear`}
     >
@@ -55,12 +55,11 @@ export default function EditorialPageHero({
             quality={90}
             className="object-cover transition-transform duration-700 hover:scale-[1.02]"
             style={{ objectPosition }}
-            sizes="100vw"
           />
           {/* Bottom fade to content panel */}
           <div
             className={`absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t pointer-events-none ${
-              isDark ? "from-[#1A0F08]" : "from-[#FAF7F1]"
+              isDark ? "from-[#000000]" : "from-neutral-50"
             } to-transparent`}
           />
         </div>
@@ -69,22 +68,22 @@ export default function EditorialPageHero({
       {/* ── Content Panel ── */}
       <div
         className={`px-5 sm:px-10 lg:px-16 py-8 sm:py-11 ${
-          isDark ? "text-[#F3E8D8]" : "text-[#24140D]"
+          isDark ? "text-white" : "text-[#000000]"
         }`}
       >
         <div className="max-w-[1440px] mx-auto">
           {/* Breadcrumbs */}
           {breadcrumbs && breadcrumbs.length > 0 && (
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 mb-5 text-[10px] uppercase tracking-[0.18em] font-bold text-[#8A6E58]">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 mb-5 text-[10px] uppercase tracking-[0.18em] font-bold text-neutral-500">
               {breadcrumbs.map((crumb, idx) => (
                 <span key={idx} className="flex items-center gap-1.5">
-                  {idx > 0 && <span className="text-[#8A6E58]/50">/</span>}
+                  {idx > 0 && <span className="text-neutral-400">/</span>}
                   {idx < breadcrumbs.length - 1 ? (
-                    <Link href={crumb.href} className="hover:text-[#9A6238] transition-colors">
+                    <Link href={crumb.href} className="hover:text-[#27409A] transition-colors">
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className={isDark ? "text-[#C69A6B]" : "text-[#24140D]"}>
+                    <span className={isDark ? "text-[#27409A]" : "text-[#000000]"}>
                       {crumb.label}
                     </span>
                   )}
@@ -97,18 +96,18 @@ export default function EditorialPageHero({
             {/* Left: Eyebrow + Title */}
             <div className="max-w-lg">
               {eyebrow && (
-                <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#9A6238] mb-2">
+                <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-2">
                   {eyebrow}
                 </p>
               )}
               {title && (
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-[0.95]">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-[0.95] text-[#000000]">
                   {title}
                 </h1>
               )}
               {description && (
                 <p className={`mt-3 text-sm sm:text-base leading-relaxed max-w-sm ${
-                  isDark ? "text-[#C69A6B]/90" : "text-[#5A351F]/80"
+                  isDark ? "text-neutral-300" : "text-neutral-600"
                 }`}>
                   {description}
                 </p>
@@ -123,8 +122,8 @@ export default function EditorialPageHero({
                     href={ctaHref}
                     className={`group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-lg text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ${
                       isDark
-                        ? "bg-[#F3E8D8] text-[#24140D] hover:bg-white"
-                        : "bg-[#321D12] text-[#FAF7F1] hover:bg-[#5A351F] shadow-[0_4px_14px_rgba(50,29,18,0.2)]"
+                        ? "bg-white text-[#000000] hover:bg-neutral-100"
+                        : "bg-[#27409A] text-white hover:bg-[#1E327A] shadow-md"
                     }`}
                   >
                     <span>{ctaLabel}</span>
@@ -136,8 +135,8 @@ export default function EditorialPageHero({
                     href={ctaSecHref}
                     className={`inline-flex items-center gap-2 px-5 py-3.5 rounded-lg text-[11px] font-bold uppercase tracking-[0.12em] border transition-all duration-300 ${
                       isDark
-                        ? "border-[#F3E8D8]/30 text-[#F3E8D8] hover:border-[#F3E8D8]/70"
-                        : "border-[#321D12]/25 text-[#24140D] hover:border-[#321D12]/60"
+                        ? "border-white/30 text-white hover:border-white"
+                        : "border-neutral-300 text-[#000000] hover:border-[#27409A] hover:text-[#27409A]"
                     }`}
                   >
                     {ctaSecLabel}
