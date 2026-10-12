@@ -3,7 +3,6 @@ import Hero from "@/components/hero/Hero";
 import PromotionalBanner from "@/components/home/PromotionalBanner";
 import CampaignFreshRotation from "@/components/home/CampaignFreshRotation";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
-import EditorialGrid from "@/components/home/EditorialGrid";
 import CampaignSummer from "@/components/home/CampaignSummer";
 
 import FinalCTA from "@/components/home/FinalCTA";
@@ -31,9 +30,6 @@ export default function Home() {
 
       {/* 6. SUMMER CAMPAIGN — full-width editorial banner */}
       <CampaignSummer />
-
-      {/* 7. 4-LAYER CATEGORY GRID — 2×2 MEN / WOMEN / KIDS / SANDALS */}
-      <EditorialGrid />
 
       {/* Final Call To Action */}
       <FinalCTA />

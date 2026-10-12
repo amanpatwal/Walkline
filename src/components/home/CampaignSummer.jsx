@@ -29,11 +29,11 @@ export default function CampaignSummer() {
           className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.015]"
         />
 
-        {/* Bottom-left CTA — Brand blue #27409A button */}
-        <div className="absolute bottom-5 sm:bottom-8 lg:bottom-10 left-5 sm:left-8 lg:left-12 z-10">
-          <span className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#27409A] hover:bg-[#1E327A] text-white text-[11px] font-bold uppercase tracking-[0.18em] rounded-full shadow-md transition-all duration-300">
+        {/* Bottom-left CTA — Deep espresso mocha #2D231E matching SUMMER typography & sandals, sharp rectangular corners */}
+        <div className="absolute bottom-5 sm:bottom-8 lg:bottom-12 left-6 sm:left-10 lg:left-[9.5%] z-10">
+          <span className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#2D231E] group-hover:bg-[#3E312A] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] rounded-none shadow-[0_2px_14px_rgba(45,35,30,0.35)] group-hover:shadow-[0_4px_22px_rgba(45,35,30,0.5)] transition-all duration-300 group-hover:-translate-y-[2px]">
             <span>Shop Sandals</span>
-            <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-[5px] transition-transform duration-300" />
+            <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-[4px] transition-transform duration-300" />
           </span>
         </div>
       </Link>

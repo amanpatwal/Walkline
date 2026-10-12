@@ -19,6 +19,8 @@ export const assets = {
   },
 
   hero: {
+    welcome: "/assets/hero/Walkline-Welcome.jpg",
+    founder: "/assets/hero/Pawan-Sir.jpg",
     confidence: "/assets/hero/step-into-confidence.jpg",
     soldOut: "/assets/hero/sold-out-banner.jpg",
     midnight: "/assets/hero/midnight.jpg",

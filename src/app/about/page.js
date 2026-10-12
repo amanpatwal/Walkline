@@ -1,222 +1,219 @@
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MapPin, Phone, Mail } from "lucide-react";
-import { ABOUT_CONTENT } from "@/data/about";
-import { COMPANY_INFO } from "@/data/company";
+import { ArrowRight } from "lucide-react";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
 import { assets } from "@/data/assets";
 
 export const metadata = {
   title: "About Us — Walkline Footwear",
   description:
-    "Your ultimate destination for premium footwear. Crafting comfort and style for every step since 2009. Based in Bahadurgarh, India.",
+    "Walkline is an Indian-made footwear brand built around quality, comfort, and craftsmanship. Founded in 2010 in Modern Industrial Estate (MIE), Haryana.",
 };
 
 export default function AboutPage() {
   return (
-    <main className="relative w-full bg-white min-h-screen text-[#000000]">
+    <main className="relative w-full bg-white min-h-screen text-[#0A0A0A]">
       <Navbar />
 
-      {/* ── Hero ── */}
-      <section className="relative w-full overflow-hidden pt-[72px] sm:pt-[80px] bg-[#000000]">
-        <div className="relative aspect-[16/8] sm:aspect-[21/8] lg:aspect-[25/8] max-h-[580px] min-h-[220px]">
+      {/* ─── SECTION ONE: FULL-WIDTH WELCOME BANNER ────────── */}
+      <section
+        className="relative w-full overflow-hidden bg-[#7BA4DC]"
+        style={{ marginTop: "72px" }}
+        aria-label="Welcome to Walkline — Est. 2010"
+      >
+        <h1 className="sr-only">Welcome to Walkline — Est. 2010 — About Us</h1>
+        <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
           <Image
-            src={assets.campaigns.comfortMoves}
-            alt="Walkline Footwear — Above & Beyond since 2009"
+            src={assets.hero.welcome}
+            alt="Welcome to Walkline — Est. 2010 — Walkline Footwear Headquarters"
             fill
             priority
-            className="object-cover object-center opacity-60"
+            quality={95}
             sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-        </div>
-
-        <div className="absolute inset-0 flex items-end pb-10 px-5 sm:px-10 lg:px-16">
-          <div className="max-w-[1440px] mx-auto w-full">
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-1.5 mb-5 text-[10px] uppercase tracking-[0.18em] font-bold text-neutral-400">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span className="text-neutral-600">/</span>
-              <span className="text-[#27409A]">About Us</span>
-            </nav>
-            <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-2">
-              Since {COMPANY_INFO.establishedYear}
-            </p>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[0.92]">
-              Above &<br />Beyond
-            </h1>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Brand Statement ── */}
-      <section className="w-full bg-neutral-50 px-5 sm:px-10 lg:px-16 py-16 sm:py-20">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-4">
-              Our Story
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#000000] leading-[0.95] mb-6">
-              Crafting Comfort &<br />Style Since 2009
-            </h2>
-            <p className="text-base text-neutral-700 leading-relaxed mb-5">
-              {ABOUT_CONTENT.lead}
-            </p>
-            <p className="text-sm text-neutral-600 leading-relaxed">
-              {ABOUT_CONTENT.statement}
-            </p>
-          </div>
-
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-neutral-200">
-            <Image
-              src={assets.campaigns.weekend}
-              alt="Walkline Footwear lifestyle"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute bottom-4 left-4 right-4">
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 inline-flex items-center gap-3 border border-neutral-200 shadow-md">
-                <div className="w-8 h-8 rounded-full bg-[#27409A] flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <p className="text-[9px] uppercase tracking-wider font-bold text-[#27409A]">Crafted In</p>
-                  <p className="text-[11px] font-black uppercase text-[#000000]">Bahadurgarh, India</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Three Pillars ── */}
-      <section className="w-full bg-white px-5 sm:px-10 lg:px-16 py-14 sm:py-18">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="mb-10 border-b border-neutral-200 pb-5">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-2">
-              Our Approach
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000]">
-              What We Stand For
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {ABOUT_CONTENT.pillars.map((pillar, idx) => (
-              <div
-                key={idx}
-                className="p-7 rounded-2xl bg-neutral-50 border border-neutral-200 hover:border-[#27409A] hover:shadow-lg transition-all duration-300"
-              >
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#27409A]">
-                  0{idx + 1}
-                </span>
-                <h3 className="text-lg font-black uppercase tracking-tight text-[#000000] mt-3 mb-3">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  {pillar.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Dark Campaign: Made in India ── */}
-      <section className="relative w-full overflow-hidden bg-[#000000]">
-        <div className="relative aspect-[21/8] sm:aspect-[25/7] max-h-[440px] min-h-[180px]">
-          <Image
-            src={assets.campaigns.moveDifferent}
-            alt="Walkline — Made in India"
-            fill
-            className="object-cover object-center opacity-50"
-            sizes="100vw"
+            className="object-cover object-top select-none"
           />
         </div>
-        <div className="absolute inset-0 flex items-center justify-center text-center px-5">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-3">
-              {ABOUT_CONTENT.madeInIndiaClaim}
-            </p>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[0.92]">
-              Bahadurgarh<br />Manufacturing
-            </h2>
-          </div>
-        </div>
       </section>
 
-      {/* ── Contact Strip ── */}
-      <section className="w-full bg-neutral-50 px-5 sm:px-10 lg:px-16 py-12 sm:py-16 border-y border-neutral-200">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="mb-8">
-            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] mb-1">
-              Get In Touch
-            </h2>
-            <p className="text-sm text-neutral-600">Reach out for trade enquiries, retail partnerships, or product information.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div className="flex items-start gap-3.5 p-5 rounded-xl bg-white border border-neutral-200">
-              <MapPin className="w-5 h-5 text-[#27409A] mt-0.5 shrink-0" />
-              <div>
-                <p className="text-[10px] uppercase tracking-wider font-bold text-neutral-500 mb-1">Address</p>
-                <p className="text-sm font-bold text-[#000000]">{COMPANY_INFO.contact.address.full}</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3.5 p-5 rounded-xl bg-white border border-neutral-200">
-              <Phone className="w-5 h-5 text-[#27409A] mt-0.5 shrink-0" />
-              <div>
-                <p className="text-[10px] uppercase tracking-wider font-bold text-neutral-500 mb-1">Phone</p>
-                <a href={`tel:${COMPANY_INFO.contact.phone}`} className="text-sm font-bold text-[#000000] hover:text-[#27409A] transition-colors">
-                  {COMPANY_INFO.contact.phone}
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-3.5 p-5 rounded-xl bg-white border border-neutral-200">
-              <Mail className="w-5 h-5 text-[#27409A] mt-0.5 shrink-0" />
-              <div>
-                <p className="text-[10px] uppercase tracking-wider font-bold text-neutral-500 mb-1">Email</p>
-                <a href={`mailto:${COMPANY_INFO.contact.email}`} className="text-sm font-bold text-[#000000] hover:text-[#27409A] transition-colors">
-                  {COMPANY_INFO.contact.email}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Explore Collections CTA ── */}
-      <section className="w-full bg-white px-5 sm:px-10 lg:px-16 py-14 sm:py-20 text-center">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#27409A] mb-3">
-            Step Into Walkline
+      {/* ─── SECTION TWO: OUR PHILOSOPHY / CRAFTSMANSHIP ───── */}
+      <section className="w-full bg-white py-16 sm:py-20 lg:py-24 px-6 sm:px-8">
+        <div className="max-w-[1000px] mx-auto text-center">
+          <p className="text-[15px] sm:text-[17px] font-medium uppercase tracking-[0.18em] text-[#27409A] mb-3 sm:mb-4">
+            OUR PHILOSOPHY
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#000000] mb-4">
-            Explore Collections
+          <h2
+            className="font-medium uppercase text-[#0A0A0A] mb-8 sm:mb-10"
+            style={{ fontSize: "clamp(2rem, 3.2vw, 2.5rem)", lineHeight: "1.12", letterSpacing: "-0.5px" }}
+          >
+            CRAFTSMANSHIP
           </h2>
-          <p className="text-sm text-neutral-600 mb-8 leading-relaxed">
-            {COMPANY_INFO.tagline} Browse our full range of men&apos;s, women&apos;s and kids&apos; footwear.
-          </p>
-          <div className="flex flex-row items-center justify-center gap-3 flex-wrap">
-            <Link
-              href="/men"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-[#27409A] hover:bg-[#1E327A] text-white text-[11px] font-bold uppercase tracking-[0.12em] transition-colors shadow-md"
+
+          <div
+            className="space-y-5 text-neutral-700 font-normal"
+            style={{ fontSize: "clamp(0.9375rem, 1.25vw, 1.0625rem)", lineHeight: "1.8" }}
+          >
+            <p>
+              Walkline is a footwear brand built around the belief that every step should feel as good as it looks. From the first design sketch to the final finishing touch, we focus on quality, comfort, and craftsmanship to create footwear that fits effortlessly into your everyday life.
+            </p>
+            <p>
+              Every pair of Walkline footwear reflects our dedication to thoughtful design, attention to detail, and continuous improvement. We believe great footwear is more than just a style statement — it&apos;s a part of your journey, your confidence, and the way you move through the world.
+            </p>
+            <p>
+              We approach every design with curiosity and creativity, blending modern trends, practical comfort, and reliable quality to create styles that stand out without trying too hard. From everyday essentials to statement-making designs, we strive to find the perfect balance between fashion, function, and durability.
+            </p>
+            <p className="italic text-neutral-800 font-medium">
+              Because for us, footwear isn&apos;t just about getting somewhere. It&apos;s about how you get there. And with Walkline, we want every step to leave a lasting impression.
+            </p>
+          </div>
+
+          <div className="mt-9 sm:mt-10">
+            <a
+              href="#who-we-are"
+              className="inline-flex items-center gap-2.5 px-7 py-3 border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] rounded-none transition-all duration-300"
             >
-              <span>Shop Men</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-            <Link
-              href="/women"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg border border-neutral-300 text-[#000000] text-[11px] font-bold uppercase tracking-[0.12em] hover:border-[#27409A] hover:text-[#27409A] transition-colors"
+              <span>DISCOVER OUR STORY</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION THREE: WHO WE ARE ─────────────────────── */}
+      <section
+        id="who-we-are"
+        className="w-full bg-[#FAFAFA] border-y border-neutral-200/70 py-14 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16"
+      >
+        <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div className="max-w-[580px]">
+            <p className="text-[15px] sm:text-[17px] font-medium uppercase tracking-[0.18em] text-[#27409A] mb-3">
+              WHO WE ARE
+            </p>
+            <h2
+              className="font-medium uppercase text-[#0A0A0A] leading-[1.12] mb-5 sm:mb-7"
+              style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)", letterSpacing: "-0.5px" }}
             >
-              Shop Women
-            </Link>
-            <Link
-              href="/sandals"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg border border-neutral-300 text-[#000000] text-[11px] font-bold uppercase tracking-[0.12em] hover:border-[#27409A] hover:text-[#27409A] transition-colors"
+              BUILT ON QUALITY. MADE FOR EVERY STEP.
+            </h2>
+
+            <div
+              className="space-y-4 text-neutral-700"
+              style={{ fontSize: "clamp(0.9375rem, 1.2vw, 1.0625rem)", lineHeight: "1.75" }}
             >
-              Sandals
+              <p>
+                Walkline is a recognized, Indian-made footwear brand headquartered in Modern Industrial Estate (MIE), Haryana — the heart of India&apos;s footwear manufacturing belt.
+              </p>
+              <p>
+                Since 2010, we have grown from a focused PU footwear manufacturer into a full-spectrum lifestyle footwear brand spanning Men, Women and Kids — sold across India and exported to Asian and Middle East regions.
+              </p>
+              <p>
+                We have <span className="font-bold text-neutral-950">1,000+ active SKUs</span>, with a capacity to manufacture <span className="font-bold text-neutral-950">50,000 pairs per day</span> and on the road to scale upto 1 lakh pairs per day within a span of 3-5 years.
+              </p>
+              <p>
+                We maintain the highest standards of professionalism, honesty and ethical manufacturing — ISO 9001 and SEDEX/SA8000.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-5 pt-5 mt-5 border-t border-neutral-200">
+              <div>
+                <p className="text-xl sm:text-2xl font-black text-[#0A0A0A] tracking-tight">1,000+</p>
+                <p className="text-[10px] uppercase tracking-wider font-semibold text-neutral-500 mt-1">Active SKUs</p>
+              </div>
+              <div>
+                <p className="text-xl sm:text-2xl font-black text-[#0A0A0A] tracking-tight">50,000</p>
+                <p className="text-[10px] uppercase tracking-wider font-semibold text-neutral-500 mt-1">Pairs Per Day Capacity</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: brand video replacing old image */}
+          <div className="relative w-full aspect-[3/2] sm:aspect-[4/3] overflow-hidden border border-neutral-200/90 shadow-sm bg-neutral-100">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Walkline Footwear — Brand Showcase Video"
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/assets/logo/lol.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION FOUR: FOUNDER NOTE ────────────────────── */}
+      <section className="w-full bg-white py-16 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16">
+        <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="max-w-[620px] order-2 lg:order-1">
+            <p className="text-[15px] sm:text-[17px] font-medium uppercase tracking-[0.18em] text-[#27409A] mb-3">
+              FOUNDER&apos;S NOTE
+            </p>
+            <h2
+              className="font-medium uppercase text-[#0A0A0A] leading-[1.12] mb-6 sm:mb-8"
+              style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)", letterSpacing: "-0.5px" }}
+            >
+              A MESSAGE FROM LEADERSHIP
+            </h2>
+
+            <blockquote className="text-neutral-700 text-base sm:text-lg leading-relaxed sm:leading-[1.8] mb-8 sm:mb-10 font-normal">
+              &ldquo;As we embark on an exciting journey, I take this opportunity to acknowledge the contributions of every team member — and welcome many more new friends onboard as we venture towards new horizons. Walkline Group Management stands behind our vision and values, continuously striving to improve processes by investing in state-of-the-art design equipment and enhanced personnel training. Above all, we want to be a responsible, progressive &amp; sensitive corporate citizen — deeply committed to the economic, social and human development of our nation.&rdquo;
+            </blockquote>
+
+            <div className="border-t border-neutral-200 pt-5">
+              <p className="text-base sm:text-lg font-black uppercase tracking-tight text-[#0A0A0A]">
+                Pawan Anand
+              </p>
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-500 mt-0.5">
+                Managing Director | Walkline Footwear
+              </p>
+            </div>
+          </div>
+
+          <div className="relative aspect-square sm:aspect-[4/4] lg:aspect-[5/5] max-w-[540px] w-full mx-auto order-1 lg:order-2 overflow-hidden border border-neutral-200 shadow-sm bg-neutral-100">
+            <Image
+              src={assets.hero.founder}
+              alt="Pawan Anand — Managing Director, Walkline Footwear"
+              fill
+              sizes="(max-width: 1024px) 100vw, 540px"
+              className="object-cover object-top select-none"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION FIVE: CLOSING BANNER ──────────────────── */}
+      <section className="relative w-full overflow-hidden bg-[#E8DDD0]" aria-label="Explore Walkline Collections">
+        <div className="relative w-full" style={{ aspectRatio: "21 / 8", minHeight: "300px" }}>
+          <Image
+            src={assets.campaigns.freshRotation}
+            alt="Walkline Footwear — Made For Every Step"
+            fill
+            sizes="100vw"
+            quality={90}
+            className="object-cover object-center select-none"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/58 via-black/18 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/42 via-transparent to-transparent pointer-events-none" />
+        </div>
+
+        <div className="absolute inset-0 flex items-end pb-8 sm:pb-10 lg:pb-14 px-6 sm:px-10 lg:px-16">
+          <div className="max-w-[460px]">
+            <p className="hidden sm:block text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 mb-2.5">
+              WALKLINE FOOTWEAR
+            </p>
+            <h2
+              className="font-black uppercase tracking-tight text-white mb-5"
+              style={{ fontSize: "clamp(1.75rem, 3.5vw, 3rem)", lineHeight: "1.06" }}
+            >
+              MADE FOR EVERY STEP.
+            </h2>
+            <Link
+              href="/collections"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#0A0A0A] hover:bg-neutral-100 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <span>EXPLORE OUR COLLECTION</span>
+              <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </Link>
           </div>
         </div>
