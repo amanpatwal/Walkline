@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { X, ChevronDown, ShoppingBag, User, Search, MapPin, Phone } from "lucide-react";
@@ -23,6 +23,43 @@ const CATEGORY_LINKS = [
 export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }) {
   const [openSection, setOpenSection] = useState(null);
   const { itemCount } = useCart();
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = dialogRef.current?.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable?.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -45,6 +82,8 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
 
       {/* Slide-in drawer */}
       <div
+        id="walkline-mobile-navigation"
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label="Walkline Mobile Navigation"
@@ -63,8 +102,9 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
             />
           </Link>
           <button
+            ref={closeButtonRef}
             onClick={onClose}
-            className="p-2.5 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-neutral-200 hover:text-[#27409A] transition-colors cursor-pointer"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-neutral-100 border border-neutral-200 p-2.5 text-[#000000] hover:bg-neutral-200 hover:text-[#27409A] transition-colors cursor-pointer"
             aria-label="Close navigation"
           >
             <X className="w-5 h-5" />
@@ -99,7 +139,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
                 {(item.categories || item.items) && (
                   <button
                     onClick={() => toggleSection(item.id)}
-                    className="p-2 cursor-pointer text-neutral-500"
+                    className="flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 cursor-pointer text-neutral-500"
                     aria-label={`Expand ${item.label} menu`}
                   >
                     <ChevronDown
@@ -171,7 +211,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
                   key={idx}
                   href={cat.href}
                   onClick={handleLinkClick}
-                  className="p-2.5 rounded-xl bg-neutral-50 border border-neutral-200 text-[11px] font-bold uppercase tracking-wide text-[#000000] hover:border-[#27409A] hover:text-[#27409A] transition-colors leading-tight"
+                  className="flex min-h-11 items-center p-2.5 rounded-xl bg-neutral-50 border border-neutral-200 text-[11px] font-bold uppercase tracking-wide text-[#000000] hover:border-[#27409A] hover:text-[#27409A] transition-colors leading-tight"
                 >
                   {cat.label}
                 </Link>
@@ -183,7 +223,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
           <div className="grid grid-cols-2 gap-3 pt-4 pb-2">
             <button
               onClick={() => { onClose(); if (onOpenCart) onOpenCart(); }}
-              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-[#27409A] text-white font-bold uppercase tracking-wider text-[11px] hover:bg-[#1E327A] transition-colors cursor-pointer"
+              className="flex min-h-11 items-center justify-center gap-2 p-3 rounded-xl bg-[#27409A] text-white font-bold uppercase tracking-wider text-[11px] hover:bg-[#1E327A] transition-colors cursor-pointer"
             >
               <ShoppingBag className="w-4 h-4" />
               <span>Bag {itemCount > 0 ? `(${itemCount})` : ""}</span>
@@ -191,7 +231,7 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
             <Link
               href="/contact"
               onClick={handleLinkClick}
-              className="flex items-center justify-center gap-2 p-3 rounded-xl bg-white text-[#000000] font-bold uppercase tracking-wider text-[11px] border border-neutral-200 hover:border-[#27409A] hover:text-[#27409A] transition-colors"
+              className="flex min-h-11 items-center justify-center gap-2 p-3 rounded-xl bg-white text-[#000000] font-bold uppercase tracking-wider text-[11px] border border-neutral-200 hover:border-[#27409A] hover:text-[#27409A] transition-colors"
             >
               <User className="w-4 h-4" />
               <span>Contact</span>

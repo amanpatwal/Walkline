@@ -122,6 +122,10 @@ export default function HeroCarousel() {
   const [animated, setAnimated] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   const trackRef = useRef(null);
   const autoplayRef = useRef(null);
   const transitionLockRef = useRef(false);
@@ -145,13 +149,15 @@ export default function HeroCarousel() {
 
   const goTo = useCallback((nextReal, nextTrack, withAnimation = true) => {
     if (transitionLockRef.current) return;
-    transitionLockRef.current = true;
-    setAnimated(withAnimation);
+    const snapToSlide = prefersReducedMotion || !withAnimation;
+    const targetTrack = snapToSlide ? nextReal + OFFSET : nextTrack;
+    transitionLockRef.current = !snapToSlide;
+    setAnimated(withAnimation && !prefersReducedMotion);
     setRealIdx(nextReal);
-    setTrackIdx(nextTrack);
-    trackIdxRef.current = nextTrack;
+    setTrackIdx(targetTrack);
+    trackIdxRef.current = targetTrack;
     realIdxRef.current = nextReal;
-  }, []);
+  }, [prefersReducedMotion]);
 
   const next = useCallback(() => {
     if (transitionLockRef.current) return;
@@ -271,10 +277,6 @@ export default function HeroCarousel() {
 
   // ── Reduced-motion ────────────────────────────────────────────────────────────
 
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   const transitionStyle = animated && !prefersReducedMotion
     ? `transform ${TRANSITION_MS}ms ${EASING}`
     : "none";
@@ -288,7 +290,7 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#000000]"
+      className="relative w-full overflow-hidden bg-[#000000] pb-14 sm:pb-0"
       aria-label="Walkline Footwear — Hero Banner Carousel"
       aria-roledescription="carousel"
       style={{ marginTop: "72px" }}
@@ -331,7 +333,10 @@ export default function HeroCarousel() {
               aria-hidden={!isActiveView}
             >
               {/* Campaign artwork — native 2200:852 aspect ratio with overflow containment */}
-              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "2200 / 852" }}>
+              <div
+                className="relative w-full overflow-hidden"
+                style={{ aspectRatio: slide.id === "weekend" ? "1897 / 735" : "2200 / 852" }}
+              >
                 {/* Cinematic zoom/depth settle on slide entry */}
                 <div
                   className={`absolute inset-0 transition-transform duration-[850ms] ease-out ${
@@ -345,7 +350,7 @@ export default function HeroCarousel() {
                     priority={isFirstReal}
                     loading={isFirstReal ? "eager" : "lazy"}
                     quality={95}
-                    className="object-cover object-center select-none"
+                    className={`${slide.id === "weekend" ? "object-contain" : "object-cover object-center"} select-none`}
                     sizes="100vw"
                     draggable={false}
                   />
@@ -408,7 +413,7 @@ export default function HeroCarousel() {
       <button
         onClick={handlePrev}
         aria-label="Previous slide"
-        className="group absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/65 hover:border-white/50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+        className="group absolute bottom-1 left-3 top-auto translate-y-0 sm:bottom-auto sm:left-6 sm:top-1/2 sm:-translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/65 hover:border-white/50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
       >
         <svg
           width="16"
@@ -426,7 +431,7 @@ export default function HeroCarousel() {
       <button
         onClick={handleNext}
         aria-label="Next slide"
-        className="group absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/65 hover:border-white/50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+        className="group absolute bottom-1 right-3 top-auto translate-y-0 sm:bottom-auto sm:right-6 sm:top-1/2 sm:-translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white hover:bg-black/65 hover:border-white/50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
       >
         <svg
           width="16"
@@ -442,7 +447,7 @@ export default function HeroCarousel() {
 
       {/* ─── Dot indicators with active progress bar ─────────────────────── */}
       <div
-        className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2"
+        className="absolute bottom-1 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2"
         role="tablist"
         aria-label="Slide indicators"
       >
@@ -455,7 +460,7 @@ export default function HeroCarousel() {
               aria-selected={isActive}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => handleJumpTo(i)}
-              className="group relative focus:outline-none focus:ring-2 focus:ring-white rounded-full p-1"
+              className="group relative flex h-11 w-11 items-center justify-center focus:outline-none focus:ring-2 focus:ring-white rounded-full p-1"
             >
               <span
                 className="block rounded-full overflow-hidden relative transition-all duration-300 ease-out"

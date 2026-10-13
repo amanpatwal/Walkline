@@ -206,7 +206,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                   <button
                     type="button"
                     onClick={() => setIsSizeGuideOpen(!isSizeGuideOpen)}
-                    className="text-xs font-bold uppercase tracking-wider text-[#27409A] hover:text-[#000000] flex items-center gap-1 transition-colors cursor-pointer"
+                    className="inline-flex min-h-11 items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#27409A] hover:text-[#000000] transition-colors cursor-pointer"
                   >
                     <Ruler className="w-3.5 h-3.5" />
                     <span>Size Guide</span>
@@ -221,7 +221,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                         key={size}
                         type="button"
                         onClick={() => setSelectedSize(size)}
-                        className={`py-3 px-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer border ${
+                        className={`min-h-11 px-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer border ${
                           isSelected
                             ? "bg-[#27409A] text-white border-[#27409A] shadow-sm"
                             : "bg-white text-[#000000] border-neutral-200 hover:border-[#27409A] hover:text-[#27409A]"
@@ -274,7 +274,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                     <button
                       type="button"
                       onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                      className="w-10 h-10 flex items-center justify-center text-sm font-bold text-[#000000] hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
+                      className="w-11 h-11 flex items-center justify-center text-sm font-bold text-[#000000] hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
                       aria-label="Decrease quantity"
                     >
                       -
@@ -285,7 +285,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                     <button
                       type="button"
                       onClick={() => setQuantity((q) => q + 1)}
-                      className="w-10 h-10 flex items-center justify-center text-sm font-bold text-[#000000] hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
+                      className="w-11 h-11 flex items-center justify-center text-sm font-bold text-[#000000] hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
                       aria-label="Increase quantity"
                     >
                       +
@@ -365,7 +365,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                   <button
                     type="button"
                     onClick={() => setActiveTab("specifications")}
-                    className={`pb-2 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border-b-2 ${
+                    className={`flex min-h-11 items-center pb-2 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border-b-2 ${
                       activeTab === "specifications"
                         ? "border-[#27409A] text-[#27409A]"
                         : "border-transparent text-neutral-500 hover:text-[#000000]"
@@ -376,7 +376,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                   <button
                     type="button"
                     onClick={() => setActiveTab("description")}
-                    className={`pb-2 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border-b-2 ${
+                    className={`flex min-h-11 items-center pb-2 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border-b-2 ${
                       activeTab === "description"
                         ? "border-[#27409A] text-[#27409A]"
                         : "border-transparent text-neutral-500 hover:text-[#000000]"
@@ -387,7 +387,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                   <button
                     type="button"
                     onClick={() => setActiveTab("care")}
-                    className={`pb-2 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border-b-2 ${
+                    className={`flex min-h-11 items-center pb-2 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border-b-2 ${
                       activeTab === "care"
                         ? "border-[#27409A] text-[#27409A]"
                         : "border-transparent text-neutral-500 hover:text-[#000000]"

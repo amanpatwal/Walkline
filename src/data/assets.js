@@ -7,8 +7,8 @@
 
 export const assets = {
   logo: {
-    // Official Walkline brand logo (WALKLINE ABOVE & BEYOND ®, 1600×442 JPEG)
-    primary: "/assets/logo/CompanyLogo.jpeg",
+    // Official Walkline brand logo, preserved with a transparent background.
+    primary: "/assets/logo/CompanyLogo-transparent.png",
     symbol: "/assets/logo/CompanyLogo.jpeg",
     width: 1600,
     height: 442,
@@ -61,6 +61,7 @@ export const assets = {
   },
 
   lifestyle: {
+    aboutAboveAndBeyond: "/assets/lifestyle/above-and-beyond.jpg",
     community01: "/assets/campaigns/sporty-looks-better.png",
     community02: "/assets/campaigns/fresh-in-rotation.jpg",
     community03: "/assets/campaigns/summer-lifestyle.jpg",

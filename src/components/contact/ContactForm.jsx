@@ -74,74 +74,79 @@ export default function ContactForm() {
         <form className="space-y-5" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+              <label htmlFor="contact-name" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Full Name *
               </label>
               <input
                 type="text"
+                id="contact-name"
                 name="name"
                 required
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="e.g. Rajesh Sharma"
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-base sm:text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+              <label htmlFor="contact-email" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Email Address *
               </label>
               <input
                 type="email"
+                id="contact-email"
                 name="email"
                 required
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="name@business.com"
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-base sm:text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+              <label htmlFor="contact-phone" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Contact Phone Number *
               </label>
               <input
                 type="tel"
+                id="contact-phone"
                 name="phone"
                 required
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+91 9310223854"
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-base sm:text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+              <label htmlFor="contact-company" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                 Business / Store Name
               </label>
               <input
                 type="text"
+                id="contact-company"
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
                 placeholder="e.g. Footwear Traders"
-                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-base sm:text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+            <label htmlFor="contact-inquiry-type" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
               Inquiry Classification *
             </label>
             <select
+              id="contact-inquiry-type"
               name="inquiryType"
               value={formData.inquiryType}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors cursor-pointer"
+              className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-base sm:text-sm text-[#000000] focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors cursor-pointer"
             >
               <option value="Wholesale & Distribution">Wholesale & Regional Distribution</option>
               <option value="Retail Dealership">Authorized Retail Dealership</option>
@@ -152,17 +157,18 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+            <label htmlFor="contact-message" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
               Detailed Requirements *
             </label>
             <textarea
+              id="contact-message"
               name="message"
               rows={4}
               required
               value={formData.message}
               onChange={handleChange}
               placeholder="Please specify categories of interest (Vertex, Noir-05, VRX, Frooti), estimated order volumes, and your target location..."
-              className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors resize-none"
+              className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-black/15 text-base sm:text-sm text-[#000000] placeholder:text-black/30 focus:outline-none focus:border-[#27409A] focus:ring-1 focus:ring-[#27409A] transition-colors resize-none"
             />
           </div>
 

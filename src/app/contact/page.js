@@ -94,13 +94,13 @@ export default function ContactPage() {
                   <div className="w-11 h-11 rounded-xl bg-neutral-50 border border-neutral-200 text-[#000000] flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5 text-[#27409A]" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#27409A]">
                       Official Electronic Mail
                     </span>
                     <a
                       href={`mailto:${CONTACT_CONTENT.email}`}
-                      className="text-base font-black text-[#000000] hover:text-[#27409A] transition-colors mt-1 block"
+                      className="break-all text-base font-black text-[#000000] hover:text-[#27409A] transition-colors mt-1 block"
                     >
                       {CONTACT_CONTENT.email}
                     </a>
@@ -150,25 +150,25 @@ export default function ContactPage() {
             <div className="flex flex-wrap gap-2.5">
               <Link
                 href="/men"
-                className="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
+                className="inline-flex min-h-11 items-center text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
               >
                 Men&apos;s Sandals
               </Link>
               <Link
                 href="/women"
-                className="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
+                className="inline-flex min-h-11 items-center text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
               >
                 Women&apos;s Sneakers
               </Link>
               <Link
                 href="/kids"
-                className="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
+                className="inline-flex min-h-11 items-center text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
               >
                 Kids&apos; Footwear
               </Link>
               <Link
                 href="/sandals"
-                className="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
+                className="inline-flex min-h-11 items-center text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
               >
                 Fashion Sandals
               </Link>

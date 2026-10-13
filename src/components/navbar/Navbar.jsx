@@ -22,7 +22,13 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const mobileMenuButtonRef = useRef(null);
   const closeTimerRef = useRef(null);
+
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    mobileMenuButtonRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -165,7 +171,7 @@ export default function Navbar() {
             <div className="flex items-center gap-1 sm:gap-2">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2.5 rounded-full hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
+                className="flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
                 aria-label="Open search"
               >
                 <Search className="w-[18px] h-[18px]" strokeWidth={1.75} />
@@ -173,7 +179,7 @@ export default function Navbar() {
 
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex p-2.5 rounded-full hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
+                className="hidden sm:inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
                 aria-label="Contact & account"
               >
                 <User className="w-[18px] h-[18px]" strokeWidth={1.75} />
@@ -181,7 +187,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2.5 rounded-full hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A] group"
+                className="relative flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A] group"
                 aria-label={`Shopping bag (${itemCount} items)`}
               >
                 <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.75} />
@@ -193,9 +199,12 @@ export default function Navbar() {
               </button>
 
               <button
+                ref={mobileMenuButtonRef}
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2.5 rounded-full bg-white border border-neutral-200 text-[#000000] hover:bg-neutral-100 hover:text-[#27409A] transition-all cursor-pointer shadow-sm"
+                className="lg:hidden flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white border border-neutral-200 p-2.5 text-[#000000] hover:bg-neutral-100 hover:text-[#27409A] transition-all cursor-pointer shadow-sm"
                 aria-label="Open mobile navigation"
+                aria-controls="walkline-mobile-navigation"
+                aria-expanded={isMobileMenuOpen}
               >
                 <Menu className="w-[18px] h-[18px]" strokeWidth={1.75} />
               </button>
@@ -208,7 +217,7 @@ export default function Navbar() {
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <MobileMenu
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={closeMobileMenu}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
       />

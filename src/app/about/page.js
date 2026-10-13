@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { assets } from "@/data/assets";
@@ -182,41 +180,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── SECTION FIVE: CLOSING BANNER ──────────────────── */}
-      <section className="relative w-full overflow-hidden bg-[#E8DDD0]" aria-label="Explore Walkline Collections">
-        <div className="relative w-full" style={{ aspectRatio: "21 / 8", minHeight: "300px" }}>
-          <Image
-            src={assets.campaigns.freshRotation}
-            alt="Walkline Footwear — Made For Every Step"
-            fill
-            sizes="100vw"
-            quality={90}
-            className="object-cover object-center select-none"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/58 via-black/18 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/42 via-transparent to-transparent pointer-events-none" />
-        </div>
-
-        <div className="absolute inset-0 flex items-end pb-8 sm:pb-10 lg:pb-14 px-6 sm:px-10 lg:px-16">
-          <div className="max-w-[460px]">
-            <p className="hidden sm:block text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 mb-2.5">
-              WALKLINE FOOTWEAR
-            </p>
-            <h2
-              className="font-black uppercase tracking-tight text-white mb-5"
-              style={{ fontSize: "clamp(1.75rem, 3.5vw, 3rem)", lineHeight: "1.06" }}
-            >
-              MADE FOR EVERY STEP.
-            </h2>
-            <Link
-              href="/collections"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#0A0A0A] hover:bg-neutral-100 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <span>EXPLORE OUR COLLECTION</span>
-              <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-            </Link>
-          </div>
-        </div>
+      <section className="w-full overflow-hidden leading-none" aria-label="Above and Beyond — A promise to our customers">
+        <Image
+          src={assets.lifestyle.aboutAboveAndBeyond}
+          alt="ABOVE & BEYOND — Not Just a Tagline, A promise To Our Customer — Pawan Anand, Managing Director"
+          width={1460}
+          height={366}
+          sizes="100vw"
+          className="block h-auto w-full select-none"
+        />
       </section>
 
       <Footer />

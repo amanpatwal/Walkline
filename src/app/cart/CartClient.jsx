@@ -218,7 +218,7 @@ export default function CartClient() {
                             onClick={() =>
                               updateQty(item.productId, item.size, item.quantity - 1)
                             }
-                            className="w-8 h-8 flex items-center justify-center text-xs font-bold text-[#000000] hover:bg-white rounded-lg transition-colors cursor-pointer"
+                            className="flex h-11 w-11 items-center justify-center text-xs font-bold text-[#000000] hover:bg-white rounded-lg transition-colors cursor-pointer"
                             aria-label="Decrease quantity"
                           >
                             -
@@ -231,7 +231,7 @@ export default function CartClient() {
                             onClick={() =>
                               updateQty(item.productId, item.size, item.quantity + 1)
                             }
-                            className="w-8 h-8 flex items-center justify-center text-xs font-bold text-[#000000] hover:bg-white rounded-lg transition-colors cursor-pointer"
+                            className="flex h-11 w-11 items-center justify-center text-xs font-bold text-[#000000] hover:bg-white rounded-lg transition-colors cursor-pointer"
                             aria-label="Increase quantity"
                           >
                             +
@@ -242,7 +242,7 @@ export default function CartClient() {
                         <button
                           type="button"
                           onClick={() => removeItem(item.productId, item.size)}
-                          className="p-2 text-neutral-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors cursor-pointer"
+                          className="flex min-h-11 min-w-11 items-center justify-center text-neutral-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors cursor-pointer"
                           aria-label={`Remove ${item.name} size ${item.size} from bag`}
                         >
                           <Trash2 className="w-4 h-4" />
@@ -294,12 +294,13 @@ export default function CartClient() {
                   {/* Inquiry Form */}
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+                      <label htmlFor="cart-inquiry-name" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                         Full Name *
                       </label>
                       <div className="relative">
                         <User className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                         <input
+                          id="cart-inquiry-name"
                           type="text"
                           required
                           value={formData.name}
@@ -307,18 +308,19 @@ export default function CartClient() {
                             setFormData({ ...formData, name: e.target.value })
                           }
                           placeholder="Your Name"
-                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A]"
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-base sm:text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+                      <label htmlFor="cart-inquiry-phone" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                         Phone / WhatsApp *
                       </label>
                       <div className="relative">
                         <Phone className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                         <input
+                          id="cart-inquiry-phone"
                           type="tel"
                           required
                           value={formData.phone}
@@ -326,39 +328,41 @@ export default function CartClient() {
                             setFormData({ ...formData, phone: e.target.value })
                           }
                           placeholder="+91 98765 43210"
-                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A]"
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-base sm:text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+                      <label htmlFor="cart-inquiry-city" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                         City & State
                       </label>
                       <div className="relative">
                         <MapPin className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                         <input
+                          id="cart-inquiry-city"
                           type="text"
                           value={formData.city}
                           onChange={(e) =>
                             setFormData({ ...formData, city: e.target.value })
                           }
                           placeholder="e.g. New Delhi, Mumbai, Bengaluru..."
-                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A]"
+                          className="w-full pl-10 pr-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-base sm:text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+                      <label htmlFor="cart-inquiry-type" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                         Inquiry Purpose
                       </label>
                       <select
+                        id="cart-inquiry-type"
                         value={formData.inquiryType}
                         onChange={(e) =>
                           setFormData({ ...formData, inquiryType: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-[#000000] font-medium focus:outline-none focus:border-[#27409A]"
+                        className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-base sm:text-xs text-[#000000] font-medium focus:outline-none focus:border-[#27409A]"
                       >
                         <option value="Retail Purchase & Sizing">
                           Individual Purchase / Local Retailer
@@ -376,17 +380,18 @@ export default function CartClient() {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
+                      <label htmlFor="cart-inquiry-message" className="block text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-1.5">
                         Notes / Queries (Optional)
                       </label>
                       <textarea
+                        id="cart-inquiry-message"
                         rows={2}
                         value={formData.message}
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })
                         }
                         placeholder="Any specific questions regarding fit, availability or quantities..."
-                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A] resize-none"
+                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 text-base sm:text-xs text-[#000000] font-medium placeholder:text-neutral-400 focus:outline-none focus:border-[#27409A] resize-none"
                       />
                     </div>
 
