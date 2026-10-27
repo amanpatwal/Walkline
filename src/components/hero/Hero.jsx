@@ -5,59 +5,53 @@ import Image from "next/image";
 import Link from "next/link";
 import { assets } from "@/data/assets";
 
-// ─── Hero Carousel — 3-slide horizontal loop ──────────────────────────────────
+// ─── Hero Carousel — 4-slide horizontal loop ──────────────────────────────────
 //
 // SLIDES:
-//   0  midnight.jpg           — X Lows Midnight  (baked-in SHOP MEN / SHOP WOMEN)
-//   1  step-into-confidence   — Step Into Confidence  (CTA: SHOP NOW → /collections)
-//   2  weekend-mode.jpg       — Weekend Mode  (CTA: SHOP SANDALS → /sandals)
-//
-// Image composition analysis:
-//   Slide 2: Text left (0–42%), model right (42–100%)
-//            → CTA placed bottom-left, below the subtitle (~top:72%, left:8%)
-//   Slide 3: Feet/product left (0–54%), text right (54–100%)
-//            → CTA placed bottom-right, below "COMFORT.STYLE.FREEDOM." (~bottom:9%, right:4%)
-//
-// STRATEGY: clone-slide infinite loop
-//   DOM order:  [clone-2] [real-0] [real-1] [real-2] [clone-0]
-//   trackIdx:      0          1       2        3         4
-//   OFFSET = 1, initial trackIdx = 1 (real slide 0)
-//
-// TRANSITION:  820ms  cubic-bezier(0.22, 1, 0.36, 1)
-// AUTOPLAY:    5000ms per slide (pause on hover/drag/focus)
+//   0  1 (1).jpg — Introducing New X Lows Wings (baked-in SHOP MEN / SHOP WOMEN buttons)
+//   1  2.jpg     — Move Different (Sporty. Stylish. Always You.)
+//   2  1.jpg     — For Winter Days & Street-Fit Moments
+//   3  2 (1).jpg — Introducing Bounce Sole Slippers
 
 const REAL_SLIDES = [
   {
-    id: "midnight",
-    src: assets.hero.midnight,
-    alt: "X Lows Midnight — Walkline Footwear",
+    id: "wings",
+    src: assets.hero.xLowsWings,
+    alt: "Introducing New X Lows Wings — Walkline Footwear",
     // ── Artwork already has baked-in SHOP MEN / SHOP WOMEN buttons.
     // Transparent pixel-mapped hotspots activate them — no HTML CTA needed.
     links: [
       {
         href: "/men",
         label: "Shop Men",
-        style: { left: "10.64%", top: "58.33%", width: "17.23%", height: "10.21%" },
+        style: { left: "9.36%", top: "57.98%", width: "17.36%", height: "10.33%" },
       },
       {
         href: "/women",
         label: "Shop Women",
-        style: { left: "28.73%", top: "58.33%", width: "17.23%", height: "10.21%" },
+        style: { left: "27.55%", top: "57.98%", width: "17.36%", height: "10.33%" },
       },
     ],
     cta: null,
   },
   {
-    id: "confidence",
-    src: assets.hero.confidence,
-    alt: "Step Into Confidence — Walkline Footwear",
+    id: "move-different",
+    src: assets.hero.moveDifferent,
+    alt: "Move Different — Sporty. Stylish. Always You. — Walkline Footwear",
     links: [],
     cta: null,
   },
   {
-    id: "weekend",
-    src: assets.campaigns.weekend,
-    alt: "Step Into Weekend Mode — Walkline Footwear",
+    id: "winter-days",
+    src: assets.hero.winterDays,
+    alt: "For Winter Days & Street-Fit Moments — Walkline Footwear",
+    links: [],
+    cta: null,
+  },
+  {
+    id: "bounce-sole",
+    src: assets.hero.bounceSole,
+    alt: "Introducing Bounce Sole Slippers — Walkline Footwear",
     links: [],
     cta: null,
   },
@@ -295,7 +289,7 @@ export default function HeroCarousel() {
               {/* Campaign artwork — native 2200:852 aspect ratio with overflow containment */}
               <div
                 className="relative w-full overflow-hidden"
-                style={{ aspectRatio: slide.id === "weekend" ? "1897 / 735" : "2200 / 852" }}
+                style={{ aspectRatio: "2200 / 852" }}
               >
                 {/* Cinematic zoom/depth settle on slide entry */}
                 <div
@@ -310,7 +304,7 @@ export default function HeroCarousel() {
                     priority={isFirstReal}
                     loading={isFirstReal ? "eager" : "lazy"}
                     quality={95}
-                    className={`${slide.id === "weekend" ? "object-contain" : "object-cover object-center"} select-none`}
+                    className="object-cover object-center select-none"
                     sizes="100vw"
                     draggable={false}
                   />

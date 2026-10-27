@@ -35,7 +35,11 @@ export const assets = {
     confidence: "/assets/hero/step-into-confidence.jpg",
     soldOut: "/assets/hero/sold-out-banner.jpg",
     midnight: "/assets/hero/midnight.jpg",
-    primary: "/assets/hero/step-into-confidence.jpg",
+    xLowsWings: "/assets/hero/1 (1).jpg",
+    moveDifferent: "/assets/hero/2.jpg",
+    winterDays: "/assets/hero/1.jpg",
+    bounceSole: "/assets/hero/2 (1).jpg",
+    primary: "/assets/hero/1 (1).jpg",
     background: "/assets/hero/hero-bg.svg",
   },
 
