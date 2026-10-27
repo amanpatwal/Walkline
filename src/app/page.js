@@ -3,7 +3,7 @@ import Hero from "@/components/hero/Hero";
 import PromotionalBanner from "@/components/home/PromotionalBanner";
 import CampaignFreshRotation from "@/components/home/CampaignFreshRotation";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
-import CampaignSummer from "@/components/home/CampaignSummer";
+import CampaignSummerBanner from "@/components/home/CampaignSummerBanner";
 
 import FinalCTA from "@/components/home/FinalCTA";
 import RetailPartners from "@/components/home/RetailPartners";
@@ -19,7 +19,7 @@ export default function Home() {
       {/* 2. IMAGE 1: X LOWS MIDNIGHT HERO — full-width, image text only, buttons aligned to artwork */}
       <Hero />
 
-      {/* 3. IMAGE 3: FULL-WIDTH SOLD-OUT PROMOTIONAL BANNER */}
+      {/* 3. BANNER 3 (THIRD): COMFY PROMOTIONAL BANNER — replaced from sold-out, now shows Banner-Comfy.jpg */}
       <PromotionalBanner />
 
       {/* 4. IMAGE 2: FRESH IN ROTATION — full-width, placed directly after Image 3, Shop Now button aligned */}
@@ -28,8 +28,8 @@ export default function Home() {
       {/* 5. IMAGE 4: PRODUCT CAROUSEL — full-width, bottom text removed */}
       <FeaturedProducts />
 
-      {/* 6. SUMMER CAMPAIGN — full-width editorial banner */}
-      <CampaignSummer />
+      {/* 6. BANNER 1 (FIRST): SUMMER CAMPAIGN — male model, "CRAFTED FOR EVERYDAY — SUMMER", Shop Sandals CTA */}
+      <CampaignSummerBanner />
 
       {/* Final Call To Action */}
       <FinalCTA />

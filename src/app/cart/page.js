@@ -1,11 +1,10 @@
-import CartClient from "./CartClient";
+import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Shopping Bag | Walkline Footwear",
-  description:
-    "Review your Walkline Footwear selection, manage sizes and quantities, and submit your availability or wholesale order inquiry.",
+  title: "Collections — Walkline Footwear",
+  description: "Explore Walkline Footwear collections crafted for comfort and durability.",
 };
 
 export default function CartPage() {
-  return <CartClient />;
+  redirect("/collections");
 }

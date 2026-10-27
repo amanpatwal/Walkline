@@ -30,7 +30,7 @@ export const PRIMARY_NAV = [
     ],
     categories: [
       { label: "New Arrivals", href: "/men" },
-      { label: "Sandals & Chappals", href: "/sandals" },
+      { label: "Sandals & Chappals", href: "/men" },
       { label: "Slip-ons", href: "/men" },
       { label: "Sneakers", href: "/men" },
     ],
@@ -65,7 +65,6 @@ export const PRIMARY_NAV = [
     ],
     categories: [
       { label: "Sneakers", href: "/women" },
-      { label: "Sandals", href: "/sandals" },
       { label: "New Arrivals", href: "/women" },
     ],
     featuredCard: {
@@ -104,38 +103,6 @@ export const PRIMARY_NAV = [
     },
   },
   {
-    id: "sandals",
-    label: "Sandals",
-    href: "/sandals",
-    type: "dropdown",
-    items: [
-      {
-        name: "Vertex & Concept Chappals",
-        desc: "Lighter than air men's daily comfort footwear",
-        href: "/sandals",
-        badge: "POPULAR",
-      },
-      {
-        name: "VRX Metallic Buckle Series",
-        desc: "Waterproof comfy-soft sole with sleek metallic buckle",
-        href: "/sandals",
-        badge: "WATERPROOF",
-      },
-      {
-        name: "Bounce Sole Slippers",
-        desc: "Shock-absorbing dual-density footbed comfort",
-        href: "/sandals",
-        badge: "NEW",
-      },
-      {
-        name: "Rainy Days All-Weather",
-        desc: "Waterproof quick-dry comfort for monsoon and street",
-        href: "/sandals",
-        badge: "WEATHERPROOF",
-      },
-    ],
-  },
-  {
     id: "about-us",
     label: "About Us",
     href: "/about",
@@ -143,7 +110,7 @@ export const PRIMARY_NAV = [
     items: [
       {
         name: "Our Heritage",
-        desc: "Crafting comfort and style for every step since 2009",
+        desc: "Crafting comfort and style for every step since 2010",
         href: "/about",
       },
       {
@@ -170,7 +137,6 @@ export const NAV_LINKS = [
   { label: "Men", href: "/men" },
   { label: "Women", href: "/women" },
   { label: "Kids", href: "/kids" },
-  { label: "Sandals", href: "/sandals" },
   { label: "About Us", href: "/about" },
 ];
 
@@ -198,7 +164,7 @@ export const CATEGORY_LINKS = [
   },
   {
     label: "Fashion Sandals",
-    href: "/sandals",
+    href: "/collections",
     category: "fashion-sandals",
     description: "VRX series with metallic buckles & waterproof comfy sole",
     sizes: "UK 6×9 – 7×10",

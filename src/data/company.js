@@ -9,8 +9,8 @@
 export const COMPANY_INFO = {
   brandName: "Walkline Footwear",
   tagline: "Above & Beyond in every step.",
-  brandStatement: "Your ultimate destination for premium footwear. Crafting comfort and style for every step since 2009.",
-  establishedYear: 2009,
+  brandStatement: "Your ultimate destination for premium footwear. Crafting comfort and style for every step since 2010.",
+  establishedYear: 2010,
   
   // Top announcement bar
   announcement: {

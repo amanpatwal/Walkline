@@ -13,9 +13,20 @@ export const assets = {
     width: 1600,
     height: 442,
     aspectRatio: "1600 / 442",
-    // Retail partner logos (clean trimmed transparent PNGs)
+    // Retail partner logos (official supplied brand assets, trimmed of excess canvas padding)
     dmart: "/assets/logo/dmart-clean.png",
     zudio: "/assets/logo/zudio-clean.png",
+    flipkart: "/assets/logo/flipkart-clean.png",
+    amazon: "/assets/logo/amazon-clean.png",
+    myntra: "/assets/logo/myntra-clean.png",
+  },
+
+  partners: {
+    dmart: "/assets/logo/dmart-clean.png",
+    zudio: "/assets/logo/zudio-clean.png",
+    flipkart: "/assets/logo/flipkart-clean.png",
+    amazon: "/assets/logo/amazon-clean.png",
+    myntra: "/assets/logo/myntra-clean.png",
   },
 
   hero: {
@@ -37,6 +48,7 @@ export const assets = {
     sporty: "/assets/campaigns/sporty-looks-better.png",
     freshRotation: "/assets/campaigns/fresh-in-rotation.jpg",
     summer: "/assets/campaigns/summer-lifestyle.jpg",
+    comfyBanner: "/assets/lifestyle/Banner-Comfy.jpg",
     bounceSole: "/assets/campaigns/bounce-sole-slippers.jpg",
     rainyDays: "/assets/campaigns/rainy-days.jpg",
     midnight: "/assets/hero/midnight.jpg",
@@ -45,12 +57,21 @@ export const assets = {
   },
 
   products: {
-    vertex: "/assets/products/product-01.svg",
-    noir: "/assets/products/product-02.svg",
-    barbie: "/assets/products/product-05.svg",
-    vrx: "/assets/products/product-03.svg",
-    frooti: "/assets/products/product-04.svg",
-    concept: "/assets/products/product-06.svg",
+    vertex: "/assets/lifestyle/1.jpg",
+    concept: "/assets/lifestyle/2%20copy.jpg",
+    vrx: "/assets/lifestyle/3%20copy.jpg",
+    frooti: "/assets/lifestyle/4%20copy.jpg",
+    barbie: "/assets/lifestyle/5.jpg",
+    noir: "/assets/lifestyle/6.jpg",
+  },
+
+  lifestyleProducts: {
+    sideProfile: "/assets/lifestyle/1.jpg",
+    angleView: "/assets/lifestyle/2%20copy.jpg",
+    topView: "/assets/lifestyle/3%20copy.jpg",
+    soleView: "/assets/lifestyle/4%20copy.jpg",
+    detailView: "/assets/lifestyle/5.jpg",
+    modelOnFoot: "/assets/lifestyle/6.jpg",
   },
 
   collections: {

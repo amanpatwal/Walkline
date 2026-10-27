@@ -18,8 +18,8 @@ export default function ManufacturingSection() {
     {
       id: "made-in-india",
       title: "Made in India with Pride",
-      description: "Designed, engineered, and manufactured at our Bahadurgarh facility with consistent quality assured since 2009.",
-      badge: "SINCE 2009",
+      description: "Designed, engineered, and manufactured at our Bahadurgarh facility with consistent quality assured since 2010.",
+      badge: "SINCE 2010",
       icon: <HeartHandshake className="w-5 h-5 text-[#27409A]" />,
     },
     {
@@ -54,7 +54,7 @@ export default function ManufacturingSection() {
               Made In India With Pride
             </h2>
             <p className="text-sm sm:text-base text-black/60 mt-2.5 max-w-2xl leading-relaxed">
-              Engineered for all-day comfort without compromising on style — Above & Beyond in every step since 2009.
+              Engineered for all-day comfort without compromising on style — Above & Beyond in every step since 2010.
             </p>
           </div>
           <div className="lg:col-span-4 lg:text-right">

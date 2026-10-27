@@ -3,26 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { X, ChevronDown, ShoppingBag, User, Search, MapPin, Phone } from "lucide-react";
+import { X, ChevronDown, User, Search, MapPin, Phone } from "lucide-react";
 import { PRIMARY_NAV } from "@/data/navigation";
 import { COMPANY_INFO } from "@/data/company";
 import { assets } from "@/data/assets";
-import { useCart } from "@/context/CartContext";
 
 const CATEGORY_LINKS = [
   { label: "Men's Footwear", href: "/men" },
   { label: "Women's Footwear", href: "/women" },
   { label: "Kids Collection", href: "/kids" },
-  { label: "Sandals & Chappals", href: "/sandals" },
   { label: "All Collections", href: "/collections" },
   { label: "Sustainability", href: "/sustainability" },
   { label: "Manufacturing", href: "/manufacturing" },
   { label: "About Walkline", href: "/about" },
 ];
 
-export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }) {
+export default function MobileMenu({ isOpen, onClose, onOpenSearch }) {
   const [openSection, setOpenSection] = useState(null);
-  const { itemCount } = useCart();
   const dialogRef = useRef(null);
   const closeButtonRef = useRef(null);
 
@@ -219,22 +216,15 @@ export default function MobileMenu({ isOpen, onClose, onOpenSearch, onOpenCart }
             </div>
           </div>
 
-          {/* Cart + Account */}
-          <div className="grid grid-cols-2 gap-3 pt-4 pb-2">
-            <button
-              onClick={() => { onClose(); if (onOpenCart) onOpenCart(); }}
-              className="flex min-h-11 items-center justify-center gap-2 p-3 rounded-xl bg-[#27409A] text-white font-bold uppercase tracking-wider text-[11px] hover:bg-[#1E327A] transition-colors cursor-pointer"
-            >
-              <ShoppingBag className="w-4 h-4" />
-              <span>Bag {itemCount > 0 ? `(${itemCount})` : ""}</span>
-            </button>
+          {/* Contact & Inquiries */}
+          <div className="pt-4 pb-2">
             <Link
               href="/contact"
               onClick={handleLinkClick}
-              className="flex min-h-11 items-center justify-center gap-2 p-3 rounded-xl bg-white text-[#000000] font-bold uppercase tracking-wider text-[11px] border border-neutral-200 hover:border-[#27409A] hover:text-[#27409A] transition-colors"
+              className="flex min-h-11 items-center justify-center gap-2 p-3.5 rounded-xl bg-[#27409A] text-white font-bold uppercase tracking-wider text-[11px] hover:bg-[#1E327A] transition-colors shadow-sm"
             >
               <User className="w-4 h-4" />
-              <span>Contact</span>
+              <span>Contact & Inquiries</span>
             </Link>
           </div>
         </div>

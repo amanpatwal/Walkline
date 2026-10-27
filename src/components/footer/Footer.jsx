@@ -77,11 +77,6 @@ export default function Footer() {
                   Kids
                 </Link>
               </li>
-              <li>
-                <Link href="/sandals" className="inline-flex min-h-11 items-center hover:text-[#27409A] transition-colors sm:min-h-0">
-                  Sandals
-                </Link>
-              </li>
             </ul>
           </div>
 

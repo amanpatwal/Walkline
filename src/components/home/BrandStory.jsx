@@ -41,7 +41,7 @@ export default function BrandStory() {
           </h2>
 
           <p className="text-base sm:text-xl text-[#27409A] font-semibold max-w-2xl mx-auto leading-relaxed">
-            &ldquo;Crafting comfort and style for every step since 2009.&rdquo;
+            &ldquo;Crafting comfort and style for every step since 2010.&rdquo;
           </p>
 
           <p className="text-xs sm:text-sm text-neutral-600 max-w-xl mx-auto leading-relaxed">

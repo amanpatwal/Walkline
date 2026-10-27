@@ -153,6 +153,28 @@ html.lenis, html.lenis body {
   animation: marquee 30s linear infinite;
 }
 
+/* Partner logo carousel (slow, smooth, infinite horizontal scroll) */
+@keyframes partner-logos-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-partner-logos {
+  animation: partner-logos-scroll 35s linear infinite;
+}
+
+.partner-logos-track:hover .animate-partner-logos,
+.partner-logos-track:focus-within .animate-partner-logos {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-partner-logos {
+    animation: none;
+  }
+}
+
+
 .animate-spin-slow {
   animation: spin-slow 12s linear infinite;
 }

@@ -175,7 +175,7 @@ function EditorialTextImage() {
           <div className="lg:col-span-6 relative order-1 lg:order-2">
             {/* Top Rotating Stamp */}
             <div className="absolute -top-8 -left-4 z-20 hidden sm:block">
-              <CircularStamp text="WALKLINE FOOTWEAR • SINCE 2009 • " />
+              <CircularStamp text="WALKLINE FOOTWEAR • SINCE 2010 • " />
             </div>
 
             <Reveal animation="slideUp" delay={0.1}>
@@ -217,7 +217,7 @@ function FullWidthCampaign() {
       <Container className="relative z-10 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="inline-block">
-            <DropBadge text="WALKLINE MANIFESTO // SINCE 2009" variant="brown" rotate="-rotate-1" />
+            <DropBadge text="WALKLINE MANIFESTO // SINCE 2010" variant="brown" rotate="-rotate-1" />
           </div>
 
           <TextReveal
@@ -238,7 +238,7 @@ function FullWidthCampaign() {
           <Reveal animation="slideUp" delay={0.28}>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
               <div className="bg-white px-5 py-3 rounded-2xl border-2 border-black shadow-[3px_3px_0px_0px_#000] text-center">
-                <div className="text-2xl font-black text-black">2009</div>
+                <div className="text-2xl font-black text-black">2010</div>
                 <div className="text-[10px] font-black uppercase tracking-wider text-[#555555]">
                   Established
                 </div>

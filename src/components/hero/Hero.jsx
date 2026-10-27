@@ -52,54 +52,14 @@ const REAL_SLIDES = [
     src: assets.hero.confidence,
     alt: "Step Into Confidence — Walkline Footwear",
     links: [],
-    // ── Visual identity: grey background, black/editorial monochrome, clean fashion photography.
-    // CTA lives bottom-left, under the "Crafted For Comfort" subtitle in the clear grey zone.
-    // Style: near-black (#111111) rectangular button — premium, minimal, editorial.
-    cta: {
-      label: "SHOP NOW",
-      href: "/collections",
-      ariaLabel: "Step Into Confidence — Shop the collection",
-      position: "absolute bottom-[12%] sm:bottom-[15%] left-[7%] sm:left-[8%]",
-      // Dark editorial — matches grey/black monochrome aesthetic
-      buttonClass:
-        "group inline-flex items-center gap-2.5 " +
-        "px-5 py-2.5 sm:px-6 sm:py-3 " +
-        "text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white " +
-        "bg-[#111111] hover:bg-[#333333] active:scale-[0.98] " +
-        "rounded-[2px] " +
-        "transition-all duration-300 ease-out " +
-        "shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.35)] " +
-        "focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-black " +
-        "hover:-translate-y-[2px]",
-      arrowClass: "transition-transform duration-300 group-hover:translate-x-[3px]",
-    },
+    cta: null,
   },
   {
     id: "weekend",
     src: assets.campaigns.weekend,
     alt: "Step Into Weekend Mode — Walkline Footwear",
     links: [],
-    // ── Visual identity: warm green/yellow outdoor, earthy lifestyle, buckle sandal.
-    // CTA lives bottom-right, below "COMFORT. STYLE. FREEDOM." in the right-side clear zone.
-    // Style: warm earthy brown (#5A321C) pill capsule — matches grass/outdoor/natural palette.
-    cta: {
-      label: "SHOP SANDALS",
-      href: "/sandals",
-      ariaLabel: "Step Into Weekend Mode — Shop Sandals",
-      position: "absolute bottom-[9%] sm:bottom-[12%] right-[4%] sm:right-[5%]",
-      // Deep olive/forest green matching the "Weekend Mode" typography with sharp edges (no rounded borders)
-      buttonClass:
-        "group inline-flex items-center gap-2.5 " +
-        "px-5 py-2.5 sm:px-7 sm:py-3 " +
-        "text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white " +
-        "bg-[#2F461E] hover:bg-[#3B5726] active:scale-[0.98] " +
-        "rounded-none " +
-        "transition-all duration-300 ease-out " +
-        "shadow-[0_2px_14px_rgba(47,70,30,0.35)] hover:shadow-[0_4px_22px_rgba(47,70,30,0.5)] " +
-        "focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-1 focus:ring-offset-[#2F461E] " +
-        "hover:-translate-y-[2px]",
-      arrowClass: "transition-transform duration-300 group-hover:translate-x-[3px]",
-    },
+    cta: null,
   },
 ];
 

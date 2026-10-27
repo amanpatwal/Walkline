@@ -8,7 +8,7 @@ import { assets } from "@/data/assets";
 export const metadata = {
   title: "Products & Collections — Walkline Footwear",
   description:
-    "Explore Walkline Footwear across four core categories — Men's Sandals & Chappals, Women's Sneakers, Kids' Footwear, and Fashion Sandals. Made in India since 2009.",
+    "Explore Walkline Footwear across four core categories — Men's Sandals & Chappals, Women's Sneakers, Kids' Footwear, and Fashion Sandals. Made in India since 2010.",
 };
 
 export default function CollectionsPage() {

@@ -12,7 +12,7 @@ export default function CampaignBounceSole() {
     >
       <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-8">
         <Link
-          href="/sandals"
+          href="/collections"
           className="relative w-full aspect-[21/9] sm:aspect-[21/8] lg:aspect-[21/7] max-h-[620px] min-h-[340px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-editorial-md border border-black/10 bg-white group cursor-pointer block"
         >
           <Image

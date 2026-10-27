@@ -4,24 +4,20 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Search, User, ShoppingBag, Menu } from "lucide-react";
+import { Search, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
 import SearchModal from "./SearchModal";
-import CartDrawer from "./CartDrawer";
 import { PRIMARY_NAV } from "@/data/navigation";
 import { assets } from "@/data/assets";
-import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { itemCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenuId, setActiveMenuId] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const mobileMenuButtonRef = useRef(null);
   const closeTimerRef = useRef(null);
 
@@ -119,107 +115,86 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* CENTER: Men, Women, Kids, Sandals, About Us */}
-            <div className="hidden lg:flex items-center gap-8 xl:gap-10">
-              {PRIMARY_NAV.map((item) => {
-                const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
-                const isMenuOpen = activeMenuId === item.id;
+            {/* RIGHT GROUP: Navigation Links & Actions (Search + Mobile Menu) */}
+            <div className="flex items-center gap-6 xl:gap-10">
+              {/* DESKTOP NAV LINKS: Men, Women, Kids, Sandals, About Us */}
+              <div className="hidden lg:flex items-center gap-7 xl:gap-9">
+                {PRIMARY_NAV.map((item) => {
+                  const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                  const isMenuOpen = activeMenuId === item.id;
 
-                return (
-                  // ── KEY FIX: The entire wrapper (button + dropdown) is ONE hover region ──
-                  <div
-                    key={item.id}
-                    className="relative"
-                    onMouseEnter={() => handleNavEnter(item.id)}
-                    onMouseLeave={handleNavLeave}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={() => setActiveMenuId(null)}
-                      className={cn(
-                        "flex items-center gap-1 text-[12.5px] tracking-[0.1em] uppercase font-bold transition-colors duration-200 py-2 cursor-pointer focus:outline-none",
-                        isMenuOpen || isActive
-                          ? "text-[#27409A]"
-                          : "text-[#000000] hover:text-[#27409A]"
-                      )}
+                  return (
+                    <div
+                      key={item.id}
+                      className="relative"
+                      onMouseEnter={() => handleNavEnter(item.id)}
+                      onMouseLeave={handleNavLeave}
                     >
-                      <span>{item.label}</span>
-                    </Link>
+                      <Link
+                        href={item.href}
+                        onClick={() => setActiveMenuId(null)}
+                        className={cn(
+                          "flex items-center gap-1 text-[12.5px] tracking-[0.1em] uppercase font-bold transition-colors duration-200 py-2 cursor-pointer focus:outline-none",
+                          isMenuOpen || isActive
+                            ? "text-[#27409A]"
+                            : "text-[#000000] hover:text-[#27409A]"
+                        )}
+                      >
+                        <span>{item.label}</span>
+                      </Link>
 
-                    {/* Active page underline */}
-                    <span
-                      className={cn(
-                        "absolute bottom-0 left-0 h-[2px] bg-[#27409A] transition-all duration-250",
-                        isMenuOpen || isActive ? "w-full" : "w-0"
-                      )}
-                    />
+                      {/* Active page underline */}
+                      <span
+                        className={cn(
+                          "absolute bottom-0 left-0 h-[2px] bg-[#27409A] transition-all duration-250",
+                          isMenuOpen || isActive ? "w-full" : "w-0"
+                        )}
+                      />
 
-                    {/* Inline dropdown/megamenu — shares the same hover region */}
-                    <MegaMenu
-                      navItem={activeNavItem && activeNavItem.id === item.id ? activeNavItem : null}
-                      isOpen={isMenuOpen}
-                      onClose={() => setActiveMenuId(null)}
-                      onMouseEnter={handleMenuEnter}
-                      onMouseLeave={handleMenuLeave}
-                    />
-                  </div>
-                );
-              })}
-            </div>
+                      {/* Inline dropdown/megamenu */}
+                      <MegaMenu
+                        navItem={activeNavItem && activeNavItem.id === item.id ? activeNavItem : null}
+                        isOpen={isMenuOpen}
+                        onClose={() => setActiveMenuId(null)}
+                        onMouseEnter={handleMenuEnter}
+                        onMouseLeave={handleMenuLeave}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
 
-            {/* RIGHT: Search, Account, Bag, Mobile Trigger */}
-            <div className="flex items-center gap-1 sm:gap-2">
-              <button
-                onClick={() => setIsSearchOpen(true)}
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
-                aria-label="Open search"
-              >
-                <Search className="w-[18px] h-[18px]" strokeWidth={1.75} />
-              </button>
+              {/* ACTIONS: Search & Mobile Trigger */}
+              <div className="flex items-center gap-1 sm:gap-2">
+                <button
+                  onClick={() => setIsSearchOpen(true)}
+                  className="flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
+                  aria-label="Open search"
+                >
+                  <Search className="w-[18px] h-[18px]" strokeWidth={1.75} />
+                </button>
 
-              <Link
-                href="/contact"
-                className="hidden sm:inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
-                aria-label="Contact & account"
-              >
-                <User className="w-[18px] h-[18px]" strokeWidth={1.75} />
-              </Link>
-
-              <button
-                onClick={() => setIsCartOpen(true)}
-                className="relative flex min-h-11 min-w-11 items-center justify-center rounded-full p-2.5 hover:bg-black/5 text-[#000000] hover:text-[#27409A] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A] group"
-                aria-label={`Shopping bag (${itemCount} items)`}
-              >
-                <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.75} />
-                {itemCount > 0 && (
-                  <span className="absolute top-1 right-1 min-w-[16px] h-[16px] px-1 rounded-full bg-[#27409A] text-white text-[9px] font-bold flex items-center justify-center group-hover:scale-110 transition-transform">
-                    {itemCount}
-                  </span>
-                )}
-              </button>
-
-              <button
-                ref={mobileMenuButtonRef}
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white border border-neutral-200 p-2.5 text-[#000000] hover:bg-neutral-100 hover:text-[#27409A] transition-all cursor-pointer shadow-sm"
-                aria-label="Open mobile navigation"
-                aria-controls="walkline-mobile-navigation"
-                aria-expanded={isMobileMenuOpen}
-              >
-                <Menu className="w-[18px] h-[18px]" strokeWidth={1.75} />
-              </button>
+                <button
+                  ref={mobileMenuButtonRef}
+                  onClick={() => setIsMobileMenuOpen(true)}
+                  className="lg:hidden flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white border border-neutral-200 p-2.5 text-[#000000] hover:bg-neutral-100 hover:text-[#27409A] transition-all cursor-pointer shadow-sm"
+                  aria-label="Open mobile navigation"
+                  aria-controls="walkline-mobile-navigation"
+                  aria-expanded={isMobileMenuOpen}
+                >
+                  <Menu className="w-[18px] h-[18px]" strokeWidth={1.75} />
+                </button>
+              </div>
             </div>
           </div>
         </nav>
       </header>
 
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={closeMobileMenu}
         onOpenSearch={() => setIsSearchOpen(true)}
-        onOpenCart={() => setIsCartOpen(true)}
       />
     </>
   );

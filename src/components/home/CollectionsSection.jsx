@@ -8,7 +8,7 @@ const CATEGORY_ROUTES = {
   "mens-sandals": "/men",
   "womens-sneakers": "/women",
   "kids-footwear": "/kids",
-  "fashion-sandals": "/sandals",
+  "fashion-sandals": "/collections",
 };
 
 export default function CollectionsSection() {

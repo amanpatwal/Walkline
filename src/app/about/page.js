@@ -81,50 +81,66 @@ export default function AboutPage() {
         id="who-we-are"
         className="w-full bg-[#FAFAFA] border-y border-neutral-200/70 py-14 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16"
       >
-        <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          <div className="max-w-[580px]">
-            <p className="text-[15px] sm:text-[17px] font-medium uppercase tracking-[0.18em] text-[#27409A] mb-3">
-              WHO WE ARE
-            </p>
-            <h2
-              className="font-medium uppercase text-[#0A0A0A] leading-[1.12] mb-5 sm:mb-7"
-              style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)", letterSpacing: "-0.5px" }}
-            >
-              BUILT ON QUALITY. MADE FOR EVERY STEP.
-            </h2>
+        <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 lg:items-stretch">
+          <div className="max-w-[580px] flex flex-col justify-between">
+            <div>
+              <p className="text-[15px] sm:text-[17px] font-medium uppercase tracking-[0.18em] text-[#27409A] mb-3">
+                WHO WE ARE
+              </p>
+              <h2
+                className="font-medium uppercase text-[#0A0A0A] leading-[1.12] mb-5 sm:mb-7"
+                style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)", letterSpacing: "-0.5px" }}
+              >
+                BUILT ON QUALITY. MADE FOR EVERY STEP.
+              </h2>
 
-            <div
-              className="space-y-4 text-neutral-700"
-              style={{ fontSize: "clamp(0.9375rem, 1.2vw, 1.0625rem)", lineHeight: "1.75" }}
-            >
-              <p>
-                Walkline is a recognized, Indian-made footwear brand headquartered in Modern Industrial Estate (MIE), Haryana — the heart of India&apos;s footwear manufacturing belt.
-              </p>
-              <p>
-                Since 2010, we have grown from a focused PU footwear manufacturer into a full-spectrum lifestyle footwear brand spanning Men, Women and Kids — sold across India and exported to Asian and Middle East regions.
-              </p>
-              <p>
-                We have <span className="font-bold text-neutral-950">1,000+ active SKUs</span>, with a capacity to manufacture <span className="font-bold text-neutral-950">50,000 pairs per day</span> and on the road to scale upto 1 lakh pairs per day within a span of 3-5 years.
-              </p>
-              <p>
-                We maintain the highest standards of professionalism, honesty and ethical manufacturing — ISO 9001 and SEDEX/SA8000.
-              </p>
+              <div
+                className="space-y-4 text-neutral-700"
+                style={{ fontSize: "clamp(0.9375rem, 1.2vw, 1.0625rem)", lineHeight: "1.75" }}
+              >
+                <p>
+                  Walkline is a recognized, Indian-made footwear brand headquartered in Modern Industrial Estate (MIE), Haryana — the heart of India&apos;s footwear manufacturing belt.
+                </p>
+                <p>
+                  Since 2010, we have grown from a focused PU footwear manufacturer into a full-spectrum lifestyle footwear brand spanning Men, Women and Kids — sold across India and exported to Asian and Middle East regions.
+                </p>
+                <p>
+                  We have <span className="font-bold text-neutral-950">1,000+ active SKUs</span>, with a capacity to manufacture <span className="font-bold text-neutral-950">50,000 pairs per day</span> and on the road to scale upto 1 lakh pairs per day within a span of 3-5 years.
+                </p>
+                <p>
+                  We maintain the highest standards of professionalism, honesty and ethical manufacturing — ISO 9001 and SEDEX/SA8000.
+                </p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-5 pt-5 mt-5 border-t border-neutral-200">
+            <div className="grid grid-cols-2 gap-6 pt-6 mt-6 border-t border-neutral-200">
               <div>
-                <p className="text-xl sm:text-2xl font-black text-[#0A0A0A] tracking-tight">1,000+</p>
-                <p className="text-[10px] uppercase tracking-wider font-semibold text-neutral-500 mt-1">Active SKUs</p>
+                <p
+                  className="font-medium text-[#0A0A0A] tracking-[-0.02em] leading-none"
+                  style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)", letterSpacing: "-0.5px" }}
+                >
+                  1,000+
+                </p>
+                <p className="text-[11px] sm:text-xs uppercase tracking-[0.14em] font-medium text-neutral-500 mt-2">
+                  Active SKUs
+                </p>
               </div>
               <div>
-                <p className="text-xl sm:text-2xl font-black text-[#0A0A0A] tracking-tight">50,000</p>
-                <p className="text-[10px] uppercase tracking-wider font-semibold text-neutral-500 mt-1">Pairs Per Day Capacity</p>
+                <p
+                  className="font-medium text-[#0A0A0A] tracking-[-0.02em] leading-none"
+                  style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)", letterSpacing: "-0.5px" }}
+                >
+                  50,000
+                </p>
+                <p className="text-[11px] sm:text-xs uppercase tracking-[0.14em] font-medium text-neutral-500 mt-2">
+                  Pairs Per Day Capacity
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Right: brand video replacing old image */}
-          <div className="relative w-full aspect-[3/2] sm:aspect-[4/3] overflow-hidden border border-neutral-200/90 shadow-sm bg-neutral-100">
+          {/* Right: brand video filling column height on desktop, natural aspect on mobile */}
+          <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-full min-h-[300px] overflow-hidden border border-neutral-200/90 shadow-sm bg-neutral-100">
             <video
               autoPlay
               muted
@@ -132,7 +148,7 @@ export default function AboutPage() {
               playsInline
               preload="metadata"
               aria-label="Walkline Footwear — Brand Showcase Video"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-center"
             >
               <source src="/assets/logo/lol.mp4" type="video/mp4" />
             </video>

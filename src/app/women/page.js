@@ -48,10 +48,10 @@ export default function WomenPage() {
         eyebrow="Women's Collection"
         title="Step Into Your Style"
         description="Bold sneakers and comfortable footwear designed for the woman who moves. Noir-05, Barbie-04 and more — crafted for confidence."
-        ctaLabel="Shop Sneakers"
+        ctaLabel="Explore Sneakers"
         ctaHref="/women"
-        ctaSecLabel="Explore Sandals"
-        ctaSecHref="/sandals"
+        ctaSecLabel="All Collections"
+        ctaSecHref="/collections"
         theme="light"
         objectPosition="center"
         breadcrumbs={[

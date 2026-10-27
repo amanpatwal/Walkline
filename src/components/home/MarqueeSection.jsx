@@ -10,7 +10,7 @@ export default function MarqueeSection() {
           "WALKLINE",
           "MADE IN INDIA",
           "ALL-DAY COMFORT",
-          "SINCE 2009",
+          "SINCE 2010",
           "CRAFTED IN BAHADURGARH",
           "ENGINEERED MOVEMENT",
           "STEP INTO CONFIDENCE",

@@ -13,13 +13,13 @@ import Link from "next/link";
 export const metadata = {
   title: "Manufacturing & Craftsmanship — Walkline Footwear",
   description:
-    "Explore Walkline Footwear's precision craftsmanship, direct soling technology, and ergonomic comfort at our Bahadurgarh facility. Made in India since 2009.",
+    "Explore Walkline Footwear's precision craftsmanship, direct soling technology, and ergonomic comfort at our Bahadurgarh facility. Made in India since 2010.",
 };
 
 const VERIFIED_CRAFT_PILLARS = [
   {
     title: "Made in India",
-    description: "Designed, engineered, and manufactured in India with pride since 2009.",
+    description: "Designed, engineered, and manufactured in India with pride since 2010.",
     badge: "HERITAGE",
     icon: <HeartHandshake className="w-5 h-5 text-[#27409A]" />,
   },
@@ -54,7 +54,7 @@ export default function ManufacturingPage() {
         imageAlt="Walkline Footwear Manufacturing & Craft"
         eyebrow="Indian Footwear Craftsmanship"
         title="Made In India With Pride"
-        description="Crafting comfort and style for every step since 2009. From our Bahadurgarh facility in Haryana, Walkline Footwear builds dependable everyday footwear with lightweight construction and durable soling."
+        description="Crafting comfort and style for every step since 2010. From our Bahadurgarh facility in Haryana, Walkline Footwear builds dependable everyday footwear with lightweight construction and durable soling."
         breadcrumb="Manufacturing"
         primaryCtaText="Explore Craftsmanship"
         primaryCtaHref="#process"

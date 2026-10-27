@@ -10,7 +10,7 @@ const EDITORIAL_TILES = [
     id: "men",
     title: "MEN",
     href: "/men",
-    cta: "SHOP MEN",
+    cta: "EXPLORE MEN",
     image: assets.campaigns.comfortMoves,
     objectPosition: "center 30%",
     bgTone: "bg-[#251A14]",
@@ -19,7 +19,7 @@ const EDITORIAL_TILES = [
     id: "women",
     title: "WOMEN",
     href: "/women",
-    cta: "SHOP WOMEN",
+    cta: "EXPLORE WOMEN",
     image: assets.campaigns.moveDifferent,
     objectPosition: "center center",
     bgTone: "bg-[#1E1B18]",
@@ -28,17 +28,17 @@ const EDITORIAL_TILES = [
     id: "kids",
     title: "KIDS",
     href: "/kids",
-    cta: "SHOP KIDS",
+    cta: "EXPLORE KIDS",
     image: assets.products.frooti,
     isProductStage: true,
     objectPosition: "center center",
     bgTone: "bg-[#253038]",
   },
   {
-    id: "sandals",
-    title: "SANDALS",
-    href: "/sandals",
-    cta: "SHOP SANDALS",
+    id: "collections",
+    title: "COLLECTIONS",
+    href: "/collections",
+    cta: "EXPLORE ALL",
     image: assets.campaigns.bounceSole,
     objectPosition: "center 35%",
     bgTone: "bg-[#1F2724]",
@@ -48,10 +48,10 @@ const EDITORIAL_TILES = [
 export default function EditorialGrid() {
   return (
     <section
-      aria-label="Walkline Footwear Categories — Editorial Collection Grid"
+      aria-label="Walkline Footwear Categories — Editorial Collection Showcase"
       className="relative w-full bg-[#000000] overflow-hidden"
     >
-      {/* ─── 2x2 Zero-Gap Editorial Grid ─── */}
+      {/* ─── 2x2 Zero-Gap Editorial Static Grid ─── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0 w-full">
         {EDITORIAL_TILES.map((tile, idx) => (
           <Link
@@ -82,7 +82,7 @@ export default function EditorialGrid() {
                     alt={`${tile.title} — Walkline Kids Footwear`}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain p-2 group-hover:scale-[1.05] transition-transform duration-700 ease-out drop-shadow-[0_20px_28px_rgba(0,0,0,0.55)]"
+                    className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-700 ease-out drop-shadow-[0_20px_28px_rgba(0,0,0,0.55)]"
                   />
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function EditorialGrid() {
                   alt={`${tile.title} — Walkline Footwear`}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+                  className="object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                   style={{
                     objectPosition: tile.objectPosition,
                   }}
@@ -104,20 +104,19 @@ export default function EditorialGrid() {
 
             {/* ─── Editorial Vignettes for Pure Legibility ─── */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 pointer-events-none" />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 pointer-events-none" />
 
-            {/* ─── Top-Centered Large Category Title (Exact Comet Styling) ─── */}
+            {/* ─── Top-Centered Large Category Title ─── */}
             <div className="absolute top-4 sm:top-6 inset-x-0 z-10 text-center px-4">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white group-hover:tracking-normal transition-all duration-500 drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
                 {tile.title}
               </h2>
             </div>
 
-            {/* ─── Bottom-Right "SHOP NOW →" CTA (Exact Reference Placement) ─── */}
+            {/* ─── Bottom-Right Explore CTA ─── */}
             <div className="absolute bottom-4 sm:bottom-5 right-4 sm:right-6 z-10">
-              <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-black uppercase tracking-widest text-white border-b-2 border-white pb-0.5 group-hover:border-[#27409A] group-hover:text-white transition-all duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+              <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-widest text-white border-b border-white/60 pb-0.5 group-hover:border-white transition-all duration-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                 <span>{tile.cta}</span>
-                <ArrowRight className="w-3.5 h-3.5 text-white group-hover:text-[#27409A] group-hover:translate-x-1.5 transition-transform duration-300" />
+                <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </div>
           </Link>

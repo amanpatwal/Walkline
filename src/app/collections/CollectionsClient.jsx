@@ -185,7 +185,7 @@ export default function CollectionsClient() {
                   ? "/women"
                   : col.id === "kids-footwear"
                   ? "/kids"
-                  : "/sandals";
+                  : "/collections";
 
               return (
                 <article
@@ -279,7 +279,7 @@ export default function CollectionsClient() {
               href="/about"
               className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full border border-white/30 text-white text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-[#000000] transition-colors"
             >
-              <span>Our Heritage Since 2009</span>
+              <span>Our Heritage Since 2010</span>
             </Link>
           </div>
         </div>

@@ -8,13 +8,11 @@ export default function sitemap() {
     "/men",
     "/women",
     "/kids",
-    "/sandals",
     "/collections",
     "/about",
     "/contact",
     "/manufacturing",
     "/sustainability",
-    "/cart",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

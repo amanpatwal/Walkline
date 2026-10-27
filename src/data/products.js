@@ -35,7 +35,7 @@ export const FEATURED_PRODUCTS = [
     ],
     colors: ["#FFFFFF", "#27409A", "#000000"],
     image: assets.products.noir,
-    images: [assets.products.noir],
+    images: [assets.products.noir, assets.products.vertex, assets.products.concept],
     slug: "noir-05",
   },
   {
@@ -64,7 +64,7 @@ export const FEATURED_PRODUCTS = [
     ],
     colors: ["#000000", "#27409A", "#FFFFFF"],
     image: assets.products.vertex,
-    images: [assets.products.vertex],
+    images: [assets.products.vertex, assets.products.concept, assets.products.vrx, assets.products.noir],
     slug: "vertex",
   },
   {
@@ -93,7 +93,7 @@ export const FEATURED_PRODUCTS = [
     ],
     colors: ["#FAF7F0", "#27409A", "#000000"],
     image: assets.products.barbie,
-    images: [assets.products.barbie],
+    images: [assets.products.barbie, assets.products.concept, assets.products.vrx],
     slug: "barbie-04",
   },
   {
@@ -122,7 +122,7 @@ export const FEATURED_PRODUCTS = [
     ],
     colors: ["#27409A", "#000000", "#FFFFFF"],
     image: assets.products.vrx,
-    images: [assets.products.vrx],
+    images: [assets.products.vrx, assets.products.barbie, assets.products.vertex, assets.products.frooti],
     slug: "vrx",
   },
   {
@@ -151,7 +151,7 @@ export const FEATURED_PRODUCTS = [
     ],
     colors: ["#27409A", "#FFFFFF", "#000000"],
     image: assets.products.frooti,
-    images: [assets.products.frooti],
+    images: [assets.products.frooti, assets.products.vertex, assets.products.concept],
     slug: "frooti",
   },
   {
@@ -180,7 +180,7 @@ export const FEATURED_PRODUCTS = [
     ],
     colors: ["#000000", "#27409A", "#FFFFFF"],
     image: assets.products.concept,
-    images: [assets.products.concept],
+    images: [assets.products.concept, assets.products.vertex, assets.products.vrx, assets.products.barbie],
     slug: "concept",
   },
 ];

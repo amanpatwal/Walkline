@@ -12,44 +12,17 @@ import {
   ArrowRight,
   Package,
 } from "lucide-react";
-import { useCart } from "@/context/CartContext";
-import CartDrawer from "@/components/navbar/CartDrawer";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 
 export default function ProductDetailClient({ product, relatedProducts = [] }) {
-  const { addItem } = useCart();
-
   const [selectedSize, setSelectedSize] = useState(
     product?.availableSizes?.[0] || ""
   );
-  const [quantity, setQuantity] = useState(1);
-  const [addedSuccess, setAddedSuccess] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("specifications"); // specifications | description | care
 
   if (!product) return null;
-
-  const handleAddToCart = () => {
-    if (!selectedSize) return;
-
-    addItem({
-      productId: product.id,
-      slug: product.slug,
-      name: product.series,
-      category: product.category,
-      image: product.image,
-      size: selectedSize,
-      quantity: quantity,
-    });
-
-    setAddedSuccess(true);
-    setTimeout(() => {
-      setAddedSuccess(false);
-      setIsCartOpen(true);
-    }, 600);
-  };
 
   return (
     <>
@@ -74,7 +47,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                   ? "/women"
                   : product.categoryKey === "kids-footwear"
                   ? "/kids"
-                  : "/sandals"
+                  : "/collections"
               }
               className="hover:text-[#27409A] transition-colors truncate"
             >
@@ -266,64 +239,18 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                 )}
               </div>
 
-              {/* Quantity & Add to Bag Actions */}
+              {/* Product Inquiry & Wholesale Actions (Showcase Model) */}
               <div className="pt-2 space-y-3">
-                <div className="flex items-center gap-3">
-                  {/* Quantity Counter */}
-                  <div className="flex items-center border border-neutral-200 rounded-xl bg-white p-1">
-                    <button
-                      type="button"
-                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                      className="w-11 h-11 flex items-center justify-center text-sm font-bold text-[#000000] hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
-                      aria-label="Decrease quantity"
-                    >
-                      -
-                    </button>
-                    <span className="w-10 text-center font-bold text-sm text-[#000000]">
-                      {quantity}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setQuantity((q) => q + 1)}
-                      className="w-11 h-11 flex items-center justify-center text-sm font-bold text-[#000000] hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
-                      aria-label="Increase quantity"
-                    >
-                      +
-                    </button>
-                  </div>
+                <Link
+                  href={`/contact?subject=inquiry&product=${encodeURIComponent(
+                    product.series
+                  )}${selectedSize ? `&size=${encodeURIComponent(selectedSize)}` : ""}`}
+                  className="w-full py-4 px-6 rounded-xl bg-[#27409A] hover:bg-[#1E327A] text-white font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer"
+                >
+                  <span>Inquire About This Style</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
 
-                  {/* Primary Add to Bag Button */}
-                  <button
-                    type="button"
-                    onClick={handleAddToCart}
-                    disabled={!selectedSize}
-                    className={`flex-1 py-4 px-6 rounded-xl font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer ${
-                      addedSuccess
-                        ? "bg-[#2A7242] text-white"
-                        : selectedSize
-                        ? "bg-[#27409A] hover:bg-[#1E327A] text-white"
-                        : "bg-[#27409A]/40 text-white/70 cursor-not-allowed"
-                    }`}
-                  >
-                    {addedSuccess ? (
-                      <>
-                        <Check className="w-4 h-4" />
-                        <span>Added to Bag</span>
-                      </>
-                    ) : (
-                      <>
-                        <ShoppingBag className="w-4 h-4" />
-                        <span>
-                          {selectedSize
-                            ? `Add ${selectedSize} to Bag`
-                            : "Select a Size"}
-                        </span>
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                {/* Secondary Wholesale / B2B Inquiry Action */}
                 <Link
                   href={`/contact?subject=wholesale&product=${encodeURIComponent(
                     product.series
@@ -507,9 +434,6 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
       </main>
 
       <Footer />
-
-      {/* Cart Drawer */}
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 }

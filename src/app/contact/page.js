@@ -118,7 +118,7 @@ export default function ContactPage() {
                   Walkline Footwear
                 </h3>
                 <p className="text-xs text-white/80 leading-relaxed">
-                  Your ultimate destination for premium footwear. Crafting comfort and style for every step since 2009.
+                  Your ultimate destination for premium footwear. Crafting comfort and style for every step since 2010.
                 </p>
                 <div className="pt-2 border-t border-white/10 text-[11px] text-neutral-300 flex items-center gap-2">
                   <Factory className="w-3.5 h-3.5 text-[#27409A]" />
@@ -167,7 +167,7 @@ export default function ContactPage() {
                 Kids&apos; Footwear
               </Link>
               <Link
-                href="/sandals"
+                href="/collections"
                 className="inline-flex min-h-11 items-center text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A] transition-colors"
               >
                 Fashion Sandals

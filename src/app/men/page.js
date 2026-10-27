@@ -12,12 +12,8 @@ import { ArrowRight } from "lucide-react";
 export const metadata = {
   title: "Men's Footwear — Walkline Footwear",
   description:
-    "Explore Walkline men's footwear — Vertex sandals, Concept chappals, slip-ons and sneakers. Crafted for all-day comfort since 2009.",
+    "Explore Walkline men's footwear — Vertex sandals, Concept chappals, slip-ons and sneakers. Crafted for all-day comfort since 2010.",
 };
-
-const mensProducts = FEATURED_PRODUCTS.filter((p) =>
-  ["mens-sandals"].includes(p.categoryKey)
-);
 
 const allMensProducts = FEATURED_PRODUCTS.filter((p) =>
   ["mens-sandals", "fashion-sandals"].includes(p.categoryKey)
@@ -28,25 +24,21 @@ const MENS_CATEGORIES = [
     label: "Sandals & Chappals",
     desc: "Vertex & Concept — lighter than air",
     image: assets.campaigns.weekend,
-    href: "/sandals",
   },
   {
     label: "Fashion Sandals",
     desc: "VRX metallic buckle series",
     image: assets.campaigns.rainyDays,
-    href: "/sandals",
   },
   {
     label: "Slip-ons",
     desc: "Easy on, easy off everyday comfort",
     image: assets.campaigns.comfortGo,
-    href: "/men",
   },
   {
     label: "New Arrivals",
     desc: "Fresh drops from Walkline",
     image: assets.campaigns.freshRotation,
-    href: "/men",
   },
 ];
 
@@ -61,10 +53,10 @@ export default function MenPage() {
         imageAlt="Walkline Men's Footwear — Weekend Mode campaign"
         eyebrow="Men's Collection"
         title="Step Into Every Day"
-        description="Crafted for the man who moves. Premium sandals, slip-ons and chappals engineered for all-day comfort since 2009."
-        ctaLabel="Shop Sandals"
-        ctaHref="/sandals"
-        ctaSecLabel="All Men's"
+        description="Crafted for the man who moves. Premium sandals, slip-ons and chappals engineered for all-day comfort since 2010."
+        ctaLabel="Explore Styles"
+        ctaHref="#styles"
+        ctaSecLabel="All Collections"
         ctaSecHref="/collections"
         theme="light"
         objectPosition="center"
@@ -74,44 +66,51 @@ export default function MenPage() {
         ]}
       />
 
-      {/* Category Grid */}
+      {/* Static Category Showcase — Clean non-storefront range display */}
       <section className="w-full bg-white px-5 sm:px-10 lg:px-16 py-14 sm:py-18">
         <div className="max-w-[1440px] mx-auto">
           <div className="flex items-end justify-between mb-8 border-b border-black/10 pb-5">
-            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#000000]">
-              Shop by Category
-            </h2>
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#27409A] block mb-1">
+                Footwear Range
+              </span>
+              <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#000000]">
+                Men&apos;s Categories
+              </h2>
+            </div>
+            <span className="text-xs text-neutral-500 font-medium">Static Showcase</span>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {MENS_CATEGORIES.map((cat, idx) => (
-              <Link
+              <div
                 key={idx}
-                href={cat.href}
-                className="group relative rounded-xl overflow-hidden aspect-[3/4] bg-neutral-100 block"
+                className="relative rounded-xl overflow-hidden aspect-[3/4] bg-neutral-100 select-none border border-neutral-200"
               >
                 <Image
                   src={cat.image}
                   alt={cat.label}
                   fill
-                  className="object-cover group-hover:scale-[1.04] transition-transform duration-600"
+                  className="object-cover"
                   sizes="(max-width: 640px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 inset-x-0 p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-white/70">{cat.desc}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-white/80">{cat.desc}</p>
                   <h3 className="text-sm font-black uppercase tracking-tight text-white mt-0.5">{cat.label}</h3>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Product Grid */}
-      <ProductGrid
-        products={allMensProducts}
-        heading="Featured Men's Styles"
-      />
+      <div id="styles">
+        <ProductGrid
+          products={allMensProducts}
+          heading="Featured Men's Styles"
+        />
+      </div>
 
       {/* Editorial Campaign Break */}
       <section className="relative w-full bg-[#000000] overflow-hidden">
@@ -136,10 +135,10 @@ export default function MenPage() {
                 Shock-absorbing dual-density footbed. Feel the difference with every step.
               </p>
               <Link
-                href="/sandals"
+                href="/collections"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-[#000000] text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-100 transition-colors"
               >
-                Explore Slippers
+                <span>Explore Slippers</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -178,10 +177,10 @@ export default function MenPage() {
               ))}
             </ul>
             <Link
-              href="/sandals"
+              href="/collections"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-[#000000] text-white text-[11px] font-bold uppercase tracking-[0.12em] hover:bg-[#27409A] transition-colors"
             >
-              Shop Vertex
+              <span>Explore Vertex</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

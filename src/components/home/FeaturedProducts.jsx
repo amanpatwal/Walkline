@@ -3,128 +3,236 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShoppingBag, X, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { FEATURED_PRODUCTS } from "@/data/products";
-import { useCart } from "@/context/CartContext";
 
 // ─── Featured Products Horizontal Carousel ────────────────────────────────────
 // Brand palette: #27409A (Primary Blue), #000000 (Black), #FFFFFF (White).
 // Subtle neutral borders, #000000 product titles, #27409A accents/badges.
 
+const N = FEATURED_PRODUCTS.length;
+// Triplicate items to allow seamless infinite backward and forward looping
+const EXTENDED_PRODUCTS = [
+  ...FEATURED_PRODUCTS,
+  ...FEATURED_PRODUCTS,
+  ...FEATURED_PRODUCTS,
+];
+const INITIAL_INDEX = N; // Start at the beginning of the middle set
+
 export default function FeaturedProducts() {
-  const [quickAddProduct, setQuickAddProduct] = useState(null);
   const containerRef = useRef(null);
-  const trackRef     = useRef(null);
+  const trackRef = useRef(null);
 
-  const [translateX, setTranslateX] = useState(0);
-  const [canGoPrev, setCanGoPrev]   = useState(false);
-  const [canGoNext, setCanGoNext]   = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(INITIAL_INDEX);
+  const [animated, setAnimated] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(1200);
 
-  // ── Calculate scroll bounds ───────────────────────────────────────────────
-  const getMaxTranslate = useCallback(() => {
-    if (!containerRef.current || !trackRef.current) return 0;
-    const cWidth = containerRef.current.clientWidth;
-    const tWidth = trackRef.current.scrollWidth;
-    return Math.max(0, tWidth - cWidth);
+  const isPausedRef = useRef(false);
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
+
+  const indexRef = useRef(INITIAL_INDEX);
+  useEffect(() => {
+    indexRef.current = currentIndex;
+  }, [currentIndex]);
+
+  const transitionLockRef = useRef(false);
+  const autoplayTimerRef = useRef(null);
+
+  // Responsive cards per view: 4 on desktop, 2 on tablet, 1 on mobile
+  const getCardsPerView = useCallback((width) => {
+    if (width >= 1024) return 4;
+    if (width >= 640) return 2;
+    return 1;
   }, []);
 
-  const refreshNav = useCallback((nextTx) => {
-    const max = getMaxTranslate();
-    setCanGoPrev(nextTx < -4);
-    setCanGoNext(Math.abs(nextTx) < max - 4);
-  }, [getMaxTranslate]);
+  const cardsPerView = getCardsPerView(containerWidth);
+  const cardWidth = containerWidth > 0 ? containerWidth / cardsPerView : 300;
 
-  const stepDistance = useCallback(() => {
-    if (!containerRef.current) return 320;
-    const w = containerRef.current.clientWidth;
-    if (w >= 1024) return w / 4;
-    if (w >= 640)  return w / 2;
-    return w * 0.84;
+  // Track container width via ResizeObserver
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.clientWidth);
+      }
+    };
+    updateWidth();
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect.width > 0) {
+          setContainerWidth(entry.contentRect.width);
+        }
+      }
+    });
+
+    resizeObserver.observe(containerRef.current);
+    return () => resizeObserver.disconnect();
   }, []);
+
+  // Check reduced motion
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Move slide
+  const moveTo = useCallback(
+    (targetIdx, withAnimation = true) => {
+      if (transitionLockRef.current) return;
+      if (prefersReducedMotion || !withAnimation) {
+        setAnimated(false);
+        setCurrentIndex(targetIdx);
+        indexRef.current = targetIdx;
+      } else {
+        transitionLockRef.current = true;
+        setAnimated(true);
+        setCurrentIndex(targetIdx);
+        indexRef.current = targetIdx;
+        // Safety unlock in case transitionend event is missed
+        setTimeout(() => {
+          transitionLockRef.current = false;
+        }, 650);
+      }
+    },
+    [prefersReducedMotion]
+  );
 
   const goNext = useCallback(() => {
-    const max  = getMaxTranslate();
-    const step = stepDistance();
-    setTranslateX((prev) => {
-      const next = Math.max(-max, prev - step);
-      refreshNav(next);
-      return next;
-    });
-  }, [getMaxTranslate, stepDistance, refreshNav]);
+    if (transitionLockRef.current) return;
+    moveTo(indexRef.current + 1, true);
+  }, [moveTo]);
 
   const goPrev = useCallback(() => {
-    const step = stepDistance();
-    setTranslateX((prev) => {
-      const next = Math.min(0, prev + step);
-      refreshNav(next);
-      return next;
-    });
-  }, [stepDistance, refreshNav]);
+    if (transitionLockRef.current) return;
+    moveTo(indexRef.current - 1, true);
+  }, [moveTo]);
 
-  // Recalculate on window resize
+  // Restart autoplay timer on user interaction
+  const resetAutoplayTimer = useCallback(() => {
+    if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current);
+    autoplayTimerRef.current = setInterval(() => {
+      if (!isPausedRef.current) {
+        goNext();
+      }
+    }, 3500);
+  }, [goNext]);
+
+  const handleNext = useCallback(() => {
+    goNext();
+    resetAutoplayTimer();
+  }, [goNext, resetAutoplayTimer]);
+
+  const handlePrev = useCallback(() => {
+    goPrev();
+    resetAutoplayTimer();
+  }, [goPrev, resetAutoplayTimer]);
+
+  // Infinite loop boundary jump on transitionend
   useEffect(() => {
-    const handleResize = () => {
-      const max = getMaxTranslate();
-      setTranslateX((prev) => {
-        const clamped = Math.max(-max, Math.min(0, prev));
-        refreshNav(clamped);
-        return clamped;
-      });
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [getMaxTranslate, refreshNav]);
+    const trackEl = trackRef.current;
+    if (!trackEl) return;
 
-  // ── Touch swipe ───────────────────────────────────────────────────────────
-  const touchStartX = useRef(0);
+    const onTransitionEnd = () => {
+      transitionLockRef.current = false;
+      const cur = indexRef.current;
+
+      // Reached the end of the middle block -> snap seamlessly to identical middle index
+      if (cur >= 2 * N) {
+        setAnimated(false);
+        const resetIdx = cur - N;
+        setCurrentIndex(resetIdx);
+        indexRef.current = resetIdx;
+      }
+      // Reached before the start of the middle block -> snap seamlessly forward
+      else if (cur < N) {
+        setAnimated(false);
+        const resetIdx = cur + N;
+        setCurrentIndex(resetIdx);
+        indexRef.current = resetIdx;
+      }
+    };
+
+    trackEl.addEventListener("transitionend", onTransitionEnd);
+    return () => trackEl.removeEventListener("transitionend", onTransitionEnd);
+  }, []);
+
+  // Autoplay setup
+  useEffect(() => {
+    resetAutoplayTimer();
+    return () => {
+      if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current);
+    };
+  }, [resetAutoplayTimer]);
+
+  // Pause when browser tab is inactive / not visible
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.hidden) {
+        setIsPaused(true);
+      } else {
+        setIsPaused(false);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, []);
+
+  // Touch and drag swipe
+  const dragStartX = useRef(0);
+  const isDragging = useRef(false);
+
   const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
+    setIsPaused(true);
+    dragStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = (e) => {
-    const delta = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(delta) > 48) {
-      if (delta > 0) goNext();
-      else           goPrev();
+    const delta = dragStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) {
+      if (delta > 0) handleNext();
+      else handlePrev();
     }
+    setIsPaused(false);
   };
 
-  // ── Mouse drag ────────────────────────────────────────────────────────────
-  const [isDragging, setIsDragging] = useState(false);
-  const dragStartX    = useRef(0);
-  const dragStartTx   = useRef(0);
-
   const handleMouseDown = (e) => {
-    setIsDragging(true);
-    dragStartX.current  = e.clientX;
-    dragStartTx.current = translateX;
+    setIsPaused(true);
+    isDragging.current = true;
+    dragStartX.current = e.clientX;
     e.preventDefault();
   };
 
-  const handleMouseMove = useCallback((e) => {
-    if (!isDragging) return;
-    const delta = e.clientX - dragStartX.current;
-    const max   = getMaxTranslate();
-    const next  = Math.max(-max, Math.min(0, dragStartTx.current + delta));
-    setTranslateX(next);
-    refreshNav(next);
-  }, [isDragging, getMaxTranslate, refreshNav]);
+  const handleMouseUp = (e) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    const delta = dragStartX.current - e.clientX;
+    if (Math.abs(delta) > 40) {
+      if (delta > 0) handleNext();
+      else handlePrev();
+    }
+    setIsPaused(false);
+  };
 
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
+  const translateX = -currentIndex * cardWidth;
+  const transitionStyle = animated && !prefersReducedMotion
+    ? "transform 600ms cubic-bezier(0.16, 1, 0.3, 1)"
+    : "none";
 
   return (
     <section
       id="products"
-      aria-label="Walkline Footwear — Featured Products"
+      aria-label="Walkline Footwear — Featured Products Showcase"
       className="relative w-full bg-white text-[#000000] overflow-hidden select-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
       {/* ─── Sliding Track ─────────────────────────────────────────────────── */}
       <div
         ref={containerRef}
         className="w-full overflow-hidden"
-        onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
@@ -133,84 +241,66 @@ export default function FeaturedProducts() {
           className="flex"
           style={{
             transform: `translateX(${translateX}px)`,
-            transition: isDragging
-              ? "none"
-              : "transform 600ms cubic-bezier(0.16, 1, 0.3, 1)",
+            transition: transitionStyle,
             willChange: "transform",
-            cursor: isDragging ? "grabbing" : "grab",
+            cursor: "grab",
           }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}
         >
-          {FEATURED_PRODUCTS.map((product, idx) => (
+          {EXTENDED_PRODUCTS.map((product, idx) => (
             <ProductCell
-              key={product.id}
+              key={`${product.id}-${idx}`}
               product={product}
-              isFirst={idx === 0}
-              isLast={idx === FEATURED_PRODUCTS.length - 1}
+              cardWidth={cardWidth}
               onQuickAdd={() => setQuickAddProduct(product)}
             />
           ))}
         </div>
       </div>
 
-      {/* ─── Right-edge next button ─────── */}
-      {canGoNext && (
-        <button
-          type="button"
-          onClick={goNext}
-          aria-label="View next products"
-          className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20
-                     w-11 h-11 rounded-full
-                     bg-white shadow-md border border-neutral-200
-                     flex items-center justify-center
-                     text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A]
-                     transition-all duration-200 cursor-pointer group"
-        >
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
-        </button>
-      )}
+      {/* ─── Next button (Right) ─────── */}
+      <button
+        type="button"
+        onClick={handleNext}
+        aria-label="View next products"
+        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20
+                   w-11 h-11 rounded-full
+                   bg-white/95 backdrop-blur-sm shadow-lg border border-neutral-200
+                   flex items-center justify-center
+                   text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A]
+                   transition-all duration-200 cursor-pointer group active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#27409A]"
+      >
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+      </button>
 
-      {/* ─── Left-edge prev button ─────── */}
-      {canGoPrev && (
-        <button
-          type="button"
-          onClick={goPrev}
-          aria-label="View previous products"
-          className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20
-                     w-11 h-11 rounded-full
-                     bg-white shadow-md border border-neutral-200
-                     flex items-center justify-center
-                     text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A]
-                     transition-all duration-200 cursor-pointer group rotate-180"
-        >
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
-        </button>
-      )}
+      {/* ─── Prev button (Left) ─────── */}
+      <button
+        type="button"
+        onClick={handlePrev}
+        aria-label="View previous products"
+        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20
+                   w-11 h-11 rounded-full
+                   bg-white/95 backdrop-blur-sm shadow-lg border border-neutral-200
+                   flex items-center justify-center
+                   text-[#000000] hover:bg-[#27409A] hover:text-white hover:border-[#27409A]
+                   transition-all duration-200 cursor-pointer group active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#27409A] rotate-180"
+      >
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+      </button>
 
-      {/* ─── Quick Add Modal ───────────────────────────────────────────────── */}
-      {quickAddProduct && (
-        <QuickAddModal
-          product={quickAddProduct}
-          onClose={() => setQuickAddProduct(null)}
-        />
-      )}
     </section>
   );
 }
 
 // ─── Single Product Cell ──────────────────────────────────────────────────────
 
-function ProductCell({ product, isFirst, isLast, onQuickAdd }) {
+function ProductCell({ product, cardWidth }) {
   return (
     <div
-      className={`
-        relative flex-shrink-0 flex flex-col
-        w-[84vw] sm:w-1/2 lg:w-1/4
-        bg-white
-        ${!isLast ? "border-r border-neutral-200" : ""}
-      `}
+      className="relative flex-shrink-0 flex flex-col bg-white border-r border-neutral-200"
+      style={{ width: `${cardWidth}px` }}
       draggable={false}
     >
       {/* ── RESTOCKED badge ── */}
@@ -227,7 +317,7 @@ function ProductCell({ product, isFirst, isLast, onQuickAdd }) {
       {/* ── Product image — 3:4, dominates the panel ── */}
       <Link
         href={`/products/${product.slug}`}
-        className="group relative block w-full overflow-hidden bg-neutral-50"
+        className="group relative block w-full overflow-hidden bg-white"
         style={{ aspectRatio: "3 / 4" }}
         aria-label={`View ${product.series}`}
         draggable={false}
@@ -236,127 +326,13 @@ function ProductCell({ product, isFirst, isLast, onQuickAdd }) {
           src={product.image}
           alt={`${product.series} — ${product.category} — Walkline Footwear`}
           fill
-          sizes="(max-width: 640px) 84vw, (max-width: 1024px) 50vw, 25vw"
-          loading={isFirst ? "eager" : "lazy"}
-          className="object-contain p-8 sm:p-10
-                     transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          loading="lazy"
+          className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
                      group-hover:scale-[1.04]"
           draggable={false}
         />
       </Link>
-    </div>
-  );
-}
-
-// ─── Quick Add Size Modal ─────────────────────────────────────────────────────
-
-function QuickAddModal({ product, onClose }) {
-  const { addItem } = useCart();
-  const [selectedSize, setSelectedSize] = useState(product.availableSizes?.[0] || "");
-  const [isAdded, setIsAdded] = useState(false);
-
-  const handleAddToCart = () => {
-    if (!selectedSize) return;
-    addItem({
-      productId: product.id,
-      slug:      product.slug,
-      name:      product.series,
-      category:  product.category,
-      image:     product.image,
-      size:      selectedSize,
-      quantity:  1,
-    });
-    setIsAdded(true);
-    setTimeout(() => { setIsAdded(false); onClose(); }, 900);
-  };
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Select size for ${product.series}`}
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm p-0 sm:p-4"
-      onClick={onClose}
-    >
-      <div
-        className="w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-2xl
-                   border border-neutral-200 p-6 sm:p-8
-                   shadow-xl max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="flex items-start justify-between pb-4 border-b border-neutral-200 mb-5">
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#27409A] block mb-0.5">
-              {product.category}
-            </span>
-            <h3 className="text-xl font-black uppercase tracking-tight text-[#000000]">
-              {product.series}
-            </h3>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-neutral-100 text-[#000000] transition-colors cursor-pointer"
-            aria-label="Close"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Product preview */}
-        <div className="relative w-full aspect-[4/3] bg-neutral-50 rounded-xl mb-5 overflow-hidden">
-          <Image src={product.image} alt={product.series} fill className="object-contain p-4" />
-        </div>
-
-        {/* Size grid */}
-        <div className="mb-6">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-[#000000] mb-3">
-            Select Size
-          </p>
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-            {product.availableSizes?.map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                className={`py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${
-                  selectedSize === size
-                    ? "bg-[#27409A] text-white border-[#27409A]"
-                    : "bg-white text-[#000000] border-neutral-200 hover:border-[#27409A] hover:text-[#27409A]"
-                }`}
-              >
-                {size}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Add to bag */}
-        <button
-          onClick={handleAddToCart}
-          disabled={isAdded || !selectedSize}
-          className="w-full py-4 rounded-xl bg-[#27409A] hover:bg-[#1E327A] text-white
-                     font-bold uppercase tracking-[0.15em] text-xs transition-all
-                     flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50"
-        >
-          {isAdded ? (
-            <><Check className="w-4 h-4 text-white" /><span>Added to Bag</span></>
-          ) : (
-            <><ShoppingBag className="w-4 h-4 text-white" /><span>Add to Bag — {selectedSize || "Select Size"}</span></>
-          )}
-        </button>
-
-        <div className="mt-4 text-center">
-          <Link
-            href={`/products/${product.slug}`}
-            onClick={onClose}
-            className="text-xs font-bold uppercase tracking-wider text-[#27409A] hover:text-[#000000]
-                       inline-flex items-center gap-1.5 transition-colors"
-          >
-            <span>View Full Details</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }
