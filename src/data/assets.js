@@ -35,11 +35,12 @@ export const assets = {
     confidence: "/assets/hero/step-into-confidence.jpg",
     soldOut: "/assets/hero/sold-out-banner.jpg",
     midnight: "/assets/hero/midnight.jpg",
-    xLowsWings: "/assets/hero/1 (1).jpg",
-    moveDifferent: "/assets/hero/2.jpg",
-    winterDays: "/assets/hero/1.jpg",
-    bounceSole: "/assets/hero/2 (1).jpg",
-    primary: "/assets/hero/1 (1).jpg",
+    // Hero carousel — four new lifestyle banner slides
+    xLowsWings: "/assets/lifestyle/1 (2).jpg",
+    moveDifferent: "/assets/lifestyle/2 (3).jpg",
+    winterDays: "/assets/lifestyle/1 (3).jpg",
+    bounceSole: "/assets/lifestyle/2 (4).jpg",
+    primary: "/assets/lifestyle/1 (2).jpg",
     background: "/assets/hero/hero-bg.svg",
   },
 
@@ -50,9 +51,13 @@ export const assets = {
     comfortGo: "/assets/campaigns/comfort-on-the-go.png",
     moveDifferent: "/assets/campaigns/move-different.png",
     sporty: "/assets/campaigns/sporty-looks-better.png",
-    freshRotation: "/assets/campaigns/fresh-in-rotation.jpg",
-    summer: "/assets/campaigns/summer-lifestyle.jpg",
+    // Move Different lifestyle editorial campaign banner (lifestyle/2 (5).jpg)
+    freshRotation: "/assets/lifestyle/2 (5).jpg",
+    // Step Into Confidence lifestyle editorial banner (step-into-confidence.jpg)
+    summer: "/assets/hero/step-into-confidence.jpg",
+    confidence: "/assets/hero/step-into-confidence.jpg",
     comfyBanner: "/assets/lifestyle/Banner-Comfy.jpg",
+    visionBanner: "/assets/lifestyle/10-Millions-Pairs.jpg",
     bounceSole: "/assets/campaigns/bounce-sole-slippers.jpg",
     rainyDays: "/assets/campaigns/rainy-days.jpg",
     midnight: "/assets/hero/midnight.jpg",
@@ -86,7 +91,7 @@ export const assets = {
   },
 
   lifestyle: {
-    aboutAboveAndBeyond: "/assets/lifestyle/above-and-beyond.jpg",
+    aboutAboveAndBeyond: "/assets/lifestyle/above-and-beyond (1).jpg",
     community01: "/assets/campaigns/sporty-looks-better.png",
     community02: "/assets/campaigns/fresh-in-rotation.jpg",
     community03: "/assets/campaigns/summer-lifestyle.jpg",

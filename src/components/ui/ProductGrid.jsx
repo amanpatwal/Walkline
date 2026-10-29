@@ -2,107 +2,137 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 /**
- * ProductGrid
- *
- * Props:
- *  products  — array from FEATURED_PRODUCTS (filtered subset)
- *  heading   — optional section heading string
+ * ProductCard
+ * A clean, premium showcase card for Walkline footwear products.
+ * Conforms to the reference design: white background, light-grey borders,
+ * rounded corners, uncropped contain image, verified series details,
+ * and an Explore link leading to the product's detail page.
  */
-export default function ProductGrid({ products = [], heading }) {
-  if (!products.length) return null;
+export function ProductCard({ product }) {
+  if (!product) return null;
 
   return (
-    <section className="w-full bg-white px-5 sm:px-10 lg:px-16 py-14 sm:py-20">
-      <div className="max-w-[1440px] mx-auto">
-        {heading && (
-          <div className="flex items-end justify-between mb-9 border-b border-neutral-200 pb-5">
-            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#000000]">
-              {heading}
-            </h2>
-            <span className="text-[10px] uppercase tracking-[0.18em] text-[#27409A] font-bold">
-              {products.length} styles
+    <article className="group relative bg-white rounded-2xl overflow-hidden border border-neutral-200/90 hover:border-[#27409A]/60 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col h-full">
+      {/* Product Image Stage */}
+      <Link
+        href={`/products/${product.slug}`}
+        className="relative aspect-square w-full bg-[#F8F9FA] overflow-hidden flex items-center justify-center p-6 sm:p-8 block focus:outline-none"
+        aria-label={`View ${product.series} — ${product.category}`}
+      >
+        <Image
+          src={product.image}
+          alt={`${product.series} — ${product.category} — Walkline Footwear`}
+          fill
+          className="object-contain p-4 sm:p-6 group-hover:scale-[1.04] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] select-none"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+
+        {/* Small badge in top-left */}
+        {product.tag && (
+          <div className="absolute top-3.5 left-3.5 z-10 pointer-events-none">
+            <span
+              className={`text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs ${
+                product.badgeColor || "bg-[#27409A] text-white"
+              }`}
+            >
+              {product.tag}
             </span>
           </div>
         )}
+      </Link>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {products.map((product) => (
-            <Link
-              key={product.id}
-              href={`/products/${product.slug}`}
-              className="group relative bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:border-[#27409A] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
-            >
-              {/* Top Image Stage */}
-              <div>
-                <div className="relative aspect-square bg-neutral-50 overflow-hidden flex items-center justify-center p-4">
-                  <Image
-                    src={product.image}
-                    alt={`${product.series} — ${product.category}`}
-                    fill
-                    className="object-contain p-4 group-hover:scale-[1.05] transition-transform duration-500 ease-out"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                  />
-                  {/* Badge */}
-                  {product.tag && (
-                    <div className="absolute top-3 left-3">
-                      <span
-                        className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs ${product.badgeColor}`}
-                      >
-                        {product.tag}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Hover Reveal Strip */}
-                  <div className="absolute bottom-0 inset-x-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-[#27409A]/95 backdrop-blur-sm p-2 flex items-center justify-center gap-1.5 text-white">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-white">
-                      View Details & Sizing
-                    </span>
-                    <ArrowUpRight className="w-3 h-3 text-white" />
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="p-4">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-[#27409A] font-bold mb-1">
-                    <span className="truncate">{product.category}</span>
-                  </div>
-                  <h3 className="text-sm font-black uppercase tracking-tight text-[#000000] group-hover:text-[#27409A] transition-colors truncate">
-                    {product.series}
-                  </h3>
-                  <p className="text-[11px] text-neutral-500 mt-1 line-clamp-1">
-                    {product.tagline}
-                  </p>
-                  {/* Sizes */}
-                  <p className="text-[10px] text-neutral-500 font-semibold mt-2">
-                    {product.sizes}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Colors & CTA indicator */}
-              <div className="p-4 pt-0 flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  {product.colors?.slice(0, 3).map((color, idx) => (
-                    <span
-                      key={idx}
-                      className="w-3 h-3 rounded-full border border-neutral-300"
-                      style={{ backgroundColor: color }}
-                      aria-label={`Colorway ${idx + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#27409A] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
-                  Explore <ArrowUpRight className="w-3 h-3" />
-                </span>
-              </div>
-            </Link>
-          ))}
+      {/* Card Details */}
+      <div className="p-5 sm:p-6 flex flex-col flex-1">
+        {/* Category & Sizes Row */}
+        <div className="flex items-center justify-between gap-2 mb-1.5">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-[#27409A] truncate">
+            {product.category}
+          </span>
+          {product.sizes && (
+            <span className="text-[10px] sm:text-[11px] font-medium text-neutral-500 shrink-0">
+              {product.sizes}
+            </span>
+          )}
         </div>
+
+        {/* Product / Series Title */}
+        <Link
+          href={`/products/${product.slug}`}
+          className="block focus:outline-none focus-visible:underline"
+        >
+          <h2 className="text-base sm:text-lg font-medium uppercase tracking-tight text-[#000000] group-hover:text-[#27409A] transition-colors leading-snug">
+            {product.series}
+          </h2>
+        </Link>
+
+        {/* Short verified description / tagline */}
+        <p className="text-xs sm:text-[13px] text-neutral-600 mt-2 line-clamp-2 leading-relaxed flex-1 font-normal">
+          {product.tagline || product.description}
+        </p>
+
+        {/* Bottom Bar: Available colors & Explore link */}
+        <div className="mt-4 pt-3.5 border-t border-neutral-100 flex items-center justify-between">
+          {/* Color indicators */}
+          <div className="flex items-center gap-1.5">
+            {product.colors && product.colors.length > 0 ? (
+              product.colors.slice(0, 3).map((color, idx) => (
+                <span
+                  key={idx}
+                  className="w-3.5 h-3.5 rounded-full border border-neutral-300"
+                  style={{ backgroundColor: color }}
+                  aria-label={`Colorway ${idx + 1}`}
+                />
+              ))
+            ) : (
+              <span className="text-[10px] text-neutral-400 font-medium">Standard</span>
+            )}
+          </div>
+
+          {/* Explore Link */}
+          <Link
+            href={`/products/${product.slug}`}
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#000000] group-hover:text-[#27409A] transition-colors focus:outline-none"
+            aria-label={`Explore ${product.series}`}
+          >
+            <span>Explore</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/**
+ * ProductGrid
+ * Responsive showcase grid for category pages.
+ */
+export default function ProductGrid({ products = [] }) {
+  if (!products.length) return null;
+
+  // Responsive container width and grid layout:
+  // 1 card (Kids): Centered single showcase card
+  // 2 cards (Women): Centered 2-column grid
+  // 3+ cards (Men): 3-column grid
+  const containerClasses =
+    products.length === 1
+      ? "max-w-[440px] mx-auto"
+      : products.length === 2
+      ? "max-w-[920px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8"
+      : "max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8";
+
+  return (
+    <section
+      className="w-full bg-white px-5 sm:px-8 lg:px-12 py-10 sm:py-16"
+      aria-label="Product Showcase"
+    >
+      <div className={containerClasses}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
     </section>
   );

@@ -174,11 +174,14 @@ export default function AboutPage() {
               &ldquo;As we embark on an exciting journey, I take this opportunity to acknowledge the contributions of every team member — and welcome many more new friends onboard as we venture towards new horizons. Walkline Group Management stands behind our vision and values, continuously striving to improve processes by investing in state-of-the-art design equipment and enhanced personnel training. Above all, we want to be a responsible, progressive &amp; sensitive corporate citizen — deeply committed to the economic, social and human development of our nation.&rdquo;
             </blockquote>
 
-            <div className="border-t border-neutral-200 pt-5">
-              <p className="text-base sm:text-lg font-black uppercase tracking-tight text-[#0A0A0A]">
+            <div className="border-t border-neutral-200 pt-6 mt-6">
+              <p
+                className="text-lg sm:text-xl font-medium uppercase text-[#0A0A0A] tracking-[-0.02em] leading-none"
+                style={{ letterSpacing: "-0.5px" }}
+              >
                 Pawan Anand
               </p>
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-neutral-500 mt-0.5">
+              <p className="text-[11px] sm:text-xs uppercase tracking-[0.14em] font-medium text-neutral-500 mt-2">
                 Managing Director | Walkline Footwear
               </p>
             </div>
@@ -199,7 +202,7 @@ export default function AboutPage() {
       <section className="w-full overflow-hidden leading-none" aria-label="Above and Beyond — A promise to our customers">
         <Image
           src={assets.lifestyle.aboutAboveAndBeyond}
-          alt="ABOVE & BEYOND — Not Just a Tagline, A promise To Our Customer — Pawan Anand, Managing Director"
+          alt="ABOVE & BEYOND — Not Just a Tagline, A promise To Our Customer"
           width={1460}
           height={366}
           sizes="100vw"

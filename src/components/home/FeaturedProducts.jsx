@@ -10,14 +10,16 @@ import { FEATURED_PRODUCTS } from "@/data/products";
 // Brand palette: #27409A (Primary Blue), #000000 (Black), #FFFFFF (White).
 // Subtle neutral borders, #000000 product titles, #27409A accents/badges.
 
-const N = FEATURED_PRODUCTS.length;
-// Triplicate items to allow seamless infinite backward and forward looping
-const EXTENDED_PRODUCTS = [
-  ...FEATURED_PRODUCTS,
-  ...FEATURED_PRODUCTS,
-  ...FEATURED_PRODUCTS,
-];
-const INITIAL_INDEX = N; // Start at the beginning of the middle set
+const CAROUSEL_PRODUCT_IDS = ["concept", "noir-05", "vertex", "barbie-04"];
+const CAROUSEL_PRODUCTS = CAROUSEL_PRODUCT_IDS.map((id) =>
+  FEATURED_PRODUCTS.find((p) => p.id === id)
+).filter(Boolean);
+
+const N = CAROUSEL_PRODUCTS.length; // 4
+// Repeat across 6 blocks (24 items) for perfectly seamless infinite looping
+const REPEAT_BLOCKS = 6;
+const EXTENDED_PRODUCTS = Array(REPEAT_BLOCKS).fill(CAROUSEL_PRODUCTS).flat();
+const INITIAL_INDEX = 2 * N; // Index 8: starts at block 2 with [concept, noir-05, vertex, barbie-04]
 
 export default function FeaturedProducts() {
   const containerRef = useRef(null);
@@ -139,17 +141,17 @@ export default function FeaturedProducts() {
       transitionLockRef.current = false;
       const cur = indexRef.current;
 
-      // Reached the end of the middle block -> snap seamlessly to identical middle index
-      if (cur >= 2 * N) {
+      // Reached past block 3 (cur >= 4 * N) -> snap seamlessly backward by 2 blocks (2 * N items)
+      if (cur >= 4 * N) {
         setAnimated(false);
-        const resetIdx = cur - N;
+        const resetIdx = cur - 2 * N;
         setCurrentIndex(resetIdx);
         indexRef.current = resetIdx;
       }
-      // Reached before the start of the middle block -> snap seamlessly forward
-      else if (cur < N) {
+      // Reached before block 2 (cur < 2 * N) -> snap seamlessly forward by 2 blocks (2 * N items)
+      else if (cur < 2 * N) {
         setAnimated(false);
-        const resetIdx = cur + N;
+        const resetIdx = cur + 2 * N;
         setCurrentIndex(resetIdx);
         indexRef.current = resetIdx;
       }
@@ -254,7 +256,6 @@ export default function FeaturedProducts() {
               key={`${product.id}-${idx}`}
               product={product}
               cardWidth={cardWidth}
-              onQuickAdd={() => setQuickAddProduct(product)}
             />
           ))}
         </div>
@@ -314,11 +315,11 @@ function ProductCell({ product, cardWidth }) {
         </div>
       )}
 
-      {/* ── Product image — 3:4, dominates the panel ── */}
+      {/* ── Product image — reduced height ratio, dominates the panel ── */}
       <Link
         href={`/products/${product.slug}`}
         className="group relative block w-full overflow-hidden bg-white"
-        style={{ aspectRatio: "3 / 4" }}
+        style={{ aspectRatio: "4 / 4.5" }}
         aria-label={`View ${product.series}`}
         draggable={false}
       >

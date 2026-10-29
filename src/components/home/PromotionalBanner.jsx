@@ -4,31 +4,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { assets } from "@/data/assets";
 
-// ─── Comfy Promotional Banner — Full Viewport Width ──────────────────────────
-// Replaces the previous "Sold Out" banner with the COMFY promotional banner.
-// Full-bleed presentation matching the supplied Banner-Comfy.jpg asset.
-// Aspect ratio preserved from the original 1900×328 slot dimensions.
+// ─── Vision Promotional Banner — Full Viewport Width ──────────────────────────
+// Full-width banner featuring "VISION TO 10 MILLION PAIRS ANNUALLY" (1900×328).
+// Full-bleed presentation matching 10-Millions-Pairs.jpg.
 
 export default function PromotionalBanner() {
   return (
     <section
       id="promotional-banner"
-      className="relative w-full overflow-hidden bg-[#2B1E10]"
-      aria-label="Walkline Footwear — Comfy Promotional Campaign"
+      className="relative w-full overflow-hidden bg-[#0A0A0A]"
+      aria-label="Walkline Footwear — Vision to 10 Million Pairs Annually"
     >
       <Link
         href="/collections"
         className="group relative block w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A]"
-        aria-label="Explore Walkline Comfy Series"
+        aria-label="Explore Walkline Footwear Collection"
       >
-        {/* Full-bleed image — original 1900×328 aspect ratio preserved */}
+        {/* Full-bleed image — 1900×328 aspect ratio preserved */}
         <div
           className="relative w-full"
           style={{ aspectRatio: "1900 / 328" }}
         >
           <Image
-            src={assets.campaigns.comfyBanner}
-            alt="Comfy — Our Exclusive Series — Walkline Footwear"
+            src={assets.campaigns.visionBanner}
+            alt="Vision to 10 Million Pairs Annually — Walkline Footwear"
             fill
             sizes="100vw"
             quality={95}

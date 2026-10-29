@@ -1,25 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ShoppingBag,
-  Check,
   ShieldCheck,
-  Ruler,
   Truck,
   ArrowRight,
   Package,
 } from "lucide-react";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import { useState } from "react";
 
 export default function ProductDetailClient({ product, relatedProducts = [] }) {
-  const [selectedSize, setSelectedSize] = useState(
-    product?.availableSizes?.[0] || ""
-  );
-  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("specifications"); // specifications | description | care
 
   if (!product) return null;
@@ -115,7 +108,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
               </div>
             </div>
 
-            {/* RIGHT: Product Meta & Purchase / Inquiry */}
+            {/* RIGHT: Product Meta */}
             <div className="lg:col-span-6 xl:col-span-5 space-y-6">
               {/* Header Info */}
               <div>
@@ -137,16 +130,37 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                 </p>
               </div>
 
-              {/* Pricing & Availability Disclaimer */}
+              {/* Available Sizes — static display */}
+              {product.availableSizes && product.availableSizes.length > 0 && (
+                <div className="pt-3 border-t border-neutral-200">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#000000] block mb-3">
+                    Available Sizes:
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {product.availableSizes.map((size) => (
+                      <span
+                        key={size}
+                        className="px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-white text-[#000000] border border-neutral-200"
+                      >
+                        {size}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Authorized Distribution Panel */}
               <div className="p-4 rounded-2xl bg-white border border-neutral-200">
                 <div className="flex items-start gap-3">
                   <Package className="w-5 h-5 text-[#27409A] shrink-0 mt-0.5" />
                   <div>
                     <div className="text-xs font-bold uppercase tracking-wider text-[#000000]">
-                      Authorized Distribution & Retail
+                      Authorized Distribution &amp; Retail
                     </div>
                     <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
-                      Walkline is distributed via verified regional distributors and select retailers. Add to your bag to submit an availability or wholesale quote inquiry.
+                      Walkline is distributed via verified regional distributors
+                      and select retail partners across India. Contact us for
+                      availability and stockist information.
                     </p>
                   </div>
                 </div>
@@ -168,98 +182,6 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                     </div>
                   ))}
                 </div>
-              </div>
-
-              {/* Size Selector */}
-              <div className="pt-3 border-t border-neutral-200">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#000000]">
-                    Select Size:
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setIsSizeGuideOpen(!isSizeGuideOpen)}
-                    className="inline-flex min-h-11 items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#27409A] hover:text-[#000000] transition-colors cursor-pointer"
-                  >
-                    <Ruler className="w-3.5 h-3.5" />
-                    <span>Size Guide</span>
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-4 sm:grid-cols-5 gap-2.5">
-                  {product.availableSizes?.map((size) => {
-                    const isSelected = selectedSize === size;
-                    return (
-                      <button
-                        key={size}
-                        type="button"
-                        onClick={() => setSelectedSize(size)}
-                        className={`min-h-11 px-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer border ${
-                          isSelected
-                            ? "bg-[#27409A] text-white border-[#27409A] shadow-sm"
-                            : "bg-white text-[#000000] border-neutral-200 hover:border-[#27409A] hover:text-[#27409A]"
-                        }`}
-                      >
-                        {size}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Inline Size Guide Modal */}
-                {isSizeGuideOpen && (
-                  <div className="mt-3 p-4 rounded-xl bg-white border border-neutral-200 animate-in fade-in duration-200">
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#000000] mb-2 flex items-center justify-between">
-                      <span>UK / India Standard Footwear Sizing</span>
-                      <button
-                        onClick={() => setIsSizeGuideOpen(false)}
-                        className="text-neutral-400 hover:text-[#000000]"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                    <div className="text-[11px] text-neutral-600 leading-relaxed mb-3">
-                      Walkline footwear is crafted to standard Indian/UK shoe sizes with ergonomic arch and heel comfort cushions. If you are between sizes, we recommend selecting one size up.
-                    </div>
-                    <div className="grid grid-cols-3 gap-2 text-center text-[10px] border-t border-neutral-100 pt-2">
-                      <div>
-                        <span className="font-bold text-[#000000] block">UK/IND</span>
-                        <span className="text-neutral-600">4 to 10</span>
-                      </div>
-                      <div>
-                        <span className="font-bold text-[#000000] block">EU</span>
-                        <span className="text-neutral-600">37 to 45</span>
-                      </div>
-                      <div>
-                        <span className="font-bold text-[#000000] block">Fit</span>
-                        <span className="text-neutral-600">True to Size</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Product Inquiry & Wholesale Actions (Showcase Model) */}
-              <div className="pt-2 space-y-3">
-                <Link
-                  href={`/contact?subject=inquiry&product=${encodeURIComponent(
-                    product.series
-                  )}${selectedSize ? `&size=${encodeURIComponent(selectedSize)}` : ""}`}
-                  className="w-full py-4 px-6 rounded-xl bg-[#27409A] hover:bg-[#1E327A] text-white font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer"
-                >
-                  <span>Inquire About This Style</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-
-                <Link
-                  href={`/contact?subject=wholesale&product=${encodeURIComponent(
-                    product.series
-                  )}`}
-                  className="w-full py-3.5 px-4 rounded-xl bg-white border border-neutral-200 text-[#000000] font-bold uppercase tracking-wider text-xs hover:border-[#27409A] hover:text-[#27409A] transition-all flex items-center justify-center gap-2 shadow-sm"
-                >
-                  <span>Wholesale & Bulk Order Inquiry</span>
-                  <ArrowRight className="w-4 h-4 text-[#27409A]" />
-                </Link>
               </div>
 
               {/* Verified Trust Badges */}
@@ -320,7 +242,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                         : "border-transparent text-neutral-500 hover:text-[#000000]"
                     }`}
                   >
-                    Care & Fit
+                    Care &amp; Fit
                   </button>
                 </div>
 
@@ -354,14 +276,14 @@ export default function ProductDetailClient({ product, relatedProducts = [] }) {
                 {activeTab === "care" && (
                   <div className="bg-white rounded-2xl p-5 border border-neutral-200 space-y-3 text-xs text-neutral-600 leading-relaxed">
                     <p>
-                      • Wipe clean with a damp cloth or soft sponge using mild soap.
+                      • Wipe clean with a damp cloth or soft sponge using mild
+                      soap.
                     </p>
                     <p>
-                      • Allow footwear to air dry naturally away from direct high heat or radiators.
+                      • Allow footwear to air dry naturally away from direct
+                      high heat or radiators.
                     </p>
-                    <p>
-                      • Keep in a cool, ventilated area when not in use.
-                    </p>
+                    <p>• Keep in a cool, ventilated area when not in use.</p>
                   </div>
                 )}
               </div>

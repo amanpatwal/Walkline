@@ -90,7 +90,7 @@ export default function RetailPartners() {
       aria-label="Walkline Footwear — Our Retail Partners"
     >
       {/* ── Section Heading ──────────────────────────────────────────── */}
-      <div className="text-center mb-10 sm:mb-12 lg:mb-14 px-5">
+      <div className="text-center mb-16 sm:mb-20 lg:mb-24 px-5">
         <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-[#27409A] mb-2.5 sm:mb-3">
           AVAILABLE ACROSS INDIA
         </p>

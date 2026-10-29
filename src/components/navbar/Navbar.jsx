@@ -6,7 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Search, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
-import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
 import SearchModal from "./SearchModal";
 import { PRIMARY_NAV } from "@/data/navigation";
@@ -15,11 +14,9 @@ import { assets } from "@/data/assets";
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeMenuId, setActiveMenuId] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const mobileMenuButtonRef = useRef(null);
-  const closeTimerRef = useRef(null);
 
   const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
@@ -32,52 +29,6 @@ export default function Navbar() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Close mega menu on ESC
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === "Escape") setActiveMenuId(null);
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, []);
-
-  // Hover logic: use a cancel-on-enter / delayed-close approach
-  // so the mouse can move from nav item into the megamenu without closing
-  const handleNavEnter = useCallback((id) => {
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-    setActiveMenuId(id);
-  }, []);
-
-  const handleNavLeave = useCallback(() => {
-    closeTimerRef.current = setTimeout(() => {
-      setActiveMenuId(null);
-    }, 80); // tiny delay so mouse can travel from nav item → megamenu
-  }, []);
-
-  const handleMenuEnter = useCallback(() => {
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  }, []);
-
-  const handleMenuLeave = useCallback(() => {
-    closeTimerRef.current = setTimeout(() => {
-      setActiveMenuId(null);
-    }, 80);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-    };
-  }, []);
-
-  const activeNavItem = PRIMARY_NAV.find((item) => item.id === activeMenuId);
 
   return (
     <>
@@ -99,7 +50,6 @@ export default function Navbar() {
                 href="/"
                 className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#27409A] rounded"
                 aria-label="Walkline Footwear — Home"
-                onClick={() => setActiveMenuId(null)}
               >
                 <div className="relative flex items-center">
                   <Image
@@ -117,25 +67,18 @@ export default function Navbar() {
 
             {/* RIGHT GROUP: Navigation Links & Actions (Search + Mobile Menu) */}
             <div className="flex items-center gap-6 xl:gap-10">
-              {/* DESKTOP NAV LINKS: Men, Women, Kids, Sandals, About Us */}
+              {/* DESKTOP NAV LINKS: Men, Women, Kids, About Us (normal links, no hover dropdowns) */}
               <div className="hidden lg:flex items-center gap-7 xl:gap-9">
                 {PRIMARY_NAV.map((item) => {
                   const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
-                  const isMenuOpen = activeMenuId === item.id;
 
                   return (
-                    <div
-                      key={item.id}
-                      className="relative"
-                      onMouseEnter={() => handleNavEnter(item.id)}
-                      onMouseLeave={handleNavLeave}
-                    >
+                    <div key={item.id} className="relative group">
                       <Link
                         href={item.href}
-                        onClick={() => setActiveMenuId(null)}
                         className={cn(
                           "flex items-center gap-1 text-[12.5px] tracking-[0.1em] uppercase font-bold transition-colors duration-200 py-2 cursor-pointer focus:outline-none",
-                          isMenuOpen || isActive
+                          isActive
                             ? "text-[#27409A]"
                             : "text-[#000000] hover:text-[#27409A]"
                         )}
@@ -143,21 +86,12 @@ export default function Navbar() {
                         <span>{item.label}</span>
                       </Link>
 
-                      {/* Active page underline */}
+                      {/* Active / hover page underline */}
                       <span
                         className={cn(
                           "absolute bottom-0 left-0 h-[2px] bg-[#27409A] transition-all duration-250",
-                          isMenuOpen || isActive ? "w-full" : "w-0"
+                          isActive ? "w-full" : "w-0 group-hover:w-full"
                         )}
-                      />
-
-                      {/* Inline dropdown/megamenu */}
-                      <MegaMenu
-                        navItem={activeNavItem && activeNavItem.id === item.id ? activeNavItem : null}
-                        isOpen={isMenuOpen}
-                        onClose={() => setActiveMenuId(null)}
-                        onMouseEnter={handleMenuEnter}
-                        onMouseLeave={handleMenuLeave}
                       />
                     </div>
                   );
