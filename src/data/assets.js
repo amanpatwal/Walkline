@@ -56,7 +56,7 @@ export const assets = {
     // Step Into Confidence lifestyle editorial banner (step-into-confidence.jpg)
     summer: "/assets/hero/step-into-confidence.jpg",
     confidence: "/assets/hero/step-into-confidence.jpg",
-    comfyBanner: "/assets/lifestyle/Banner-Comfy.jpg",
+    comfyBanner: "/assets/lifestyle/Banner-Comfy (1).jpg",
     visionBanner: "/assets/lifestyle/10-Millions-Pairs.jpg",
     bounceSole: "/assets/campaigns/bounce-sole-slippers.jpg",
     rainyDays: "/assets/campaigns/rainy-days.jpg",
@@ -73,6 +73,14 @@ export const assets = {
     barbie: "/assets/lifestyle/5.jpg",
     noir: "/assets/lifestyle/6.jpg",
   },
+
+  // Homepage Featured Carousel — 4 lifestyle showcase images
+  carousel: [
+    "/assets/lifestyle/1 (5).jpg",
+    "/assets/lifestyle/2 (6).jpg",
+    "/assets/lifestyle/3 (1).jpg",
+    "/assets/lifestyle/4 (1).jpg",
+  ],
 
   lifestyleProducts: {
     sideProfile: "/assets/lifestyle/1.jpg",

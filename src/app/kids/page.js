@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import CategoryHeader from "@/components/ui/CategoryHeader";
+import CategoryBanner from "@/components/ui/CategoryBanner";
 import ProductGrid from "@/components/ui/ProductGrid";
 import { FEATURED_PRODUCTS } from "@/data/products";
 
@@ -18,6 +19,9 @@ export default function KidsPage() {
   return (
     <main className="relative w-full bg-white min-h-screen text-[#000000] pt-[72px] sm:pt-[80px]">
       <Navbar />
+
+      {/* Vision to 10 Million Pairs Annually — full-width banner below navbar */}
+      <CategoryBanner />
 
       <CategoryHeader
         eyebrow="KIDS' COLLECTION"

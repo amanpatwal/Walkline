@@ -2,24 +2,40 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { FEATURED_PRODUCTS } from "@/data/products";
 
 // ─── Featured Products Horizontal Carousel ────────────────────────────────────
-// Brand palette: #27409A (Primary Blue), #000000 (Black), #FFFFFF (White).
-// Subtle neutral borders, #000000 product titles, #27409A accents/badges.
+// 4 newly uploaded lifestyle images from /assets/lifestyle/
+// Seamless infinite loop repeating from slide 1.
 
-const CAROUSEL_PRODUCT_IDS = ["concept", "noir-05", "vertex", "barbie-04"];
-const CAROUSEL_PRODUCTS = CAROUSEL_PRODUCT_IDS.map((id) =>
-  FEATURED_PRODUCTS.find((p) => p.id === id)
-).filter(Boolean);
+const CAROUSEL_ITEMS = [
+  {
+    id: "lifestyle-slide-1",
+    image: "/assets/lifestyle/1 (5).jpg",
+    alt: "Walkline Footwear — Insole and Buckle Craft Detail",
+  },
+  {
+    id: "lifestyle-slide-2",
+    image: "/assets/lifestyle/2 (6).jpg",
+    alt: "Walkline Footwear — Comfort Sandal Perspective Angle",
+  },
+  {
+    id: "lifestyle-slide-3",
+    image: "/assets/lifestyle/3 (1).jpg",
+    alt: "Walkline Footwear — Lifestyle Footwear On Foot",
+  },
+  {
+    id: "lifestyle-slide-4",
+    image: "/assets/lifestyle/4 (1).jpg",
+    alt: "Walkline Footwear — Comfort Sandal Side Profile",
+  },
+];
 
-const N = CAROUSEL_PRODUCTS.length; // 4
+const N = CAROUSEL_ITEMS.length; // 4
 // Repeat across 6 blocks (24 items) for perfectly seamless infinite looping
 const REPEAT_BLOCKS = 6;
-const EXTENDED_PRODUCTS = Array(REPEAT_BLOCKS).fill(CAROUSEL_PRODUCTS).flat();
-const INITIAL_INDEX = 2 * N; // Index 8: starts at block 2 with [concept, noir-05, vertex, barbie-04]
+const EXTENDED_ITEMS = Array(REPEAT_BLOCKS).fill(CAROUSEL_ITEMS).flat();
+const INITIAL_INDEX = 2 * N; // Index 8: starts at block 2
 
 export default function FeaturedProducts() {
   const containerRef = useRef(null);
@@ -251,10 +267,10 @@ export default function FeaturedProducts() {
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}
         >
-          {EXTENDED_PRODUCTS.map((product, idx) => (
+          {EXTENDED_ITEMS.map((item, idx) => (
             <ProductCell
-              key={`${product.id}-${idx}`}
-              product={product}
+              key={`${item.id}-${idx}`}
+              item={item}
               cardWidth={cardWidth}
             />
           ))}
@@ -297,35 +313,22 @@ export default function FeaturedProducts() {
 
 // ─── Single Product Cell ──────────────────────────────────────────────────────
 
-function ProductCell({ product, cardWidth }) {
+function ProductCell({ item, cardWidth }) {
   return (
     <div
       className="relative flex-shrink-0 flex flex-col bg-white border-r border-neutral-200"
       style={{ width: `${cardWidth}px` }}
       draggable={false}
     >
-      {/* ── RESTOCKED badge ── */}
-      {product.restocked && (
-        <div
-          aria-label="Restocked"
-          className="absolute top-0 left-0 z-10 bg-[#27409A] text-white
-                     text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5"
-        >
-          Restocked
-        </div>
-      )}
-
-      {/* ── Product image — reduced height ratio, dominates the panel ── */}
-      <Link
-        href={`/products/${product.slug}`}
+      {/* ── Lifestyle product image — unlinked full-panel presentation ── */}
+      <div
         className="group relative block w-full overflow-hidden bg-white"
         style={{ aspectRatio: "4 / 4.5" }}
-        aria-label={`View ${product.series}`}
         draggable={false}
       >
         <Image
-          src={product.image}
-          alt={`${product.series} — ${product.category} — Walkline Footwear`}
+          src={item.image}
+          alt={item.alt}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           loading="lazy"
@@ -333,7 +336,7 @@ function ProductCell({ product, cardWidth }) {
                      group-hover:scale-[1.04]"
           draggable={false}
         />
-      </Link>
+      </div>
     </div>
   );
 }
